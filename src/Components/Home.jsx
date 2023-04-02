@@ -21,14 +21,14 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="carousel-item">
-                            <img src="/src/Assets/wallpaper-kartun-tk.webp" className="rounded-3" style={{ width: '100%', height: '75vh' }} />
+                            <img src="https://cdn0-production-images-kly.akamaized.net/LnwORZA-w3TWaSf5m5vpdZH5WQU=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2975416/original/005140100_1574444390-ANAK_TK-Ridlo.jpg" className="rounded-3" style={{ width: '100%', height: '75vh' }} />
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>First slide label</h5>
                                 <p>Some representative placeholder content for the first slide.</p>
                             </div>
                         </div>
                         <div className="carousel-item">
-                            <img src="/src/Assets/wallpaper-kartun-tk.webp" className="rounded-3" style={{ width: '100%', height: '75vh' }} />
+                            <img src="https://www.ibudanbalita.com/uploads/posts/pTGNHGaudX.jpg" className="rounded-3" style={{ width: '100%', height: '75vh' }} />
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>First slide label</h5>
                                 <p>Some representative placeholder content for the first slide.</p>
