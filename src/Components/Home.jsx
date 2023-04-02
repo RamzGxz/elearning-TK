@@ -14,21 +14,21 @@ const Home = () => {
                 }}>
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                            <img src="https://faperta.unsoed.ac.id/wp-content/uploads/2017/09/2-7-740x450.jpg" className="rounded-3" style={{ width: '100%', height: '75vh' }} />
+                            <img src="/src/Assets/wallpaper-kartun-tk.webp" className="rounded-3" style={{ width: '100%', height: '75vh' }} />
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>First slide label</h5>
                                 <p>Some representative placeholder content for the first slide.</p>
                             </div>
                         </div>
                         <div className="carousel-item">
-                            <img src="https://awsimages.detik.net.id/community/media/visual/2020/08/10/seperti-ini-anak-anak-tk-di-thailand-bermain-6_169.jpeg?w=700&q=90" className="rounded-3" style={{ width: '100%', height: '75vh' }} />
+                            <img src="/src/Assets/wallpaper-kartun-tk.webp" className="rounded-3" style={{ width: '100%', height: '75vh' }} />
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>First slide label</h5>
                                 <p>Some representative placeholder content for the first slide.</p>
                             </div>
                         </div>
                         <div className="carousel-item">
-                            <img src="https://sekolahsabilillah.sch.id/assets/img/tk/aktivitas/band.jpg" className="rounded-3" style={{ width: '100%', height: '75vh' }} />
+                            <img src="/src/Assets/wallpaper-kartun-tk.webp" className="rounded-3" style={{ width: '100%', height: '75vh' }} />
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>First slide label</h5>
                                 <p>Some representative placeholder content for the first slide.</p>
