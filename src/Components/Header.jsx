@@ -15,15 +15,15 @@ const Header = (props) => {
                     <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
                         <span className="navbar-toggler-icon" />
                     </button>
-                    <div className="offcanvas offcanvas-end text-bg-dark" tabIndex={-1} id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div className="offcanvas offcanvas-end text-white" tabIndex={-1} id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
                         <div className="offcanvas-header">
-                            <h5 className="offcanvas-title" id="offcanvasNavbar2Label">Menus</h5>
-                            <button type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" />
+                            <h5 className="offcanvas-title text-black" id="offcanvasNavbar2Label">Menus</h5>
+                            <button type="button" className="btn-close btn-close-dark" data-bs-dismiss="offcanvas" aria-label="Close" />
                         </div>
-                        <div className="offcanvas-body">
-                            <ul className="navbar-nav justify-content-center d-flex align-items-center w-100 flex-grow-1">
+                        <div className="offcanvas-body" style={{fontSize: 18}}>
+                            <ul className="navbar-nav flex-grow-1 justify-content-center">
                                 <li className="nav-item">
-                                    <a className="nav-link active" aria-current="page" href="#">Home</a>
+                                    <a className={`nav-link ${props}`} aria-current="page" href="#">Home</a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" href="#">Pembelajaran</a>
@@ -36,12 +36,9 @@ const Header = (props) => {
                                         Admin
                                     </a>
                                     <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="#">Action</a></li>
-                                        <li><a className="dropdown-item" href="#">Another action</a></li>
-                                        <li>
-                                            <hr className="dropdown-divider" />
-                                        </li>
-                                        <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                        <li><a className="dropdown-item nav-underline" href="#">Dashboard</a></li>
+                                        <li><a className="dropdown-item" href="#">Upload</a></li>
+                                        <li><a className="dropdown-item" href="#">Update Data</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -53,7 +50,11 @@ const Header = (props) => {
                     </div>
                 </div>
             </nav>
-            <div className="w-100"></div>
+            <div className="container mt-0" style={{
+                width: '100%',
+                height: 2,
+                backgroundColor: 'black'
+            }}></div>
         </div>
     )
 }
