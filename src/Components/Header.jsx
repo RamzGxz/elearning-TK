@@ -55,6 +55,9 @@ const Header = (props) => {
                 height: 2,
                 backgroundColor: 'black'
             }}></div>
+            <div>
+                <h1>okekkokok</h1>
+            </div>
         </div>
     )
 }
