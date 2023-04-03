@@ -7,7 +7,7 @@ const Home = () => {
         <div>
             <Header act1="active" />
 
-            <div className="d-flex justify-content-center align-items-center bg-dark-subtle w-100 mt-5" style={{ height: '80vh' }}>
+            <div className="d-flex justify-content-center align-items-center w-100" style={{ height: '80vh', marginTop: '7%' }}>
 
                 <div id="carouselExampleAutoplaying" className="carousel slide d-flex justify-content-between align-items-center container" data-bs-ride="carousel" style={{
                     width: '100%',
