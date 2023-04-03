@@ -81,7 +81,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="mb-5">
+            <div className="mb-5 flex-sm-column">
                 <div className="d-flex w-100 container h-100 gap-5">
                     <div className="vid1 w-50">
                         <iframe width={'100%'} height={'100%'} src="https://www.youtube.com/embed/JKH_iUiMWSk" title="Anak Paud Belajar di Kelas PG dan TK ✿ Daily Playgroup School Learning Indonesia - Hana Family" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
