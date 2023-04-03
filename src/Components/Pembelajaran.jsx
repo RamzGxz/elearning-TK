@@ -9,9 +9,9 @@ const Pembelajaran = () =>{
               <div className="pg_pembelajaran justify-content-center align-items-center ">
                  <h1 className="text-center m-3">video Pembelajaran</h1>
                 <div className="history">
-                    <div className="h2 d-flex justify-content-center gap-5">
-                        <h2>History</h2>
-                        <h2>more</h2>
+                    <div className="h2 d-flex justify-content-between container gap-5">
+                        <h5>History</h5>
+                        <h5>more</h5>
                     </div>
                     <div className="d-flex justify-content-center align-content-center">
                         <div className="gap-5">
