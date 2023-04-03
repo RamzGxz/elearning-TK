@@ -23,13 +23,13 @@ const Header = (props) => {
                         <div className="offcanvas-body" style={{fontSize: 18}}>
                             <ul className="navbar-nav flex-grow-1 justify-content-center">
                                 <li className="nav-item">
-                                    <a className={`nav-link ${props}`} aria-current="page" href="#">Home</a>
+                                    <a className={`nav-link ${props.act1}`} aria-current="page" href="#">Home</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">Pembelajaran</a>
+                                    <a className={`nav-link ${props.act2}`} href="#">Pembelajaran</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">Info</a>
+                                    <a className={`nav-link ${props.act3}`} href="#">Info</a>
                                 </li>
                                 <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -5,7 +5,7 @@ import Footer from "./Footer";
 const Home = () => {
     return (
         <div>
-            <Header props='active' />
+            <Header act1="active" />
 
             <div className="d-flex justify-content-center align-items-center bg-dark-subtle w-100 mt-5" style={{ height: '80vh' }}>
 
@@ -55,28 +55,33 @@ const Home = () => {
             }}>
                 <div className="i1 d-flex justify-content-center align-items-center" style={{
                     width: '25%'
-                }}>
-                    <i className="fa-brands fa-youtube text-white" style={{
-                        fontSize: 60
-                    }} />
+                }}> <a href="">
+                        <i className="fa-brands fa-youtube text-white" style={{
+                            fontSize: 60
+                        }} />
+                    </a>
                 </div>
                 <div className="i2 d-flex justify-content-center align-items-center" style={{
                     width: '25%'
                 }}>
-                    <i className="fa-solid fa-image text-white" style={{
-                        fontSize: 60
-                    }} />
+                    <a href="">    
+                        <i className="fa-solid fa-image text-white" style={{
+                            fontSize: 60
+                        }} />
+                    </a>
                 </div>
                 <div className="i3 d-flex justify-content-center align-items-center" style={{
                     width: '25%'
                 }}>
-                    <i className="fa-solid fa-circle-info text-white" style={{
-                        fontSize: 60
-                    }} />
+                    <a href="">
+                        <i className="fa-solid fa-circle-info text-white" style={{
+                            fontSize: 60
+                        }}/>
+                    </a>
                 </div>
             </div>
 
-            <div className="mb-5">
+            <div className="mb-5 flex-sm-column">
                 <div className="d-flex w-100 container h-100 gap-5">
                     <div className="vid1 w-50">
                         <iframe width={'100%'} height={'100%'} src="https://www.youtube.com/embed/JKH_iUiMWSk" title="Anak Paud Belajar di Kelas PG dan TK ✿ Daily Playgroup School Learning Indonesia - Hana Family" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
@@ -95,7 +100,7 @@ const Home = () => {
 
                         <div className=" w-100 d-flex gap-5 mt-3">
                             <div className="vid4 w-50">
-                                <iframe width={'100%'} height={'100%'} src="https://www.youtube.com/embed/3OP0Qa2agtM" title="DiAJAKIN PAPS AQILLA BERMAIN SEPUASNYA. WAJIB KESINI KALO MAIN KE PINRANG" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen /> 
+                                <iframe width={'100%'} height={'100%'} src="https://www.youtube.com/embed/3OP0Qa2agtM" title="DiAJAKIN PAPS AQILLA BERMAIN SEPUASNYA. WAJIB KESINI KALO MAIN KE PINRANG" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
                             </div>
 
                             <div className="vid5 w-50">
@@ -108,7 +113,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <Footer/>
+            <Footer />
         </div>
     )
 }
