@@ -10,7 +10,7 @@ const Pembelajaran = () =>{
                  <h1 className="text-center m-3">video Pembelajaran</h1>
                 <div className="history">
                     <div className="h2 d-flex justify-content-center gap-5">
-                        <h2>History</h2>
+                        <h2 className="https://www.flaticon.com/free-icon/more-than_2039097?term=more&page=1&position=65&origin=search&related_id=2039097">History</h2>
                         <h2>more</h2>
                     </div>
                     <div className="d-flex justify-content-center align-content-center">
