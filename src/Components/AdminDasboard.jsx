@@ -4,19 +4,9 @@ import SideBar from "./SideBar"
 const AdminDasboard = () => {
     return (
         <div>
-            <Header act4='active'/>
-            <SideBar sideact1= 'active'/>
-            <div className="overflow-auto" style={{
-                position: 'fixed',
-                top: 69,
-                right: 0,
-                width: '88%',
-                maxHeight: '91vh',
-                backgroundColor: 'grey'
-            }}>
-                <div className="banner w-100 container" style={{
-                    height: '20vh'
-                }}>
+            <SideBar menuAct1= 'active'/>
+            <div style={{marginLeft: 280}}>
+                <div className="">
                     
                 </div>
             </div>
