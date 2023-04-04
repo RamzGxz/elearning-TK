@@ -1,4 +1,5 @@
 import Banner from "./Banner"
+import Footer from "./Footer"
 import Header from "./Header"
 import SideBar from "./SideBar"
 
@@ -108,6 +109,7 @@ const AdminDasboard = () => {
                         height: '70vh'
                     }} />
                 </div>
+                <Footer/>
             </div>
         </div>
     )

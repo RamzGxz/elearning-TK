@@ -4,14 +4,16 @@ const Pembelajaran = () =>{
     return(
         
         <div>
-             <Header act1="active" />
+             <Header act2="active" />
 
               <div className="pg_pembelajaran justify-content-center align-items-center ">
-                 <h1 className="text-center m-3">video Pembelajaran</h1>
+                 <h1 className="text-center" style={{
+                    marginTop: '5%'
+                 }}>Video Pembelajaran</h1>
                 <div className="history">
                     <div className="d-flex justify-content-between m-3">
                         <h2>History </h2>
-                        <h2>more</h2>
+                        <h2>More</h2>
                     </div>
                     <div className="d-flex row row-cols-3 ">
                         <div className="gap-5">
@@ -33,8 +35,8 @@ const Pembelajaran = () =>{
                 </div>
                 <div className="vpopuler">
                     <div className="d-flex justify-content-between m-3">
-                        <h2>vidio populer </h2>
-                        <h2>more</h2>
+                        <h2>Vidio Populer </h2>
+                        <h2>More</h2>
                     </div>
                     <div className="d-flex row row-cols-3 ">
                         <div className="gap-5">
