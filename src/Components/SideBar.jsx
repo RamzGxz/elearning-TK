@@ -1,36 +1,52 @@
+
+
 const SideBar = (props) => {
     return (
-        <div>
-            <div className="d-flex flex-column flex-shrink-0 bg-body-tertiary navbar-dark" style={{ width: '12%', position: 'fixed', bottom: 0, height:'91vh', zIndex: 9999}}>
-                
-                <ul className="nav nav-pills nav-flush flex-column mb-auto text-center">
-                    <li className="nav-item">
-                        <a href="#" className={`nav-link ${props.sideact1} py-3 border-bottom rounded-0 d-flex align-items-center w-100`} aria-current="page" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Home" data-bs-original-title="Home">
-                            <i className="fa-solid fa-gauge-high fs-3" />
-                            <h5 className="px-2" style={{
-                                marginBottom: '0%'
-                            }}>Dashboard</h5>
+        <div style={{
+            position: 'fixed',
+            left: 0
+        }}>
+            <div className="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style={{ width: 280, height: '100vh' }}>
+                <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <img src="/src/Assets/BMW_logo_(gray).svg.png" alt="" style={{
+                        width: 35,
+                        height: 35
+                    }} className="me-3" />
+                    <span className="fs-4">Menus</span>
+                </a>
+                <hr />
+                <ul className="nav nav-pills flex-column mb-auto">
+                    <li className="my-1">
+                        <a href="#" className={`nav-link  text-white d-flex ${props.menuAct1} align-items-center w-100`}>
+                            <i className="fa-solid fa-gauge-high mb-0 fs-3" />
+                            <p className="ps-3 mb-0 fs-5">Dashboard</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="#" className={`nav-link ${props.sideact2} py-3 border-bottom rounded-0 d-flex align-items-center w-100`} data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Dashboard" data-bs-original-title="Dashboard">
-                            <i className="fa-solid fa-cloud-arrow-up fs-3" />
-                            <h5 className="px-2" style={{
-                                marginBottom: '0%'
-                            }}>Upload</h5>
+                    <li className="my-1">
+                        <a href="#" className={`nav-link  text-white d-flex ${props.menuAct2} align-items-center w-100`}>
+                            <i className="fa-solid fa-file-arrow-up fs-2" />
+                            <p className="ps-3 mb-0 fs-5">Upload Content</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="#" className={`nav-link ${props.sideact3} py-3 border-bottom rounded-0 d-flex align-items-center`} data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Orders" data-bs-original-title="Orders">
-                            <i className="fa-sharp fa-solid fa-pen-to-square fs-3" />
-                            <h5 className="px-2" style={{
-                                marginBottom: '0%'
-                            }}>Update</h5>
+                    <li className="my-1">
+                        <a href="#" className={`nav-link  text-white d-flex ${props.menuAct3} align-items-center w-100`}>
+                            <i className="fa-solid fa-pen-to-square fs-3" />
+                            <p className="ps-3 mb-0 fs-5">Update Data</p>
                         </a>
                     </li>
                 </ul>
+                <hr />
+                <div className="dropdown">
+                    <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt width={32} height={32} className="rounded-circle me-2" />
+                        <strong>Account</strong>
+                    </a>
+                    <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a className="dropdown-item" href="#">Sign out</a></li>
+                        <li><a className="dropdown-item" href="#">Back to Home Page</a></li>
+                    </ul>
+                </div>
             </div>
-
         </div>
     )
 }
