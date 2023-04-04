@@ -26,6 +26,7 @@ const AdminUpload = () =>{
                         borderTopLeftRadius: 5,
                         borderTopRightRadius: 5
                     }}>
+                        <h5 className="ms-2">Gambar</h5>
                     </div>
                 </div>
             </div>
