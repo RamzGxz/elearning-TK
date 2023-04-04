@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div>
-      <AdminDasboard/>
+      <AdminUpload/>
     </div>
   )
 }

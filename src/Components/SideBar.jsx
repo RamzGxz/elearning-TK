@@ -11,26 +11,26 @@ const SideBar = (props) => {
             <div className="d-flex flex-column flex-shrink-0 p-3 text-bg-dark sideWrap" style={{ width: 280, height: '100vh' }}>
                 <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <i className="fas fa-cubes fa-2x me-2" style={{ color: '#ff6219' }} />
-                    <span className="fs-4 t">Menus</span>
+                    <span className="fs-4">Menus</span>
                 </a>
                 <hr />
                 <ul className="nav nav-pills flex-column mb-auto">
                     <li className="my-1">
                         <a href="#" className={`nav-link sideLink text-white d-flex ${props.menuAct1} align-items-center w-100`}>
                             <i className="fa-solid fa-gauge-high mb-0 fs-3" />
-                            <p className="ps-3 mb-0 fs-5 t">Dashboard</p>
+                            <p className="ps-3 mb-0 fs-5">Dashboard</p>
                         </a>
                     </li>
                     <li className="my-1" >
                         <a href="#" className={`nav-link sideLink text-white d-flex ${props.menuAct2} align-items-center w-100 `}>
                             <i className="fa-solid fa-file-arrow-up fs-2" />
-                            <p className="ps-3 mb-0 fs-5 t">Upload Content</p>
+                            <p className="ps-3 mb-0 fs-5 ">Upload Content</p>
                         </a>
                     </li>
                     <li className="my-1">
                         <a href="#" className={`nav-link sideLink text-white d-flex ${props.menuAct3} align-items-center w-100`}>
                             <i className="fa-solid fa-pen-to-square fs-3" />
-                            <p className="ps-3 mb-0 fs-5 t">Edit Profile</p>
+                            <p className="ps-3 mb-0 fs-5">Edit Profile</p>
                         </a>
                     </li>
                 </ul>

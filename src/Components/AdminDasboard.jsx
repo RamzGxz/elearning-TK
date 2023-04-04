@@ -6,7 +6,7 @@ const AdminDasboard = () => {
     return (
         <div>
             <SideBar menuAct1='active' />
-            <div style={{ paddingLeft: 285 }} className="content">
+            <div style={{ paddingLeft: 285 }}>
                 <Banner bannerWrapHeight='75vh'
                     bannerMarginTop='0%'
                     bannerWidth='97%'
@@ -17,7 +17,7 @@ const AdminDasboard = () => {
                     <div className="row g-3" style={{
 
                     }}>
-                        <div className="col col-lg-6 col-sm-12 " style={{ height: '80vh' }}>
+                        <div className="col col-6 col-sm-12 col-lg-6" style={{ height: '80vh' }}>
                             <div className="rounded-3 d-flex align-items-center flex-column text-capitalize" style={{ height: '80vh', backgroundColor: '#f08080' }}>
                                 <div className="pict rounded-circle shadow-lg mt-4" style={{
                                     width: 150,
@@ -78,7 +78,7 @@ const AdminDasboard = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col col-lg-6 col-sm-12" style={{ height: '80vh' }}>
+                        <div className="col col-6 col-sm-12 col-lg-6" style={{ height: '80vh' }}>
                             <div className="rounded-3 d-flex align-items-center flex-column" style={{ height: '80vh', backgroundColor: '#ffdab9' }}>
                                 <div className="title mt-5 rounded-5 d-flex justify-content-center align-items-center" style={{
                                     height: '5vh',
