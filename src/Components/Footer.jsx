@@ -2,17 +2,105 @@ const Footer = () => {
 
     return (
         <div className="mt-3">
-            <footer className="d-flex justify-content-center align-items-center flex-column" style={{
-                height: '30vh'
-            }}>
-                <ul className="nav justify-content-center border-bottom pb-3 mb-3">
-                    <li className="nav-item"><a href="#" className="nav-link px-2 text-body-secondary">Home</a></li>
-                    <li className="nav-item"><a href="#" className="nav-link px-2 text-body-secondary">Pembelajaran</a></li>
-                    <li className="nav-item"><a href="#" className="nav-link px-2 text-body-secondary">Info</a></li>
-                    <li className="nav-item"><a href="#" className="nav-link px-2 text-body-secondary">Admin</a></li>
-                </ul>
-                <p className="text-center text-body-secondary">© 2023 Elearning anak-TK</p>
-            </footer>
+            {/* Remove the container if you want to extend the Footer to full width. */}
+            <div className="container my-5">
+                {/* Footer */}
+                <footer className="text-center text-black" style={{ backgroundColor: '#FFFBF5' }}>
+                    {/* Grid container */}
+                    <div className="container">
+                        {/* Section: Links */}
+                        <section className="mt-5">
+                            {/* Grid row*/}
+                            <div className="row text-center d-flex justify-content-center pt-5">
+                                {/* Grid column */}
+                                <div className="col-md-2">
+                                    <h6 className="text-uppercase font-weight-bold">
+                                        <a href="#!" className="text-black">About us</a>
+                                    </h6>
+                                </div>
+                                {/* Grid column */}
+                                {/* Grid column */}
+                                <div className="col-md-2">
+                                    <h6 className="text-uppercase font-weight-bold">
+                                        <a href="#!" className="text-black">Products</a>
+                                    </h6>
+                                </div>
+                                {/* Grid column */}
+                                {/* Grid column */}
+                                <div className="col-md-2">
+                                    <h6 className="text-uppercase font-weight-bold">
+                                        <a href="#!" className="text-black">Awards</a>
+                                    </h6>
+                                </div>
+                                {/* Grid column */}
+                                {/* Grid column */}
+                                <div className="col-md-2">
+                                    <h6 className="text-uppercase font-weight-bold">
+                                        <a href="#!" className="text-black">Help</a>
+                                    </h6>
+                                </div>
+                                {/* Grid column */}
+                                {/* Grid column */}
+                                <div className="col-md-2">
+                                    <h6 className="text-uppercase font-weight-bold">
+                                        <a href="#!" className="text-black">Contact</a>
+                                    </h6>
+                                </div>
+                                {/* Grid column */}
+                            </div>
+                            {/* Grid row*/}
+                        </section>
+                        {/* Section: Links */}
+                        <hr className="my-5" />
+                        {/* Section: Text */}
+                        <section className="mb-5">
+                            <div className="row d-flex justify-content-center">
+                                <div className="col-lg-8">
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+                                        distinctio earum repellat quaerat voluptatibus placeat nam,
+                                        commodi optio pariatur est quia magnam eum harum corrupti
+                                        dicta, aliquam sequi voluptate quas.
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+                        {/* Section: Text */}
+                        {/* Section: Social */}
+                        <section className="text-center mb-5">
+                            <a href className="text-black me-4">
+                                <i className="fab fa-facebook-f" />
+                            </a>
+                            <a href className="text-black me-4">
+                                <i className="fab fa-twitter" />
+                            </a>
+                            <a href className="text-black me-4">
+                                <i className="fab fa-google" />
+                            </a>
+                            <a href className="text-black me-4">
+                                <i className="fab fa-instagram" />
+                            </a>
+                            <a href className="text-black me-4">
+                                <i className="fab fa-linkedin" />
+                            </a>
+                            <a href className="text-black me-4">
+                                <i className="fab fa-github" />
+                            </a>
+                        </section>
+                        {/* Section: Social */}
+                    </div>
+                    {/* Grid container */}
+                    {/* Copyright */}
+                    <div className="text-center p-3" style={{ backgroundColor: '#ECE8DD' }}>
+                        © 2020 Copyright:
+                        <a className="text-black" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+                    </div>
+                    {/* Copyright */}
+                </footer>
+                {/* Footer */}
+            </div>
+            {/* End of .container */}
+
         </div>
     )
 }
