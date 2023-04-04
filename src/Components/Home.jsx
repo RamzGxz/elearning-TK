@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import Banner from "./Banner";
 
 
+
 const Home = () => {
     return (
         <div>
