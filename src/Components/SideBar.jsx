@@ -8,10 +8,7 @@ const SideBar = (props) => {
         }}>
             <div className="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style={{ width: 280, height: '100vh' }}>
                 <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <img src="/src/Assets/BMW_logo_(gray).svg.png" alt="" style={{
-                        width: 35,
-                        height: 35
-                    }} className="me-3" />
+                    <i className="fas fa-cubes fa-2x me-2" style={{ color: '#ff6219' }} />
                     <span className="fs-4">Menus</span>
                 </a>
                 <hr />

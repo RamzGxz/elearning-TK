@@ -3,7 +3,7 @@ const Footer = () => {
     return (
         <div className="mt-3">
             {/* Remove the container if you want to extend the Footer to full width. */}
-            <div className="container my-5">
+            <div className="">
                 {/* Footer */}
                 <footer className="text-center text-black" style={{ backgroundColor: '#FFFBF5' }}>
                     {/* Grid container */}

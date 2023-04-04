@@ -7,8 +7,10 @@ const Header = (props) => {
     const handleScroll = () => {
         if (window.pageYOffset > 50) {
             setIsScrolled(true)
+            document.querySelector('.divider').classList.add('d-none')
         } else {
             setIsScrolled(false)
+            document.querySelector('.divider').classList.remove('d-none')
         }
     }
 
@@ -26,14 +28,11 @@ const Header = (props) => {
             <nav className={`navbar navbar-expand-lg bg-light ${isScrolled ? 'bg-dark navbar-dark text-white' : ''}`} aria-label="Offcanvas navbar large">
                 <div className="d-flex justify-content-between align-items-center w-100 px-3">
                     <div className="logo justify-content-center d-flex align-items-center">
-                        <img src="/src/Assets/BMW_logo_(gray).svg.png" alt="" style={{
-                            width: 50,
-                            height: 50
-                        }} />
-                        <h4 className="ps-3 pt-2">Elearning TK</h4>
+                        <i className="fas fa-cubes fa-2x" style={{ color: '#ff6219' }} />
+                        <h4 className="ps-2 pt-2">Elearning TK</h4>
                     </div>
                     <button className={`navbar-toggler ${isScrolled ? 'bg-light' : ''}`} type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
-                        <i className={`fa-solid fa-bars ${isScrolled ? 'text-black': ''}`} />
+                        <i className={`fa-solid fa-bars ${isScrolled ? 'text-black' : ''}`} />
                     </button>
                     <div className="offcanvas offcanvas-end text-white" tabIndex={-1} id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
                         <div className="offcanvas-header">
@@ -64,13 +63,13 @@ const Header = (props) => {
                             </ul>
 
                             <div className="loginBtn">
-                                <button className={`btn fw-bolder ${isScrolled ? 'btn-light ': 'btn-dark'}`}>Login</button>
+                                <button className={`btn fw-bolder ${isScrolled ? 'btn-light ' : 'btn-dark'}`}>Login</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </nav>
-            <div className="" style={{
+            <div className="divider" style={{
                 width: '100%',
                 height: 2,
                 backgroundColor: 'black'

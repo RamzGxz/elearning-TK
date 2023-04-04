@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div>
-      <Home/>
+      <AdminDasboard/>
     </div>
   )
 }
