@@ -1,4 +1,3 @@
-
 .sideLink:hover{
     background-color: #0D6EFD;
 }
@@ -11,4 +10,12 @@
 .Thover:hover{
     font-weight: 700;
     cursor: pointer;
+}
+
+.quotes{
+    background-image: url(/src/Assets/bgLog.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+    min-height: 100vh;
 }
