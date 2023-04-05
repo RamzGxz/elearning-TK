@@ -1,9 +1,9 @@
 const PageLogin = () => {
     return (
         <div>
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-sm-6 quotes d-flex align-items-center justify-content-center" style={{
+            <div className="">
+                <div className="d-flex wrapperLogin">
+                    <div className="quotes d-flex align-items-center justify-content-center" style={{
                         width: '50%'
                     }}>
                         <blockquote className="w-50 ">
@@ -11,7 +11,7 @@ const PageLogin = () => {
                             <p className="fs-5">- Yoona Savirah Kholid</p>
                         </blockquote>
                     </div>
-                    <div className="col-sm-6 loginForm d-flex flex-column py-3 justify-content-center align-items-center" style={{
+                    <div className="loginForm d-flex flex-column py-3 justify-content-center align-items-center" style={{
                         width: '50%',
                         height: '100vh'
                     }}>

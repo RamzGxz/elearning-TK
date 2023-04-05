@@ -6,10 +6,10 @@ const AdminUpload = () => {
     return (
         <div style={{
             paddingLeft: 280
-        }}>
+        }} className="contentAdmin">
             <SideBar menuAct2='active' />
 
-            <div className="titleWrap w-100 d-flex justify-content-center align-items-center" style={{
+            <div className="titleWrap w-100 d-flex justify-content-center align-items-center contentWrapper" style={{
                 height: '15vh'
             }}>
                 <h2>Upload Content</h2>

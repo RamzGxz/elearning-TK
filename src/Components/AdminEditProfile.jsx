@@ -1,3 +1,4 @@
+import Footer from "./Footer"
 import SideBar from "./SideBar"
 
 
@@ -5,7 +6,7 @@ const AdminEditProfile = () => {
     return (
         <div style={{
             paddingLeft: 280
-        }}>
+        }} className="contentAdmin">
             <SideBar menuAct3='active' />
             <div className="container py-3">
                 <div className="w-100 d-flex align-items-center flex-column rounded-3" style={{
@@ -75,7 +76,7 @@ const AdminEditProfile = () => {
                             border: '1px solid black',
                             backgroundColor: '#cfe2ff'
                         }}>
-                            <div className="w-100 rounded-top-3 d-flex align-items-center" style={{
+                            <div className="w-100 rounded-top-3 d-flex align-items-center titleUpdate" style={{
                                 height: '4vh',
                                 backgroundColor: '#efb8e0',
                                 borderBottom: '1px solid black'
@@ -91,10 +92,10 @@ const AdminEditProfile = () => {
                                 }} className="px-2 Thover">Change Picture</h5>
                             </div>
 
-                            <div className="container formUpdate">
-                                <div className="w-100 d-flex py-3">
-                                    <div className="d-flex align-items-Center pe-2" style={{ width: '50%' }}>
-                                        <form className="w-100">
+                            <div className="container">
+                                <div className="w-100 d-flex py-3 formUpdate">
+                                    <div className="d-flex align-items-Center pe-2 updateCol" style={{ width: '50%' }}>
+                                        <form className="w-100" action="">
                                             <div className="mb-3">
                                                 <label className="form-label">Name</label>
                                                 <input type="text" className="form-control" id="" placeholder="example: razi"/>
@@ -120,8 +121,8 @@ const AdminEditProfile = () => {
                                             </div>
                                         </form>
                                     </div>
-                                    <div className="align-items-Center ps-2 d-flex" style={{ width: '50%' }}>
-                                        <form className="w-100">
+                                    <div className="align-items-Center ps-2 d-flex updateCol" style={{ width: '50%' }}>
+                                        <form className="w-100" action="">
                                             <h3>Change Password</h3>
                                             <div className="mb-3">
                                                 <label className="form-label">Old Password</label>
@@ -142,6 +143,7 @@ const AdminEditProfile = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     )
 }

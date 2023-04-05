@@ -17,12 +17,113 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: right;
-    min-height: 100vh;
+    height: 100vh;
 }
 
 @media (max-width: 576px){
     .wrapperPembelajaran{
         margin-top: 18% !important;
+    }
+    
+    .wrapperLogin{
+        flex-direction: column;
+    }
+
+    .quotes{
+        width: 100% !important;
+        height: 24vh;
+
+        blockquote{
+            width: 80% !important;
+            margin-bottom: 0 !important;
+            p{
+                font-size: 15px !important;
+            }
+        }
+    }
+
+    .loginForm{
+        width: 100% !important;
+        height: 100vh !important;
+        form{
+            width: 80% !important;
+        }
+    }
+
+    .vidHome1{
+        height: 170 !important;
+    }
+
+    .bannerHome{
+        margin-top: 10% !important;
+        height: 40vh !important;
+        display: block !important;
+    }
+
+    .bannerDasboard{
+        height: 40vh !important;
+        display: block !important;
+        z-index: 1 !important;
+    }
+
+    .sideWrap{
+        width: 90px !important;
+    }
+
+    .sideLink{
+        justify-content: center;
+    }
+
+    .t{
+        display: none;
+    }
+
+    .titleSide{
+        justify-content: center;
+    }
+
+    .nav-link{
+        i{
+            font-size: 30px !important;
+        }
+    }
+
+    .contentAdmin{
+        padding-left: 85px !important;
+    }
+
+    .formUpdate{
+        flex-direction: column;
+        .updateCol{
+            width: 100% !important;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+    }
+
+    .titleUpdate{
+        h5{
+            font-size: 15px;
+        }
+    }
+
+    .logoMenu{
+        margin-right: 0 !important;
+    }
+
+    .bodyDasboard{
+        flex-direction: column;
+        .cardInfo{
+            width: 100% !important;
+        }
+
+        .infoWrapper{
+            width: 90% !important;
+        }
+    }
+
+    .bannerWrap{
+        padding-top: 1%;
     }
     
 }
