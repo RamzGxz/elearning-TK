@@ -1,4 +1,13 @@
 .sideLink:hover {
   background-color: #0D6EFD;
+}
+
+.sosLink:hover {
+  color: #0D6EFD;
+  transition: all 0.3s;
+}
+
+.Thover:hover {
+  font-weight: 700;
   cursor: pointer;
 }/*# sourceMappingURL=style.css.map */
