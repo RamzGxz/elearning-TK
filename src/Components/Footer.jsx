@@ -10,35 +10,35 @@ const Footer = () => {
 
                                 <div className="col-md-2">
                                     <h6 className="text-uppercase font-weight-bold">
-                                        <a href="#!" className="text-black">About us</a>
+                                        <a href="#!" className="text-black">Home</a>
                                     </h6>
                                 </div>
 
 
                                 <div className="col-md-2">
                                     <h6 className="text-uppercase font-weight-bold">
-                                        <a href="#!" className="text-black">Products</a>
+                                        <a href="#!" className="text-black">Pembeljaran</a>
                                     </h6>
                                 </div>
 
 
                                 <div className="col-md-2">
                                     <h6 className="text-uppercase font-weight-bold">
-                                        <a href="#!" className="text-black">Awards</a>
+                                        <a href="#!" className="text-black">info</a>
                                     </h6>
                                 </div>
 
 
                                 <div className="col-md-2">
                                     <h6 className="text-uppercase font-weight-bold">
-                                        <a href="#!" className="text-black">Help</a>
+                                        <a href="#!" className="text-black">admin</a>
                                     </h6>
                                 </div>
 
 
                                 <div className="col-md-2">
                                     <h6 className="text-uppercase font-weight-bold">
-                                        <a href="#!" className="text-black">Contact</a>
+                                        <a href="#!" className="text-black">Terms & Service</a>
                                     </h6>
                                 </div>
                             </div>
@@ -80,9 +80,9 @@ const Footer = () => {
                         </section>
                     </div>
 
-                    <div className="text-center p-3 bg-dark-subtle text-white">
-                        © 2020 Copyright:
-                        <a className=" text-white" href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+                    <div className="text-center p-3 bg-dark-subtle text-black">
+                        © 2023 Copyright:
+                        <a className=" text-black" href="https://mdbootstrap.com/"> Yoona@123gmail.com</a>
                     </div>
                 </footer>
             </div>
