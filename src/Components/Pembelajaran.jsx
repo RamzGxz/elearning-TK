@@ -1,66 +1,82 @@
 import Header from "./Header";
 import Footer from "./Footer";
-const Pembelajaran = () =>{
-    return(
-        
-        <div>
-             <Header act2="active" />
+const Pembelajaran = () => {
+    return (
 
-              <div className="pg_pembelajaran justify-content-center align-items-center ">
-                 <h1 className="text-center" style={{
-                    marginTop: '5%'
-                 }}>Video Pembelajaran</h1>
-                <div className="history">
-                    <div className="d-flex justify-content-between m-3">
-                        <h2>History </h2>
-                        <h2>More</h2>
+        <div>
+            <Header act2="active" />
+
+            <div className="justify-content-center align-items-center container wrapperPembelajaran" style={{
+                marginTop: '5%'
+            }}>
+                <div className="category d-lg-flex justify-content-between align-items-center"></div>
+                <div className="title d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4>History :</h4>
                     </div>
-                    <div className="d-flex row row-cols-3 ">
-                        <div className="gap-5">
-                            <div className="histor  gap-4 m-3">
-                            <iframe width={'100%'} height={'100%'}src="https://www.youtube.com/embed/rbIT554Hc7w" title="Omar &amp; Hana | Koleksi Lagu-Lagu Omar &amp; Hana | Tolong Mama Papa &amp; Lain-Lain" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            </div>
+                    <div className="d-flex align-items-center">
+                        <h4>More</h4>
+                        <i className="fa-sharp fa-solid fa-forward px-2"></i>
+                    </div>
+                </div>
+
+                <div className="row mt-4">
+                    <div className="col-sm-4">
+                        <iframe width={'100%'} height={230} src="https://www.youtube.com/embed/BVIV3VS0KHg" title="Tahapan Lagu dan tepuk pada Kegiatan Awal / Kegiatan Pembukaan Pembelajaran untuk anak PAUD Dan TK" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+                    </div>
+                    <div className="col-sm-4">
+                        <iframe width={'100%'} height={230} src="https://www.youtube.com/embed/BVIV3VS0KHg" title="Tahapan Lagu dan tepuk pada Kegiatan Awal / Kegiatan Pembukaan Pembelajaran untuk anak PAUD Dan TK" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+                    </div>
+                    <div className="col-sm-4">
+                        <iframe width={'100%'} height={230} src="https://www.youtube.com/embed/BVIV3VS0KHg" title="Tahapan Lagu dan tepuk pada Kegiatan Awal / Kegiatan Pembukaan Pembelajaran untuk anak PAUD Dan TK" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+                    </div>
+                </div>
+
+                <div className="p-3 bg-dark-subtle my-4" style={{
+                    borderRadius: 10
+                }}>
+                    <div className="title d-flex justify-content-between align-items-center">
+                        <div className="d-flex align-items-center">
+                            <h4>Video Populer</h4>
+                            <i className="fa-sharp fa-solid fa-forward px-2"></i>
                         </div>
-                        <div className="gap-5">
-                            <div className="histor  gap-4 m-3">
-                            <iframe width={'100%'} height={'100%'}src="https://www.youtube.com/embed/rbIT554Hc7w" title="Omar &amp; Hana | Koleksi Lagu-Lagu Omar &amp; Hana | Tolong Mama Papa &amp; Lain-Lain" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            </div>
+                    </div>
+
+                    <div className="row mt-3">
+                        <div className="col-sm-4">
+                            <iframe width={'100%'} height={230} src="https://www.youtube.com/embed/BVIV3VS0KHg" title="Tahapan Lagu dan tepuk pada Kegiatan Awal / Kegiatan Pembukaan Pembelajaran untuk anak PAUD Dan TK" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
                         </div>
-                        <div className="gap-5">
-                            <div className="histor  gap-4 m-3">
-                            <iframe width={'100%'} height={'100%'}src="https://www.youtube.com/embed/rbIT554Hc7w" title="Omar &amp; Hana | Koleksi Lagu-Lagu Omar &amp; Hana | Tolong Mama Papa &amp; Lain-Lain" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            </div>
+                        <div className="col-sm-4">
+                            <iframe width={'100%'} height={230} src="https://www.youtube.com/embed/BVIV3VS0KHg" title="Tahapan Lagu dan tepuk pada Kegiatan Awal / Kegiatan Pembukaan Pembelajaran untuk anak PAUD Dan TK" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+                        </div>
+                        <div className="col-sm-4">
+                            <iframe width={'100%'} height={230} src="https://www.youtube.com/embed/BVIV3VS0KHg" title="Tahapan Lagu dan tepuk pada Kegiatan Awal / Kegiatan Pembukaan Pembelajaran untuk anak PAUD Dan TK" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+                        </div>
+                        <div className="col-sm-4">
+                            <iframe width={'100%'} height={230} src="https://www.youtube.com/embed/BVIV3VS0KHg" title="Tahapan Lagu dan tepuk pada Kegiatan Awal / Kegiatan Pembukaan Pembelajaran untuk anak PAUD Dan TK" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+                        </div>
+                        <div className="col-sm-4">
+                            <iframe width={'100%'} height={230} src="https://www.youtube.com/embed/BVIV3VS0KHg" title="Tahapan Lagu dan tepuk pada Kegiatan Awal / Kegiatan Pembukaan Pembelajaran untuk anak PAUD Dan TK" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+                        </div>
+                        <div className="col-sm-4">
+                            <iframe width={'100%'} height={230} src="https://www.youtube.com/embed/BVIV3VS0KHg" title="Tahapan Lagu dan tepuk pada Kegiatan Awal / Kegiatan Pembukaan Pembelajaran untuk anak PAUD Dan TK" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+                        </div>
+                        <div className="col-sm-4">
+                            <iframe width={'100%'} height={230} src="https://www.youtube.com/embed/BVIV3VS0KHg" title="Tahapan Lagu dan tepuk pada Kegiatan Awal / Kegiatan Pembukaan Pembelajaran untuk anak PAUD Dan TK" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+                        </div>
+                        <div className="col-sm-4">
+                            <iframe width={'100%'} height={230} src="https://www.youtube.com/embed/BVIV3VS0KHg" title="Tahapan Lagu dan tepuk pada Kegiatan Awal / Kegiatan Pembukaan Pembelajaran untuk anak PAUD Dan TK" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+                        </div>
+                        <div className="col-sm-4">
+                            <iframe width={'100%'} height={230} src="https://www.youtube.com/embed/BVIV3VS0KHg" title="Tahapan Lagu dan tepuk pada Kegiatan Awal / Kegiatan Pembukaan Pembelajaran untuk anak PAUD Dan TK" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
                         </div>
                     </div>
                 </div>
-                <div className="vpopuler">
-                    <div className="d-flex justify-content-between m-3">
-                        <h2>Vidio Populer </h2>
-                        <h2>More</h2>
-                    </div>
-                    <div className="d-flex row row-cols-3 ">
-                        <div className="gap-5">
-                            <div className="histor  gap-4 m-3">
-                            <iframe width={'100%'} height={'100%'} src="https://www.youtube.com/embed/U_cc8aCkEwk" title="Video Pembelajaran Tema Tanaman - Sub Tema Tanaman Buah untuk PAUD / TK" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div className="gap-5">
-                            <div className="histor  gap-4 m-3">
-                            <iframe width={'100%'} height={'100%'} src="https://www.youtube.com/embed/U_cc8aCkEwk" title="Video Pembelajaran Tema Tanaman - Sub Tema Tanaman Buah untuk PAUD / TK" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div className="gap-5">
-                            <div className="histor  gap-4 m-3">
-                            <iframe width={'100%'} height={'100%'} src="https://www.youtube.com/embed/U_cc8aCkEwk" title="Video Pembelajaran Tema Tanaman - Sub Tema Tanaman Buah untuk PAUD / TK" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
-            <div className="footer">
-                <Footer/>
-            </div>
-     </div>   
+
+            <Footer/>
+        </div>
     )
 }
 export default Pembelajaran

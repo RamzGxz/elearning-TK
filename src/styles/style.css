@@ -18,4 +18,10 @@
   background-repeat: no-repeat;
   background-position: right;
   min-height: 100vh;
+}
+
+@media (max-width: 576px) {
+  .wrapperPembelajaran {
+    margin-top: 18% !important;
+  }
 }/*# sourceMappingURL=style.css.map */
