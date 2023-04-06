@@ -63,7 +63,7 @@ const Header = (props) => {
                             </ul>
 
                             <div className="loginBtn">
-                                <button className={`btn fw-bolder ${isScrolled ? 'btn-light ' : 'btn-dark'}`}>Login</button>
+                                <a href="/login" className={`text-decoration-none btn fw-bolder ${isScrolled ? 'btn-light ' : 'btn-dark'}`}>Login</a>
                             </div>
                         </div>
                     </div>

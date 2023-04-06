@@ -18,6 +18,7 @@ function App() {
           <Route path="/admin/dashboard" element={<AdminDasboard/>}/>
           <Route path="/admin/upload" element={<AdminUpload/>}/>
           <Route path="/admin/edit" element={<AdminEditProfile/>}/>
+          <Route path="/login" element={<PageLogin/>}/>
         </Routes>
       </Router>
     </div>
