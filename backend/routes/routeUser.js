@@ -1,12 +1,9 @@
 const express = require('express')
 const routerUser = express.Router()
-const conn = require('../db/db')
+const userController = require('../controllers/userController')
 
-routerUser.get('/user',(req, res)=>{
-    conn.query('select * from user',(err,data)=>{
-        if (err) throw err
-        res.send(data)
-    })
-})
+routerUser.get('/user', userController.getUser)
+routerUser.get('/user/:id', userController.getUserById)
+routerUser.post('/login', userController.login)
 
 module.exports = routerUser

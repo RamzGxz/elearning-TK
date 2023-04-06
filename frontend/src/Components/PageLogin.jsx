@@ -1,4 +1,34 @@
+import { useState } from "react"
+
 const PageLogin = () => {
+
+    const [username, setUsername] = useState('')
+    const [pass, setPass] = useState('')
+    const [err, setErr] = useState('')
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, pass })
+            })
+
+            if (response.ok) {
+                const data = await response.json()
+                alert(`login berhasil selamat datang ${data.username} !!!`)
+                window.location.href = 'http://localhost:5173/'
+            } else {
+                setErr('username atau password salah')
+            }
+        } catch (err) {
+            alert(err)
+        }
+    }
+
     return (
         <div>
             <div className="">
@@ -16,16 +46,16 @@ const PageLogin = () => {
                         height: '100vh'
                     }}>
                         <i className="fas fa-cubes fa-2x mb-4" style={{ color: '#ff6219', fontSize: 100 }} />
-                        <form action="" className=" w-50">
-                            <input type="Text" placeholder="Username" className="form-control py-3 mb-4 px-4" style={{
+                        <form className=" w-50" onSubmit={handleSubmit}>
+                            <input type="text" placeholder="Username" className="form-control py-3 mb-4 px-4" style={{
                                 borderRadius: '30px'
-                            }} />
+                            }} value={username} onChange={(e) => setUsername(e.target.value)} />
                             <input type="password" placeholder="Password" className="form-control py-3 mb-4 px-4" style={{
                                 borderRadius: '30px'
-                            }} />
+                            }} value={pass} onChange={(e) => setPass(e.target.value)} />
                             <button className="btn btn-dark w-100 fs-3 fw-bolder" style={{
                                 borderRadius: '30px'
-                            }}>LOGIN</button>
+                            }} type="submit">LOGIN</button>
                             <p className="fs-6 text-black-50 text-center mt-4">Lupa Password? <a href="">Hubungi Developer</a></p>
                         </form>
 
