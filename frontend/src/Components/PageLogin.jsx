@@ -31,10 +31,11 @@ const PageLogin = () => {
 
                         <div style={{
                             marginTop: '20%'
-                        }}>
+                        }} className="d-flex fle">
                             © 2020 Copyright:
                             <a className=" text-black text-decoration-underline mx-2" href="">Yoona</a>
                         </div>
+                        <a href="/" className="btn btn-outline-primary btnBackLogin mt-4">Back to Home</a>
                     </div>
                 </div>
             </div>

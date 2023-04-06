@@ -10,28 +10,28 @@ const Footer = () => {
 
                                 <div className="col-md-2">
                                     <h6 className="text-uppercase font-weight-bold">
-                                        <a href="#!" className="text-black">Home</a>
+                                        <a href="/" className="text-black">Home</a>
                                     </h6>
                                 </div>
 
 
                                 <div className="col-md-2">
                                     <h6 className="text-uppercase font-weight-bold">
-                                        <a href="#!" className="text-black">Pembeljaran</a>
+                                        <a href="/pembelajaran" className="text-black">Pembeljaran</a>
                                     </h6>
                                 </div>
 
 
                                 <div className="col-md-2">
                                     <h6 className="text-uppercase font-weight-bold">
-                                        <a href="#!" className="text-black">info</a>
+                                        <a href="/info" className="text-black">info</a>
                                     </h6>
                                 </div>
 
 
                                 <div className="col-md-2">
                                     <h6 className="text-uppercase font-weight-bold">
-                                        <a href="#!" className="text-black">admin</a>
+                                        <a href="/admin/dashboard" className="text-black">admin</a>
                                     </h6>
                                 </div>
 
