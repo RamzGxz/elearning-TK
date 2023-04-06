@@ -1,7 +1,11 @@
+const routerUser = require('./routes/routeUser')
 const express = require('express')
 const app = express()
 const port = 3000
+app.use(routerUser)
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
 
-app.get('/', (req, res) => res.redirect('http://localhost:5173/admin/upload'))
+
 
 app.listen(port)
