@@ -17,19 +17,19 @@ const SideBar = (props) => {
                 <hr />
                 <ul className="nav nav-pills flex-column mb-auto">
                     <li className="my-1">
-                        <a href="#" className={`nav-link sideLink text-white d-flex ${props.menuAct1} align-items-center w-100`}>
+                        <a href="/admin/dashboard" className={`nav-link sideLink text-white d-flex ${props.menuAct1} align-items-center w-100`}>
                             <i className="fa-solid fa-gauge-high mb-0 fs-3" />
                             <p className="ps-3 mb-0 fs-5 t">Dashboard</p>
                         </a>
                     </li>
                     <li className="my-1" >
-                        <a href="#" className={`nav-link sideLink text-white d-flex ${props.menuAct2} align-items-center w-100 `}>
+                        <a href="/admin/upload" className={`nav-link sideLink text-white d-flex ${props.menuAct2} align-items-center w-100 `}>
                             <i className="fa-solid fa-file-arrow-up fs-2" />
                             <p className="ps-3 mb-0 fs-5 t">Upload Content</p>
                         </a>
                     </li>
                     <li className="my-1">
-                        <a href="#" className={`nav-link sideLink text-white d-flex ${props.menuAct3} align-items-center w-100`}>
+                        <a href="/admin/edit" className={`nav-link sideLink text-white d-flex ${props.menuAct3} align-items-center w-100`}>
                             <i className="fa-solid fa-pen-to-square fs-3" />
                             <p className="ps-3 mb-0 fs-5 t">Edit Profile</p>
                         </a>
@@ -43,7 +43,7 @@ const SideBar = (props) => {
                     </a>
                     <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
                         <li><a className="dropdown-item" href="#">Sign out</a></li>
-                        <li><a className="dropdown-item" href="#">Back to Home Page</a></li>
+                        <li><a className="dropdown-item" href="/">Back to Home Page</a></li>
                     </ul>
                 </div>
             </div>

@@ -42,10 +42,10 @@ const Header = (props) => {
                         <div className="offcanvas-body" style={{ fontSize: 18 }}>
                             <ul className="navbar-nav flex-grow-1 justify-content-center text-black">
                                 <li className="nav-item">
-                                    <a className={`nav-link ${props.act1}`} aria-current="page" href="#">Home</a>
+                                    <a className={`nav-link ${props.act1}`} aria-current="page" href="/">Home</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className={`nav-link ${props.act2}`} href="#">Pembelajaran</a>
+                                    <a className={`nav-link ${props.act2}`} href="/pembelajaran">Pembelajaran</a>
                                 </li>
                                 <li className="nav-item">
                                     <a className={`nav-link ${props.act3}`} href="#">Info</a>
@@ -55,9 +55,9 @@ const Header = (props) => {
                                         Admin
                                     </a>
                                     <ul className="dropdown-menu mb-3">
-                                        <li><a className="dropdown-item nav-underline" href="#">Dashboard</a></li>
-                                        <li><a className="dropdown-item" href="#">Upload</a></li>
-                                        <li><a className="dropdown-item" href="#">Update Data</a></li>
+                                        <li><a className="dropdown-item nav-underline" href="/admin/dashboard">Dashboard</a></li>
+                                        <li><a className="dropdown-item" href="/admin/upload">Upload</a></li>
+                                        <li><a className="dropdown-item" href="/admin/edit">Update Data</a></li>
                                     </ul>
                                 </li>
                             </ul>

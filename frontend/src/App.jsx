@@ -4,12 +4,22 @@ import AdminDasboard from "./Components/AdminDasboard"
 import AdminUpload from "./Components/AdminUpload"
 import AdminEditProfile from "./Components/AdminEditProfile"
 import PageLogin from "./Components/PageLogin"
+import {BrowserRouter as Router, Routes , Route} from 'react-router-dom'
+
 
 function App() {
 
   return (
     <div>
-      <AdminDasboard/>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/pembelajaran" element={<Pembelajaran/>}/>
+          <Route path="/admin/dashboard" element={<AdminDasboard/>}/>
+          <Route path="/admin/upload" element={<AdminUpload/>}/>
+          <Route path="/admin/edit" element={<AdminEditProfile/>}/>
+        </Routes>
+      </Router>
     </div>
   )
 }
