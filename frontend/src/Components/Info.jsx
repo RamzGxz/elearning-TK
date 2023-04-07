@@ -13,7 +13,9 @@ const Info = () => {
                     <p></p>
                 </div>
             </div>
-            
+            <section>
+                
+            </section>
 
             <Footer/>
         </div>

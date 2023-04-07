@@ -48,7 +48,7 @@ const Header = (props) => {
                                     <a className={`nav-link ${props.act2}`} href="/pembelajaran">Pembelajaran</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className={`nav-link ${props.act3}`} href="#">Info</a>
+                                    <a className={`nav-link ${props.act3}`} href="/info">Info</a>
                                 </li>
                                 <li className="nav-item dropdown">
                                     <a className={`nav-link dropdown-toggle ${props.act4}`} href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
