@@ -1,32 +1,33 @@
 import { useState } from "react"
 
 const PageLogin = () => {
-
-    const [username, setUsername] = useState('')
-    const [pass, setPass] = useState('')
-    const [err, setErr] = useState('')
-
+    const [username, setusername] = useState('');
+    const [pass, setpass] = useState('');
     const handleSubmit = async (e) => {
         e.preventDefault()
-        try {
-            const response = await fetch('http://localhost:3000/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ username, pass })
+        fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, pass }),
+        })
+            .then(res => {
+                if (res.ok) {
+                    console.log(res.status)
+                    alert('login berhasil')
+                    location.href = '/'
+                } else if (res.status === 401) {
+                    alert('Username atau password salah')
+                } else {
+                    console.log(res.status);
+                    alert('Terjadi kesalahan pada server')
+                }
             })
-
-            if (response.ok) {
-                const data = await response.json()
-                alert(`login berhasil selamat datang ${data.username} !!!`)
-                window.location.href = 'http://localhost:5173/'
-            } else {
-                setErr('username atau password salah')
-            }
-        } catch (err) {
-            alert(err)
-        }
+            .catch(error => {
+                console.error('Terjadi kesalahan saat melakukan fetch:', error);
+                alert('Terjadi kesalahan saat melakukan fetch');
+            });
     }
 
     return (
@@ -49,10 +50,10 @@ const PageLogin = () => {
                         <form className=" w-50" onSubmit={handleSubmit}>
                             <input type="text" placeholder="Username" className="form-control py-3 mb-4 px-4" style={{
                                 borderRadius: '30px'
-                            }} value={username} onChange={(e) => setUsername(e.target.value)} />
+                            }} id="usernameLogin" value={username} onChange={(e) => setusername(e.target.value)} />
                             <input type="password" placeholder="Password" className="form-control py-3 mb-4 px-4" style={{
                                 borderRadius: '30px'
-                            }} value={pass} onChange={(e) => setPass(e.target.value)} />
+                            }} id="passLogin" value={pass} onChange={(e) => setpass(e.target.value)} />
                             <button className="btn btn-dark w-100 fs-3 fw-bolder" style={{
                                 borderRadius: '30px'
                             }} type="submit">LOGIN</button>
