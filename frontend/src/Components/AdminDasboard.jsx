@@ -1,6 +1,7 @@
 import Banner from "./Banner"
 import Footer from "./Footer"
 import SideBar from "./SideBar"
+import TableGambar from "./tableGambar"
 
 const AdminDasboard = () => {
     return (
@@ -95,20 +96,22 @@ const AdminDasboard = () => {
                                     backgroundColor: '#f08080',
                                     width: '70%'
                                 }}>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="traffic container my-5">
+                <div className="traffic container my-3">
                     <img src="https://a.c-dn.net/c/content/dam/publicsites/igcom/uk/images/content-2-chart-images/GBP-USD%20(1).png" alt="" style={{
                         width: '100%',
                         height: '70vh'
                     }} />
                 </div>
-                <Footer/>
+
+                <TableGambar/>
+                <Footer />
             </div>
         </div>
     )
