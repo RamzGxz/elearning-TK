@@ -22,13 +22,17 @@ const AdminDasboard = () => {
                     <div className="d-flex w-100 bodyDasboard">
                         <div className="w-50 container cardInfo" style={{ height: '80vh' }}>
                             <div className="rounded-3 d-flex align-items-center flex-column text-capitalize" style={{ height: '80vh', backgroundColor: '#f08080' }}>
-                                <div className="pictDasboard rounded-circle shadow-lg mt-4" style={{
-                                    width: 150,
-                                    height: 150,
-                                    backgroundImage: 'url(https://imgsrv2.voi.id/qrcII-WiGXBglYBS8X8f5x2v2aohHRLzI760ONcbKRM/auto/1280/853/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy81NTI2Mi8yMDIxMDUzMTA4NDYtbWFpbi5jcm9wcGVkXzE2MjI0MjU2MDIuanBn.jpg)',
-                                    backgroundPosition: 'center',
-                                    backgroundSize: 'cover'
-                                }}></div>
+                                <div className="bg-light p-2 mt-4 rounded-circle" style={{
+                                    boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px'
+                                }}>
+                                    <div className="pictDasboard rounded-circle" style={{
+                                        width: 150,
+                                        height: 150,
+                                        backgroundImage: 'url(https://imgsrv2.voi.id/qrcII-WiGXBglYBS8X8f5x2v2aohHRLzI760ONcbKRM/auto/1280/853/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy81NTI2Mi8yMDIxMDUzMTA4NDYtbWFpbi5jcm9wcGVkXzE2MjI0MjU2MDIuanBn.jpg)',
+                                        backgroundPosition: 'center',
+                                        backgroundSize: 'cover'
+                                    }}></div>
+                                </div>
 
                                 <div className="name mt-3 d-flex justify-content-center align-items-center rounded-5 infoWrapper" style={{
                                     height: '4vh',
@@ -111,9 +115,9 @@ const AdminDasboard = () => {
                         height: '70vh'
                     }} />
                 </div>
-                <GambarTable/>
-                <Videotable/>
-                <BeritaTable/>
+                <GambarTable />
+                <Videotable />
+                <BeritaTable />
                 <Footer />
             </div>
         </div>

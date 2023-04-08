@@ -10,7 +10,7 @@ const AdminEditProfile = () => {
             <SideBar menuAct3='active' />
             <div className="container py-3">
                 <div className="w-100 d-flex align-items-center flex-column rounded-3" style={{
-                    height: '45vh',
+                    height: 'vh',
                     border: '1px solid black',
                 }}>
                     <div className="w-100 rounded-top-3" style={{
@@ -20,17 +20,21 @@ const AdminEditProfile = () => {
                     }}>
                     </div>
 
-                    <div className="pict rounded-circle shadow-lg mt-4" style={{
-                        width: 150,
-                        height: 150,
-                        backgroundImage: 'url(https://imgsrv2.voi.id/qrcII-WiGXBglYBS8X8f5x2v2aohHRLzI760ONcbKRM/auto/1280/853/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy81NTI2Mi8yMDIxMDUzMTA4NDYtbWFpbi5jcm9wcGVkXzE2MjI0MjU2MDIuanBn.jpg)',
-                        backgroundPosition: 'center',
-                        backgroundSize: 'cover'
-                    }}></div>
+                    <div className="bg-light p-2 mt-4 mb-2 rounded-circle" style={{
+                        boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
+                    }}>
+                        <div className="pictDasboard rounded-circle" style={{
+                            width: 150,
+                            height: 150,
+                            backgroundImage: 'url(https://imgsrv2.voi.id/qrcII-WiGXBglYBS8X8f5x2v2aohHRLzI760ONcbKRM/auto/1280/853/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy81NTI2Mi8yMDIxMDUzMTA4NDYtbWFpbi5jcm9wcGVkXzE2MjI0MjU2MDIuanBn.jpg)',
+                            backgroundPosition: 'center',
+                            backgroundSize: 'cover'
+                        }}></div>
+                    </div>
 
                     <h5 style={{
                         marginBottom: 0
-                    }} className="fw-bolder mt-2">Yoona Savirah Kholid</h5>
+                    }} className="fw-bolder mt-2 text-capitalize">Yoona Savirah Kholid</h5>
 
                     <div className="d-flex justify-content-center container align-items-center w-100 mt-3 mb-3">
                         <i className="fa-solid fa-map-location-dot fs-5 " />
@@ -98,23 +102,23 @@ const AdminEditProfile = () => {
                                         <form className="w-100" action="">
                                             <div className="mb-3">
                                                 <label className="form-label">Name</label>
-                                                <input type="text" className="form-control" id="" placeholder="example: razi"/>
+                                                <input type="text" className="form-control" id="" placeholder="example: razi" />
                                             </div>
                                             <div className="mb-3">
                                                 <label className="form-label">Age</label>
-                                                <input type="number" className="form-control" id="" placeholder="example: 21"/>
+                                                <input type="number" className="form-control" id="" placeholder="example: 21" />
                                             </div>
                                             <div className="mb-3">
                                                 <label className="form-label">Address</label>
-                                                <input type="text" className="form-control" id="" placeholder="example: Jln. Kedungwungu No.xx "/>
+                                                <input type="text" className="form-control" id="" placeholder="example: Jln. Kedungwungu No.xx " />
                                             </div>
                                             <div className="mb-3">
                                                 <label className="form-label">Email address</label>
-                                                <input type="text" className="form-control" id="" placeholder="example: razi@xxx.xxx"/>
+                                                <input type="text" className="form-control" id="" placeholder="example: razi@xxx.xxx" />
                                             </div>
                                             <div className="mb-3">
                                                 <label className="form-label">Phone Number</label>
-                                                <input type="number" className="form-control" id="" placeholder="example: 08xxxxxxxxx"/>
+                                                <input type="number" className="form-control" id="" placeholder="example: 08xxxxxxxxx" />
                                             </div>
                                             <div className="d-flex w-100 justify-content-end align-items-center">
                                                 <button type="submit" className="btn btn-primary">Submit</button>
@@ -143,7 +147,7 @@ const AdminEditProfile = () => {
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </div>
     )
 }
