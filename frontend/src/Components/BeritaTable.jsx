@@ -1,20 +1,20 @@
 import { useEffect, useState, useRef } from "react"
 
-const VideoTable = () => {
-    const [getVideo, getDataVideo] = useState([])
+const BeritaTable = () => {
+    const [getBerita, getDataBerita] = useState([])
     const linkRef = useRef(null)
     const descRef = useRef(null)
     const katRef = useRef(null)
     
     useEffect(() => {
-        fetch('http://localhost:3000/getVideo')
+        fetch('http://localhost:3000/getDataBerita')
             .then(res => res.json())
-            .then(data => getDataVideo(data))
+            .then(data => getDataBerita(data))
             .catch(err => console.log(err))
     }, [])
 
-    const delFuncVideo = (id) => {
-        fetch(`http://localhost:3000/deleteVideo/${id}`, {
+    const delFuncBerita = (id) => {
+        fetch(`http://localhost:3000/deleteBerita/${id}`, {
             method: "DELETE"
         })
             .then(data => {
@@ -24,13 +24,13 @@ const VideoTable = () => {
             .catch(err => alert(err))
     }
 
-    const updateFuncVideo = (id) => {
-        const wrapperId = document.getElementById('updateFormVideo')
-        const closeFormVideo = document.getElementById('closeFormVideo')
-        const updateForm = document.getElementById('formUpdateVideo')
+    const updateFuncBerita = (id) => {
+        const wrapperId = document.getElementById('updateFormBerita')
+        const closeFormBerita = document.getElementById('closeFormBerita')
+        const updateForm = document.getElementById('formUpdateBerita')
         console.log(id)
         wrapperId.style.top = '50%'
-        closeFormVideo.addEventListener('click', () => {
+        closeFormBerita.addEventListener('click', () => {
             wrapperId.style.top = '-50%'
         })
 
@@ -48,12 +48,12 @@ const VideoTable = () => {
             const descVal = descRef.current.value
             const katVal = katRef.current.value
             
-            fetch(`http://localhost:3000/updateVideo/${id}`, {
+            fetch(`http://localhost:3000/updateBerita/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({linkVideo: linkVal, descVideo: descVal, kategori: katVal})
+                body: JSON.stringify({linkBerita: linkVal, descBerita: descVal, kategori: katVal})
             })
             .then(res => {
                 if (res.ok){
@@ -66,6 +66,7 @@ const VideoTable = () => {
                 }
             })
         })
+
     }
 
     return (
@@ -78,7 +79,7 @@ const VideoTable = () => {
                         <h3 className="text-center pt-1 pb-1" style={{
                             marginBottom: 0,
                             borderBottom: '1px solid black'
-                        }}>Table Video</h3>
+                        }}>Table Berita</h3>
                     </div>
                     <div className="" style={{
                         maxHeight: '50vh',
@@ -88,23 +89,23 @@ const VideoTable = () => {
                             <thead>
                                 <tr className="sticky-top bg-dark-subtle">
                                     <th scope="col">No</th>
-                                    <th scope="col">Link Video</th>
-                                    <th scope="col">Deskripsi Video</th>
+                                    <th scope="col">Link Berita</th>
+                                    <th scope="col">Deskripsi Berita</th>
                                     <th scope="col">Kategori Kelas</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {getVideo.map(data => {
+                                {getBerita.map(data => {
                                     return (
                                         <tr className="w-100" key={data.id}>
                                             <th scope="row" >{data.id}</th>
-                                            <td className="w-25">{data.linkVideo}</td>
-                                            <td>{data.descVideo}</td>
+                                            <td className="w-25">{data.linkBerita}</td>
+                                            <td>{data.descBerita}</td>
                                             <td>{data.kategori}</td>
                                             <td className="">
-                                                <button className="btn btn-success p-1 me-1" onClick={() => updateFuncVideo(data.id)}>Update</button>
-                                                <button className="btn btn-danger p-1 ms-1" onClick={() => delFuncVideo(data.id)}>Delete</button>
+                                                <button className="btn btn-success p-1 me-1" onClick={() => updateFuncBerita(data.id)}>Update</button>
+                                                <button className="btn btn-danger p-1 ms-1" onClick={() => delFuncBerita(data.id)}>Delete</button>
                                             </td>
                                         </tr>
                                     )
@@ -116,7 +117,7 @@ const VideoTable = () => {
             </div>
 
             {/* form Update Gambar */}
-            <div className="updateForm d-flex justify-content-center align-items-center" id="updateFormVideo" style={{
+            <div className="updateForm d-flex justify-content-center align-items-center" id="updateFormBerita" style={{
                 width: '100%',
                 height: '100vh',
                 backgroundColor: '#1d1d1d33',
@@ -133,7 +134,7 @@ const VideoTable = () => {
                     backgroundColor: '#d4a373',
                     position: 'absolute'
                 }} className="rounded-4 shadow-lg">
-                    <i className="fa-solid fa-circle-xmark fs-3" id="closeFormVideo" style={{
+                    <i className="fa-solid fa-circle-xmark fs-3" id="closeFormBerita" style={{
                         position: 'absolute',
                         top: 10,
                         right: 10
@@ -142,13 +143,13 @@ const VideoTable = () => {
                     <h3 className="text-center mt-4">Update Form</h3>
 
                     <div className="container mt-3">
-                        <form className="mt-3" id="formUpdateVideo">
+                        <form className="mt-3" id="formUpdateBerita">
                             <div className="mb-3">
-                                <label htmlFor="" className="form-label">Link Video</label>
+                                <label htmlFor="" className="form-label">Link Berita</label>
                                 <input type="text" className="form-control" aria-describedby="emailHelp" ref={linkRef}/>
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="" className="form-label">Deskirpsi Video</label>
+                                <label htmlFor="" className="form-label">Deskirpsi Berita</label>
                                 <input type="text" className="form-control" ref={descRef}/>
                             </div>
                             <div className="mb-3">
@@ -168,4 +169,4 @@ const VideoTable = () => {
     )
 }
 
-export default VideoTable
+export default BeritaTable

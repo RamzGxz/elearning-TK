@@ -3,7 +3,7 @@ import Footer from "./Footer"
 import GambarTable from "./GambarTable"
 import SideBar from "./SideBar"
 import Videotable from "./VideoTable"
-
+import BeritaTable from "./beritaTable"
 
 const AdminDasboard = () => {
     return (
@@ -113,6 +113,7 @@ const AdminDasboard = () => {
                 </div>
                 <GambarTable/>
                 <Videotable/>
+                <BeritaTable/>
                 <Footer />
             </div>
         </div>

@@ -1,27 +1,27 @@
 const conn = require('../db/db')
 
-module.exports = {
-    getDataVideo: (req, res)=>{
-        const query = "select * from dataVideo"
+module.exports={
+    getDataBerita: (req, res)=>{
+        const query = "select * from dataBerita"
         conn.query(query, (err, data)=>{
             if(err) throw err
             res.send(data)
         })
     },
-    deleteVideo: (req, res)=>{
+    deleteBerita: (req, res)=>{
         const id = req.params.id
-        const query = `delete from dataVideo where id=${id}`
+        const query = `delete from dataBerita where id=${id}`
         conn.query(query, (err, data)=>{
             if(err) throw err
             res.send(`data dengan id: ${id} berhasil di delete`)
         })
     },
-    updateVideo: (req, res)=>{
+    updateBerita: (req, res)=>{
         const id = req.params.id
-        const linkVal = req.body.linkVideo
-        const descVal = req.body.descVideo
+        const linkVal = req.body.linkBerita
+        const descVal = req.body.descBerita
         const catVal = req.body.kategori
-        const query = `update dataVideo set linkVideo='${linkVal}', descVideo='${descVal}', kategori='${catVal}' where id = ${id}`
+        const query = `update dataBerita set linkBerita='${linkVal}', descBerita='${descVal}', kategori='${catVal}' where id = ${id}`
         conn.query(query, (err, data)=>{
             if (err) throw err
             res.send('data berhasil di update')
