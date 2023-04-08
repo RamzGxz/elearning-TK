@@ -19,16 +19,16 @@ const Info = () => {
                 <h3>Galeri</h3>
                 <div className="galeri">
                     <div>
-                        <img src="https://unsplash.com/photos/OVDtgUhUPBY" alt="" />
+                        <img src="https://unsplash.com/photos/78Ae6N7rNvI" alt="Runad Kelas" />
                     </div>
                     <div>
-                        <img src="tk2.jpg" alt="" />
+                        <img src="https://unsplash.com/photos/OVDtgUhUPBY" alt="Balok Angka dan Huruf" />
                     </div>
                     <div>
-                        <img src="tk3.jpg" alt="" />
+                        <img src="https://unsplash.com/photos/78Ae6N7rNvI" alt="Anak - Anak Sedang Rekreasi" />
                     </div>
                     <div>
-                        <img src="tk4.jpg" alt="" />
+                        <img src="https://unsplash.com/photos/_fTNVaFbMdo" alt="Anak - Anak Sedang Melakukan Kegiatan Menggambar" />
                     </div>
                 </div>
             </section>
