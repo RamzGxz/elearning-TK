@@ -99,7 +99,7 @@ const AdminUpload = () => {
                 body: JSON.stringify({
                     isiBerita: isiBeritaVal,
                     fotoBerita: fotoBeritaVal,
-                    kaegori: katBeritaVal
+                    kategori: katBeritaVal
                 })
             })
                 .then((res) => {
