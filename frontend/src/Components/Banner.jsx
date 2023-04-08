@@ -8,21 +8,21 @@ const Banner = (props) => {
             }}>
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <img src="/src/Assets/wallpaper-kartun-tk.webp" className={`rounded-3 ${props.bannerClassWrapper}`} style={{ width: '100%', height: props.imageHeight }} />
+                        <img src="/src/Assets/wallpaper-kartun-tk.webp" alt={true} className={`rounded-3 ${props.bannerClassWrapper}`} style={{ width: '100%', height: props.imageHeight }} />
                         <div className="carousel-caption d-none d-md-block">
                             <h5>First slide label</h5>
                             <p>Some representative placeholder content for the first slide.</p>
                         </div>
                     </div>
                     <div className="carousel-item">
-                        <img src="https://cdn0-production-images-kly.akamaized.net/LnwORZA-w3TWaSf5m5vpdZH5WQU=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2975416/original/005140100_1574444390-ANAK_TK-Ridlo.jpg" className={`rounded-3 ${props.bannerClassWrapper}`} style={{ width: '100%', height: props.imageHeight }} />
+                        <img src="https://cdn0-production-images-kly.akamaized.net/LnwORZA-w3TWaSf5m5vpdZH5WQU=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2975416/original/005140100_1574444390-ANAK_TK-Ridlo.jpg" className={`rounded-3 ${props.bannerClassWrapper}`} alt={true} style={{ width: '100%', height: props.imageHeight }} />
                         <div className="carousel-caption d-none d-md-block">
                             <h5>First slide label</h5>
                             <p>Some representative placeholder content for the first slide.</p>
                         </div>
                     </div>
                     <div className="carousel-item">
-                        <img src="https://www.ibudanbalita.com/uploads/posts/pTGNHGaudX.jpg" className={`rounded-3 ${props.bannerClassWrapper}`} style={{ width: '100%', height: props.imageHeight }} />
+                        <img src="https://www.ibudanbalita.com/uploads/posts/pTGNHGaudX.jpg" alt={true} className={`rounded-3 ${props.bannerClassWrapper}`} style={{ width: '100%', height: props.imageHeight }} />
                         <div className="carousel-caption d-none d-md-block">
                             <h5>First slide label</h5>
                             <p>Some representative placeholder content for the first slide.</p>
