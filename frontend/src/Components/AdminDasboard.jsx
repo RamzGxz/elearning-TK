@@ -1,7 +1,9 @@
 import Banner from "./Banner"
 import Footer from "./Footer"
+import GambarTable from "./GambarTable"
 import SideBar from "./SideBar"
-import TableGambar from "./tableGambar"
+import Videotable from "./VideoTable"
+
 
 const AdminDasboard = () => {
     return (
@@ -109,8 +111,8 @@ const AdminDasboard = () => {
                         height: '70vh'
                     }} />
                 </div>
-
-                <TableGambar/>
+                <GambarTable/>
+                <Videotable/>
                 <Footer />
             </div>
         </div>
