@@ -17,7 +17,7 @@ const Info = () => {
             </div>
 
             <div className="d-flex flex-row justify-content-center align-items-center container wrapperKegiatan" style={{marginTop: '5%'}}>
-                <section className="w-70 pr-10">
+                <section className="w-70">
                     <h3 className="text-center p-3">Galeri</h3>
                     <div className="galeri">
                         <div className="p-3">
