@@ -47,7 +47,10 @@ const GambarTable = () => {
             const linkVal = linkRef.current.value
             const descVal = descRef.current.value
             const katVal = katRef.current.value
-            
+            if (!linkVal || !descVal || !katVal) {
+                alert('Semua field harus diisi!');
+                return;
+            }
             fetch(`http://localhost:3000/updateGambar/${id}`, {
                 method: 'PUT',
                 headers: {
