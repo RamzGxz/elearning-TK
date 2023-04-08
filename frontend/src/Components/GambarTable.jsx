@@ -95,10 +95,10 @@ const GambarTable = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {getGambar.map(data => {
+                                {getGambar.map((data, index )=> {
                                     return (
                                         <tr className="w-100" key={data.id}>
-                                            <th scope="row" >{data.id}</th>
+                                            <th scope="row" >{index+1}</th>
                                             <td className="w-25">{data.linkGambar}</td>
                                             <td>{data.descGambar}</td>
                                             <td>{data.kategori}</td>

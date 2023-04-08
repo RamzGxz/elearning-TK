@@ -6,6 +6,6 @@ const beritaControllers = require('../controllers/beritaControllers')
 routerBerita.get('/getDataBerita', beritaControllers.getDataBerita)
 routerBerita.delete('/deleteBerita/:id', beritaControllers.deleteBerita)
 routerBerita.put('/updateBerita/:id', beritaControllers.updateBerita)
-
+routerBerita.post('/postDataBerita', beritaControllers.postDataBerita)
 
 module.exports = routerBerita

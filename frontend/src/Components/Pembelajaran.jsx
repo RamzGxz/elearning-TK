@@ -22,7 +22,7 @@ const Pembelajaran = () => {
 
                 <div className="row mt-4">
                     <div className="col-sm-4">
-                        <iframe width={'100%'} height={230} src="https://www.youtube.com/embed/BVIV3VS0KHg" title="Tahapan Lagu dan tepuk pada Kegiatan Awal / Kegiatan Pembukaan Pembelajaran untuk anak PAUD Dan TK" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+                        <iframe width={'100%'} height={230} src="https://www.youtube.com/embed/BVIV3VS0KHg" title="Tahapan Lagu dan tepuk pada Kegiatan Awal / Kegiatan Pembukaan Pembelajaran untuk anak PAUD Dan TK" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen className="" />
                     </div>
                     <div className="col-sm-4">
                         <iframe width={'100%'} height={230} src="https://www.youtube.com/embed/BVIV3VS0KHg" title="Tahapan Lagu dan tepuk pada Kegiatan Awal / Kegiatan Pembukaan Pembelajaran untuk anak PAUD Dan TK" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />

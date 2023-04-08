@@ -41,5 +41,16 @@ module.exports = {
             if (err) throw err
             res.send(`get succes: ${data}`)
         })
+    },
+    postDataGambar: (req, res)=>{
+        const linkVal = req.body.linkGambar
+        const descVal = req.body.descGambar
+        const catVal = req.body.kategori
+        const query = `insert into dataGambar(linkGambar, descGambar, kategori) values('${linkVal}', '${descVal}', '${catVal}')`
+        console.log(query)
+        conn.query(query, (err, data)=>{
+            if (err) throw err
+            res.send(`data has been posted, data: ${data}`)
+        })
     }
 }

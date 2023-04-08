@@ -89,19 +89,19 @@ const BeritaTable = () => {
                             <thead>
                                 <tr className="sticky-top bg-dark-subtle">
                                     <th scope="col">No</th>
-                                    <th scope="col">Link Berita</th>
-                                    <th scope="col">Deskripsi Berita</th>
+                                    <th scope="col">isi Berita</th>
+                                    <th scope="col">foto Berita</th>
                                     <th scope="col">Kategori Kelas</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {getBerita.map(data => {
+                                {getBerita.map((data, index) => {
                                     return (
                                         <tr className="w-100" key={data.id}>
-                                            <th scope="row" >{data.id}</th>
-                                            <td className="w-25">{data.linkBerita}</td>
-                                            <td>{data.descBerita}</td>
+                                            <th scope="row" >{index + 1}</th>
+                                            <td className="w-25">{data.isiBerita}</td>
+                                            <td>{data.fotoBerita}</td>
                                             <td>{data.kategori}</td>
                                             <td className="">
                                                 <button className="btn btn-success p-1 me-1" onClick={() => updateFuncBerita(data.id)}>Update</button>

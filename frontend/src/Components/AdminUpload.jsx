@@ -1,7 +1,118 @@
 import Footer from "./Footer"
 import SideBar from "./SideBar"
 
+import { useRef } from "react"
+
 const AdminUpload = () => {
+    // userefFormGambar
+    const linkRefGambar = useRef(null)
+    const descRefGambar = useRef(null)
+    const katRefGambar = useRef(null)
+
+    // useRefFormVideo
+    const linkVidRef = useRef(null)
+    const descVidRef = useRef(null)
+    const katVidRef = useRef(null)
+
+    // useRefformBerita
+    const isiBeritaRef = useRef(null)
+    const fotoBeritaRef = useRef(null)
+    const katBeritaRef = useRef(null)
+
+    const handlePostGambar = (e) => {
+        e.preventDefault()
+        const linkVal = linkRefGambar.current.value
+        const descVal = descRefGambar.current.value
+        const katVal = katRefGambar.current.value
+
+        if (!linkVal || !descVal || !katVal) {
+            alert('please fill all field!!')
+        } else {
+            fetch('http://localhost:3000/postDataGambar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    linkGambar: linkVal,
+                    descGambar: descVal,
+                    kategori: katVal
+                })
+            })
+                .then((res) => {
+                    if (res.ok) {
+                        res.json()
+                        alert(`data has been posted!`)
+                        window.location.reload()
+                    }
+                })
+                .catch((err) => console.log(err))
+        }
+    }
+
+    const handlePostVideo = (e) => {
+        e.preventDefault()
+        const linkVidVal = linkVidRef.current.value
+        const descVidVal = descVidRef.current.value
+        const katVidVal = katVidRef.current.value
+
+        if (!linkVidVal || !descVidVal || !katVidRef) {
+            alert('please fill all field! ')
+        } else {
+            fetch('http://localhost:3000/postDataVideo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    linkVideo: linkVidVal,
+                    descVideo: descVidVal,
+                    kategori: katVidVal
+                })
+            })
+                .then((res) => {
+                    if (res.ok) {
+                        res.json()
+                        alert(`data has been posted!`)
+                        window.location.reload()
+                    }
+                })
+                .catch((err) => console.log(err))
+        }
+
+    }
+
+    const handlePostBerita = (e) => {
+        e.preventDefault()
+        const isiBeritaVal = isiBeritaRef.current.value
+        const fotoBeritaVal = fotoBeritaRef.current.value
+        const katBeritaVal = katBeritaRef.current.value
+
+        if (!isiBeritaVal || !fotoBeritaVal || !katBeritaVal) {
+            alert('please fill all field!')
+        } else {
+            fetch('http://localhost:3000/postDataBerita', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    isiBerita: isiBeritaVal,
+                    fotoBerita: fotoBeritaVal,
+                    kaegori: katBeritaVal
+                })
+            })
+                .then((res) => {
+                    if (res.ok) {
+                        res.json()
+                        alert(`data has been posted!`)
+                        window.location.reload()
+                    }
+                })
+                .catch((err) => console.log(err))
+        }
+
+    }
 
     return (
         <div style={{
@@ -34,18 +145,18 @@ const AdminUpload = () => {
                             <form className="mt-3">
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Link Gambar</label>
-                                    <input type="text" className="form-control" id="" aria-describedby="emailHelp" />
+                                    <input type="text" className="form-control" aria-describedby="emailHelp" ref={linkRefGambar} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Deskripsi gambar</label>
-                                    <input type="text" className="form-control" id="" />
+                                    <input type="text" className="form-control" ref={descRefGambar} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Kategori Kelas</label>
-                                    <input type="text" className="form-control" id="" />
+                                    <input type="text" className="form-control" ref={katRefGambar} />
                                 </div>
                                 <div className="w-100 d-flex justify-content-end">
-                                    <button type="submit" className="btn btn-dark">Submit</button>
+                                    <button className="btn btn-dark" onClick={handlePostGambar}>Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -68,18 +179,18 @@ const AdminUpload = () => {
                             <h5 className="ms-2 fw-bolder">Video</h5>
                         </div>
                         <div className="container">
-                            <form className="mt-3">
+                            <form className="mt-3" onSubmit={handlePostVideo}>
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Link Video</label>
-                                    <input type="text" className="form-control" id="" aria-describedby="emailHelp" />
+                                    <input type="text" className="form-control" aria-describedby="emailHelp" ref={linkVidRef} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Deskripsi Video</label>
-                                    <input type="text" className="form-control" id="" />
+                                    <input type="text" className="form-control" ref={descVidRef} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Kategori Kelas</label>
-                                    <input type="text" className="form-control" id="" />
+                                    <input type="text" className="form-control" ref={katVidRef} />
                                 </div>
                                 <div className="w-100 d-flex justify-content-end">
                                     <button type="submit" className="btn btn-dark">Submit</button>
@@ -105,18 +216,18 @@ const AdminUpload = () => {
                             <h5 className="ms-2 fw-bolder">Berita</h5>
                         </div>
                         <div className="container">
-                            <form className="mt-3">
+                            <form className="mt-3" onSubmit={handlePostBerita}>
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Isi Berita</label>
-                                    <input type="text" className="form-control" id="" aria-describedby="emailHelp" />
+                                    <input type="text" className="form-control" id="" aria-describedby="emailHelp" ref={isiBeritaRef}/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Foto</label>
-                                    <input type="text" className="form-control" id="" />
+                                    <input type="text" className="form-control" id="" ref={fotoBeritaRef}/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Kategori Berita</label>
-                                    <input type="text" className="form-control" id="" />
+                                    <input type="text" className="form-control" id="" ref={katBeritaRef}/>
                                 </div>
                                 <div className="w-100 d-flex justify-content-end">
                                     <button type="submit" className="btn btn-dark">Submit</button>
@@ -127,7 +238,7 @@ const AdminUpload = () => {
                 </div>
             </div>
 
-            <Footer/>
+            <Footer />
         </div>
     )
 }

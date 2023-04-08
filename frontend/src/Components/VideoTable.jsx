@@ -95,10 +95,10 @@ const VideoTable = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {getVideo.map(data => {
+                                {getVideo.map((data, index) => {
                                     return (
                                         <tr className="w-100" key={data.id}>
-                                            <th scope="row" >{data.id}</th>
+                                            <th scope="row" >{index + 1}</th>
                                             <td className="w-25">{data.linkVideo}</td>
                                             <td>{data.descVideo}</td>
                                             <td>{data.kategori}</td>

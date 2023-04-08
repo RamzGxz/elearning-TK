@@ -19,18 +19,18 @@ const Info = () => {
             <div className="d-flex flex-row justify-content-center align-items-center container wrapperKegiatan" style={{marginTop: '5%'}}>
                 <section className="w-70">
                     <h3 className="text-center p-3">Galeri</h3>
-                    <div className="galeri">
-                        <div className="p-3">
-                            <img src="https://unsplash.com/photos/78Ae6N7rNvI" className="img-thumbnail" alt="Ruang Kelas" />
+                    <div className="galeri container">
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1567746455504-cb3213f8f5b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" className="img-thumbnail" alt="Ruang Kelas" />
                         </div>
-                        <div className="p-3">
-                            <img src="https://unsplash.com/photos/OVDtgUhUPBY" className="img-thumbnail" alt="Balok Angka dan Huruf" />
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1564429238817-393bd4286b2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" className="img-thumbnail" alt="Balok Angka dan Huruf" />
                         </div>
-                        <div className="p-3">
-                            <img src="https://unsplash.com/photos/78Ae6N7rNvI" className="img-thumbnail" alt="Anak - Anak Sedang Rekreasi" />
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1567746455504-cb3213f8f5b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" className="img-thumbnail" alt="Anak - Anak Sedang Rekreasi" />
                         </div>
-                        <div className="p-3">
-                            <img src="https://unsplash.com/photos/_fTNVaFbMdo" className="img-thumbnail" alt="Anak - Anak Sedang Melakukan Kegiatan Menggambar" />
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1588072432686-b2bc721308cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80" className="img-thumbnail" alt="Anak - Anak Sedang Melakukan Kegiatan Menggambar" />
                         </div>
                     </div>
                 </section>
