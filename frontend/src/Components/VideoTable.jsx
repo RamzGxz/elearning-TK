@@ -25,12 +25,12 @@ const Videotable = () => {
     }
 
     const updateFuncGambar = (id) => {
-        const wrapperId = document.getElementById('updateFormGambar')
-        const closeFormGambar = document.getElementById('closeFormGambar')
-        const updateForm = document.getElementById('formUpdateGambar')
+        const wrapperId = document.getElementById('updateFormVideo')
+        const closeFormVideo = document.getElementById('closeFormVideo')
+        const updateForm = document.getElementById('formUpdateVideo')
         console.log(id)
         wrapperId.style.top = '50%'
-        closeFormGambar.addEventListener('click', () => {
+        closeFormVideo.addEventListener('click', () => {
             wrapperId.style.top = '-50%'
         })
 
@@ -47,10 +47,7 @@ const Videotable = () => {
             const linkVal = linkRef.current.value
             const descVal = descRef.current.value
             const katVal = katRef.current.value
-            if (!linkVal || !descVal || !katVal) {
-                alert('Semua field harus diisi!');
-                return;
-            }
+            
             fetch(`http://localhost:3000/updateGambar/${id}`, {
                 method: 'PUT',
                 headers: {
@@ -119,7 +116,7 @@ const Videotable = () => {
             </div>
 
             {/* form Update Gambar */}
-            <div className="updateForm d-flex justify-content-center align-items-center" id="updateFormGambar" style={{
+            <div className="updateForm d-flex justify-content-center align-items-center" id="updateFormVideo" style={{
                 width: '100%',
                 height: '100vh',
                 backgroundColor: '#1d1d1d33',
@@ -136,7 +133,7 @@ const Videotable = () => {
                     backgroundColor: '#d4a373',
                     position: 'absolute'
                 }} className="rounded-4 shadow-lg">
-                    <i className="fa-solid fa-circle-xmark fs-3" id="closeFormGambar" style={{
+                    <i className="fa-solid fa-circle-xmark fs-3" id="closeFormVideo" style={{
                         position: 'absolute',
                         top: 10,
                         right: 10
@@ -145,13 +142,13 @@ const Videotable = () => {
                     <h3 className="text-center mt-4">Update Form</h3>
 
                     <div className="container mt-3">
-                        <form className="mt-3" id="formUpdateGambar">
+                        <form className="mt-3" id="formUpdateVideo">
                             <div className="mb-3">
-                                <label htmlFor="" className="form-label">Link Gambar</label>
+                                <label htmlFor="" className="form-label">Link Video</label>
                                 <input type="text" className="form-control" aria-describedby="emailHelp" ref={linkRef}/>
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="" className="form-label">Deskirpsi Gambar</label>
+                                <label htmlFor="" className="form-label">Deskirpsi Video</label>
                                 <input type="text" className="form-control" ref={descRef}/>
                             </div>
                             <div className="mb-3">
