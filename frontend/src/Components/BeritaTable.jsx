@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from "react"
 
 const BeritaTable = () => {
     const [getBerita, getDataBerita] = useState([])
-    const linkRef = useRef(null)
-    const descRef = useRef(null)
+    const isiRef = useRef(null)
+    const fotoRef = useRef(null)
     const katRef = useRef(null)
     
     useEffect(() => {
@@ -37,15 +37,15 @@ const BeritaTable = () => {
         // fetch(`http://localhost:3000/getGambarById/${id}`)
         // .then(res =>res.json())
         // .then(data =>{
-        //     linkRef.current.value = data.linkGambar
-        //     descRef.current.value = data.descGambar
+        //     isiRef.current.value = data.linkGambar
+        //     fotoRef.current.value = data.descGambar
         //     katRef.current.value = data.kategori
         // })
 
         updateForm.addEventListener('submit', async (e) => {
             e.preventDefault()
-            const isiBeritaVal = linkRef.current.value
-            const fotoVal = descRef.current.value
+            const isiBeritaVal = isiRef.current.value
+            const fotoVal = fotoRef.current.value
             const katVal = katRef.current.value
             
             fetch(`http://localhost:3000/updateBerita/${id}`, {
@@ -145,12 +145,12 @@ const BeritaTable = () => {
                     <div className="container mt-3">
                         <form className="mt-3" id="formUpdateBerita">
                             <div className="mb-3">
-                                <label htmlFor="" className="form-label">Link Berita</label>
-                                <input type="text" className="form-control" aria-describedby="emailHelp" ref={linkRef}/>
+                                <label htmlFor="" className="form-label">isi Berita</label>
+                                <input type="text" className="form-control" aria-describedby="emailHelp" ref={isiRef}/>
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="" className="form-label">Deskirpsi Berita</label>
-                                <input type="text" className="form-control" ref={descRef}/>
+                                <label htmlFor="" className="form-label">foto Berita</label>
+                                <input type="text" className="form-control" ref={fotoRef}/>
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="" className="form-label">Kategori</label>
