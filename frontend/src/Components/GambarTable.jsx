@@ -60,6 +60,7 @@ const GambarTable = () => {
                     alert('data has been updated')
                     e.target.reset()
                     wrapperId.style.top = '-50%'
+                    window.location.reload()
                 } else if(res.status === 404){
                     alert('error! data not found')
                 }

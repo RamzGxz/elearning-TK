@@ -18,10 +18,10 @@ module.exports = {
     },
     updateBerita: (req, res) => {
         const id = req.params.id
-        const linkVal = req.body.linkBerita
-        const descVal = req.body.descBerita
+        const isiVal = req.body.isiBerita
+        const fotoVal = req.body.fotoBerita
         const catVal = req.body.kategori
-        const query = `update dataBerita set linkBerita='${linkVal}', descBerita='${descVal}', kategori='${catVal}' where id = ${id}`
+        const query = `update dataBerita set isiBerita='${isiVal}', fotoBerita='${fotoVal}', kategori='${catVal}' where id = ${id}`
         conn.query(query, (err, data) => {
             if (err) throw err
             res.send('data berhasil di update')

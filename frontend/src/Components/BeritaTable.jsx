@@ -44,8 +44,8 @@ const BeritaTable = () => {
 
         updateForm.addEventListener('submit', async (e) => {
             e.preventDefault()
-            const linkVal = linkRef.current.value
-            const descVal = descRef.current.value
+            const isiBeritaVal = linkRef.current.value
+            const fotoVal = descRef.current.value
             const katVal = katRef.current.value
             
             fetch(`http://localhost:3000/updateBerita/${id}`, {
@@ -53,7 +53,7 @@ const BeritaTable = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({linkBerita: linkVal, descBerita: descVal, kategori: katVal})
+                body: JSON.stringify({isiBerita: isiBeritaVal, fotoBerita: fotoVal, kategori: katVal})
             })
             .then(res => {
                 if (res.ok){
