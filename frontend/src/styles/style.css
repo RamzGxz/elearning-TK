@@ -102,9 +102,24 @@
   .bannerWrap {
     padding-top: 1%;
   }
+  .beritaWrap {
+    flex-direction: column;
+  }
+  .calendar {
+    margin-top: 5%;
+  }
+  .card-berita .card-body .img-thumbnail {
+    height: 50px !important;
+  }
 }
 #closeFormGambar:hover {
   cursor: pointer;
   color: rgb(203, 19, 19);
   transition: all 0.3s;
+}
+
+.linkTable {
+  max-width: 300px;
+  overflow-x: auto;
+  text-align: center;
 }/*# sourceMappingURL=style.css.map */

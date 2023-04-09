@@ -99,7 +99,7 @@ const VideoTable = () => {
                                     return (
                                         <tr className="w-100" key={data.id}>
                                             <th scope="row" >{index + 1}</th>
-                                            <td className="w-25">{data.linkVideo}</td>
+                                            <td className="linkTable">{data.linkVideo}</td>
                                             <td>{data.descVideo}</td>
                                             <td>{data.kategori}</td>
                                             <td className="">

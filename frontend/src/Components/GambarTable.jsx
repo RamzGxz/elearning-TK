@@ -99,7 +99,7 @@ const GambarTable = () => {
                                     return (
                                         <tr className="w-100" key={data.id}>
                                             <th scope="row" >{index+1}</th>
-                                            <td className="w-25">{data.linkGambar}</td>
+                                            <td className="linkTable">{data.linkGambar}</td>
                                             <td>{data.descGambar}</td>
                                             <td>{data.kategori}</td>
                                             <td className="">

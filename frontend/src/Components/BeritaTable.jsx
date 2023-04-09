@@ -100,8 +100,8 @@ const BeritaTable = () => {
                                     return (
                                         <tr className="w-100" key={data.id}>
                                             <th scope="row" >{index + 1}</th>
-                                            <td className="w-25">{data.isiBerita}</td>
-                                            <td>{data.fotoBerita}</td>
+                                            <td className="linkTable">{data.isiBerita}</td>
+                                            <td className="linkTable">{data.fotoBerita}</td>
                                             <td>{data.kategori}</td>
                                             <td className="">
                                                 <button className="btn btn-success p-1 me-1" onClick={() => updateFuncBerita(data.id)}>Update</button>
