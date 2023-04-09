@@ -9,7 +9,6 @@ const Pembelajaran = () => {
             <div className="justify-content-center align-items-center container wrapperPembelajaran" style={{
                 marginTop: '5%'
             }}>
-                <div className="category d-lg-flex justify-content-between align-items-center"></div>
                 <div className="title d-flex justify-content-between align-items-center">
                     <div>
                         <h4>History :</h4>
