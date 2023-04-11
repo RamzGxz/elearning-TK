@@ -39,7 +39,7 @@ module.exports = {
         const query = `select * from dataGambar where id=${id}`
         conn.query(query, (err, data)=>{
             if (err) throw err
-            res.send(`get succes: ${data}`)
+            res.send(data)
         })
     },
     postDataGambar: (req, res)=>{

@@ -2,6 +2,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 // berdasarkan tutor digugel
 import Calendar from 'react-calendar';
+import { useState } from "react";
+import 'react-calendar/dist/Calendar.css'
 
 const Info = () => {
     const handleClick = () => {
@@ -12,17 +14,28 @@ const Info = () => {
         });
 
         const button = document.querySelectorAll('.buttonSembunyi')
-        button.forEach(el =>{
+        button.forEach(el => {
             console.log(el.textContent)
-            if (el.textContent === 'Lanjutkan Membaca'){
+            if (el.textContent === 'Lanjutkan Membaca') {
                 el.textContent = 'Sembunyikan'
             } else {
                 el.textContent = 'Lanjutkan Membaca'
             }
 
         })
-    };
+    }
 
+    const [dataBerita, setDataBerita] = useState([])
+    fetch('http://localhost:3000/getDataBerita')
+        .then(res => res.json())
+        .then(data => setDataBerita(data))
+        .catch((err) => console.log(err))
+
+    const [dataGambar, setDataGambar] = useState([])
+    fetch('http://localhost:3000/getGambar')
+        .then(res => res.json())
+        .then(data => setDataGambar(data))
+        .catch((err) => console.log(err))
     return (
 
         <div>
@@ -37,40 +50,28 @@ const Info = () => {
                 </div>
             </section>
 
-            <div className="d-flex  justify-content-center align-items-center container beritaWrap" style={{ marginTop: '3%' }}>
+            <div className="d-flex  justify-content-center align-items-center container beritaWrap flex-column" style={{ marginTop: '3%' }}>
                 <section className="w-100 mx-3">
                     <h3 className="text-center mb-4">Galeri</h3>
-                    <div className="galeri row">
-                        <div className="row">
-                            <div className="col-sm-12 col-lg-6 col-md-6">
-                                <img src="https://images.unsplash.com/photo-1567746455504-cb3213f8f5b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" className="img-thumbnail" alt="Ruang Kelas" />
-                            </div>
-                            <div className="col-lg-6 col-sm-12 col-md-6">
-                                <div className="row">
-                                    <div className="col-sm-12 col-lg-6 col-md-6">
-                                        <img src="https://images.unsplash.com/photo-1567746455504-cb3213f8f5b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" className="img-thumbnail" alt="Ruang Kelas" />
-                                    </div>
-                                    <div className="col-sm-12 col-lg-6 col-md-6">
-                                        <img src="https://images.unsplash.com/photo-1567746455504-cb3213f8f5b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" className="img-thumbnail" alt="Ruang Kelas" />
-                                    </div>
+                    <div className="galeri row w-100 d-flex justify-content-center">
+
+                        {dataGambar.map((data) => {
+                            return (
+                                <div className="col-lg-4 ps-0 pe-0 col-sm-12 g-2">
+                                    <img src={`${data.linkGambar}`} className="img-thumbnail " alt={`${data.descGambar}`} style={{
+                                        width: '100%',
+                                        height: '100%'
+                                    }} />
                                 </div>
-                                <div className="row">
-                                    <div className="col-sm-12 col-lg-6 col-md-6">
-                                        <img src="https://images.unsplash.com/photo-1567746455504-cb3213f8f5b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" className="img-thumbnail" alt="Ruang Kelas" />
-                                    </div>
-                                    <div className="col-sm-12 col-lg-6 col-md-6">
-                                        <img src="https://images.unsplash.com/photo-1567746455504-cb3213f8f5b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" className="img-thumbnail" alt="Ruang Kelas" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            )
+                        })}
+
                     </div>
                 </section>
 
-                <aside className="d-flex justify-content-center flex-column calendar">
+                <aside className="d-flex justify-content-start align-items-center flex-column calendar mt-5">
                     <h3 className="text-center mb-4">Kalender</h3>
-                    {/* berdasarkan tutor gugel */}
-                    <Calendar className="justify-content-center align-items-center" />
+                    <Calendar className={`w-100 p-5 fs-4`} />
                 </aside>
             </div>
 
@@ -86,57 +87,29 @@ const Info = () => {
 
             <section className="card-berita container mb-5 py-2">
                 <div className="row">
-                    <div className="col-sm-12 my-2">
-                        <div className="card d-flex flex-row justify-content-between cardWrap" style={{
-                            width: '100%'
-                        }}>
-                            <div className="card-body">
-                                <h5 className="card-title fw-bold font-monospace">Special title treatment</h5>
-                                <hr />
-                                <p className="card-text" style={{
-                                    maxHeight: '30vh',
-                                    overflow: 'hidden'
-                                }}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non amet qui omnis ipsum eveniet nesciunt consectetur ea beatae, corrupti expedita placeat voluptatum vero rem? Quo molestiae excepturi eaque cupiditate sed odit, vero laborum nam corporis perspiciatis, quos perferendis ad quae, hic error! Facere praesentium doloremque fugit temporibus officiis id dolorum, aliquam eius nesciunt distinctio, incidunt necessitatibus labore ipsum pariatur expedita qui sint, sed quidem aperiam quae reiciendis dicta harum ad suscipit? Quae velit illo, ex nihil temporibus quo est architecto voluptatibus. Non sapiente iure cupiditate ratione cum exercitationem ab reprehenderit perferendis, autem nulla dolorum dignissimos! Velit ratione quod deserunt dicta! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, veritatis! Atque neque, veritatis alias reprehenderit nam ratione eveniet accusamus doloremque, ipsa aperiam, illum repellendus! Libero dolore animi a est consequuntur? Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet rem dolorem consequatur, sint quae commodi excepturi animi sed ducimus recusandae repellendus itaque, ab ipsa quos est odit quo! Voluptatem, sunt?</p>
-                                <button href="#" className="btn btn-dark buttonSembunyi" onClick={handleClick}>Lanjutkan Membaca</button>
+                    {dataBerita.map((data => {
+                        return (
+                            <div className="col-sm-12 my-2">
+                                <div className="card d-flex flex-row justify-content-between cardWrap" style={{
+                                    width: '100%'
+                                }}>
+                                    <div className="card-body">
+                                        <h5 className="card-title fw-bold font-monospace">{data.judulBerita}</h5>
+                                        <hr />
+                                        <p className="card-text" style={{
+                                            maxHeight: '30vh',
+                                            overflow: 'hidden'
+                                        }}>{data.isiBerita}</p>
+                                        <button href="#" className="btn btn-dark buttonSembunyi" onClick={handleClick}>Lanjutkan Membaca</button>
+                                    </div>
+
+                                    <img src={`${data.fotoBerita}`} className="img-thumbnail m-2" alt="Ruang Kelas" width={500} />
+
+                                </div>
                             </div>
+                        )
+                    }))}
 
-                            <img src="https://images.unsplash.com/photo-1567746455504-cb3213f8f5b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" className="img-thumbnail m-2" alt="Ruang Kelas" width={500} />
-
-                        </div>
-
-                    </div>
-                    <div className="col-sm-12 my-2">
-                        <div className="card d-flex flex-row justify-content-between cardWrap" style={{
-                            width: '100%'
-                        }}>
-                            <div className="card-body">
-                                <h5 className="card-title fw-bold font-monospace">Special title treatment</h5>
-                                <hr />
-                                <p className="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non amet qui omnis ipsum eveniet nesciunt consectetur ea beatae, corrupti expedita placeat voluptatum vero rem? Quo molestiae excepturi eaque cupiditate sed odit, vero laborum nam corporis perspiciatis, quos perferendis ad quae, hic error! Facere praesentium doloremque fugit temporibus officiis id dolorum, aliquam eius nesciunt distinctio, incidunt necessitatibus labore ipsum pariatur expedita qui sint, sed quidem aperiam quae reiciendis dicta harum ad suscipit? Quae velit illo, ex nihil temporibus quo est architecto voluptatibus. Non sapiente iure cupiditate ratione cum exercitationem ab reprehenderit perferendis, autem nulla dolorum dignissimos! Velit ratione quod deserunt dicta! Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere error quia eos accusamus autem sit accusantium earum esse doloremque quis rem animi minima fugiat provident porro itaque libero incidunt explicabo, minus dignissimos soluta. Est ullam temporibus dolorem, non voluptatem at corrupti doloremque tempore assumenda saepe voluptas, voluptate fuga ducimus omnis!</p>
-                                <button href="#" className="btn btn-dark buttonSembunyi" onClick={handleClick}>Lanjutkan Membaca</button>
-                            </div>
-
-                            <img src="https://images.unsplash.com/photo-1567746455504-cb3213f8f5b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" className="img-thumbnail m-2" alt="Ruang Kelas" width={500} />
-
-                        </div>
-
-                    </div>
-                    <div className="col-sm-12 my-2">
-                        <div className="card d-flex flex-row justify-content-between cardWrap" style={{
-                            width: '100%'
-                        }}>
-                            <div className="card-body">
-                                <h5 className="card-title fw-bold font-monospace">Special title treatment</h5>
-                                <hr />
-                                <p className="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non amet qui omnis ipsum eveniet nesciunt consectetur ea beatae, corrupti expedita placeat voluptatum vero rem? Quo molestiae excepturi eaque cupiditate sed odit, vero laborum nam corporis perspiciatis, quos perferendis ad quae, hic error! Facere praesentium doloremque fugit temporibus officiis id dolorum, aliquam eius nesciunt distinctio, incidunt necessitatibus labore ipsum pariatur expedita qui sint, sed quidem aperiam quae reiciendis dicta harum ad suscipit? Quae velit illo, ex nihil temporibus quo est architecto voluptatibus. Non sapiente iure cupiditate ratione cum exercitationem ab reprehenderit perferendis, autem nulla dolorum dignissimos! Velit ratione quod deserunt dicta! Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque commodi excepturi temporibus, voluptatum, facilis omnis aliquid adipisci tempore sint expedita voluptatem officia rem! Laboriosam eius recusandae distinctio praesentium ab architecto!</p>
-                                <button href="#" className="btn btn-dark buttonSembunyi" onClick={handleClick}>Lanjutkan Membaca</button>
-                            </div>
-
-                            <img src="https://images.unsplash.com/photo-1567746455504-cb3213f8f5b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" className="img-thumbnail m-2" alt="Ruang Kelas" width={500} />
-
-                        </div>
-
-                    </div>
                 </div>
             </section>
 

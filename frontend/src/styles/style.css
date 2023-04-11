@@ -112,7 +112,7 @@
     height: 50px !important;
   }
 }
-#closeFormGambar:hover {
+#closeFormGambar:hover, #closeFormVideo:hover, #closeFormBerita:hover {
   cursor: pointer;
   color: rgb(203, 19, 19);
   transition: all 0.3s;
@@ -122,4 +122,8 @@
   max-width: 300px;
   overflow-x: auto;
   text-align: center;
+}
+
+.formUpdateBerita {
+  height: 60vh;
 }/*# sourceMappingURL=style.css.map */

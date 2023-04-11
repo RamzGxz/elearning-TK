@@ -15,12 +15,14 @@ const AdminUpload = () => {
     const katVidRef = useRef(null)
 
     // useRefformBerita
+    const judulBeritaRef = useRef(null)
     const isiBeritaRef = useRef(null)
     const fotoBeritaRef = useRef(null)
     const katBeritaRef = useRef(null)
 
     const handlePostGambar = (e) => {
         e.preventDefault()
+        
         const linkVal = linkRefGambar.current.value
         const descVal = descRefGambar.current.value
         const katVal = katRefGambar.current.value
@@ -84,6 +86,7 @@ const AdminUpload = () => {
 
     const handlePostBerita = (e) => {
         e.preventDefault()
+        const judulBeritaVal = judulBeritaRef.current.value
         const isiBeritaVal = isiBeritaRef.current.value
         const fotoBeritaVal = fotoBeritaRef.current.value
         const katBeritaVal = katBeritaRef.current.value
@@ -97,6 +100,7 @@ const AdminUpload = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    judulBerita: judulBeritaVal,
                     isiBerita: isiBeritaVal,
                     fotoBerita: fotoBeritaVal,
                     kategori: katBeritaVal
@@ -127,10 +131,10 @@ const AdminUpload = () => {
             </div>
             <div className="wrapper mb-5">
                 <div className="container mt-3 d-flex justify-content-center align-items-center" style={{
-                    height: '55vh'
+                    height: 'auto'
                 }}>
-                    <div className="my-2 w-100" style={{
-                        height: '55vh',
+                    <div className="my-2 w-100 pb-2" style={{
+                        height: 'auto',
                         border: '1px solid black',
                         borderRadius: 5
                     }}>
@@ -164,10 +168,10 @@ const AdminUpload = () => {
                 </div>
 
                 <div className="container mt-3 d-flex justify-content-center align-items-center" style={{
-                    height: '55vh'
+                    height: 'auto'
                 }}>
-                    <div className="my-2 w-100" style={{
-                        height: '55vh',
+                    <div className="my-2 w-100 pb-2" style={{
+                        height: 'auto',
                         border: '1px solid black',
                         borderRadius: 5
                     }}>
@@ -176,7 +180,7 @@ const AdminUpload = () => {
                             borderTopLeftRadius: 5,
                             borderTopRightRadius: 5
                         }}>
-                            <h5 className="ms-2 fw-bolder">Video</h5>
+                            <h5 className="ms-2 fw-bolder" style={{marginBottom: 0}}>Video</h5>
                         </div>
                         <div className="container">
                             <form className="mt-3" onSubmit={handlePostVideo}>
@@ -189,7 +193,7 @@ const AdminUpload = () => {
                                     <input type="text" className="form-control" ref={descVidRef} />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="" className="form-label">Kategori Kelas</label>
+                                    <label htmlFor="" className="form-label">Kategori</label>
                                     <input type="text" className="form-control" ref={katVidRef} />
                                 </div>
                                 <div className="w-100 d-flex justify-content-end">
@@ -201,10 +205,10 @@ const AdminUpload = () => {
                 </div>
 
                 <div className="container mt-3 d-flex justify-content-center align-items-center" style={{
-                    height: '55vh'
+                    height: 'auto'
                 }}>
-                    <div className="my-2 w-100" style={{
-                        height: '55vh',
+                    <div className="w-100 pb-2" style={{
+                        height: 'auto',
                         border: '1px solid black',
                         borderRadius: 5
                     }}>
@@ -213,10 +217,14 @@ const AdminUpload = () => {
                             borderTopLeftRadius: 5,
                             borderTopRightRadius: 5
                         }}>
-                            <h5 className="ms-2 fw-bolder">Berita</h5>
+                            <h5 className="ms-2 fw-bolder" style={{marginBottom: 0}}>Berita</h5>
                         </div>
                         <div className="container">
                             <form className="mt-3" onSubmit={handlePostBerita}>
+                                <div className="mb-3">
+                                    <label htmlFor="" className="form-label">Judul Berita</label>
+                                    <input type="text" className="form-control" id="" aria-describedby="emailHelp" ref={judulBeritaRef}/>
+                                </div>
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Isi Berita</label>
                                     <input type="text" className="form-control" id="" aria-describedby="emailHelp" ref={isiBeritaRef}/>

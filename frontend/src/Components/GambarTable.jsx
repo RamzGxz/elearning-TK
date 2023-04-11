@@ -33,14 +33,14 @@ const GambarTable = () => {
         closeFormGambar.addEventListener('click', () => {
             wrapperId.style.top = '-50%'
         })
-
-        // fetch(`http://localhost:3000/getGambarById/${id}`)
-        // .then(res =>res.json())
-        // .then(data =>{
-        //     linkRef.current.value = data.linkGambar
-        //     descRef.current.value = data.descGambar
-        //     katRef.current.value = data.kategori
-        // })
+        
+        fetch(`http://localhost:3000/getGambarById/${id}`)
+        .then(res =>res.json())
+        .then(data =>{
+            linkRef.current.value = data[0]['linkGambar']
+            descRef.current.value = data[0]['descGambar']
+            katRef.current.value = data[0]['kategori']
+        })
 
         updateForm.addEventListener('submit', async (e) => {
             e.preventDefault()
@@ -58,7 +58,6 @@ const GambarTable = () => {
             .then(res => {
                 if (res.ok){
                     alert('data has been updated')
-                    e.target.reset()
                     wrapperId.style.top = '-50%'
                     window.location.reload()
                 } else if(res.status === 404){
@@ -85,7 +84,7 @@ const GambarTable = () => {
                         maxHeight: '50vh',
                         overflowY: 'auto',
                     }}>
-                        <table className="table table-responsive text-center">
+                        <table className="table table-responsive">
                             <thead>
                                 <tr className="sticky-top bg-dark-subtle">
                                     <th scope="col">No</th>
@@ -130,10 +129,10 @@ const GambarTable = () => {
             }}>
                 <div style={{
                     width: '50%',
-                    height: '50vh',
+                    height: 'auto',
                     backgroundColor: '#d4a373',
                     position: 'absolute'
-                }} className="rounded-4 shadow-lg">
+                }} className="rounded-4 shadow-lg pb-2">
                     <i className="fa-solid fa-circle-xmark fs-3" id="closeFormGambar" style={{
                         position: 'absolute',
                         top: 10,

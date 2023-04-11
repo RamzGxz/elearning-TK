@@ -1,4 +1,17 @@
+import { useState, useEffect } from "react"
+
+
 const Banner = (props) => {
+    const [dataBerita, setDataBerita] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:3000/getDataBerita')
+            .then(res => res.json())
+            .then(data => {
+                setDataBerita(data)
+            })
+            .catch((err) => console.log(err))
+    }, [])
+
     return (
         <div className={`d-flex justify-content-center align-items-center w-100 ${props.bannerClassWrapper} `} style={{ height: props.bannerWrapHeight, marginTop: props.bannerMarginTop }}>
 
@@ -7,27 +20,18 @@ const Banner = (props) => {
                 height: props.imageHeight
             }}>
                 <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <img src="/src/Assets/wallpaper-kartun-tk.webp" alt={true} className={`rounded-3 ${props.bannerClassWrapper}`} style={{ width: '100%', height: props.imageHeight }} />
-                        <div className="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
-                        </div>
-                    </div>
-                    <div className="carousel-item">
-                        <img src="https://cdn0-production-images-kly.akamaized.net/LnwORZA-w3TWaSf5m5vpdZH5WQU=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2975416/original/005140100_1574444390-ANAK_TK-Ridlo.jpg" className={`rounded-3 ${props.bannerClassWrapper}`} alt={true} style={{ width: '100%', height: props.imageHeight }} />
-                        <div className="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
-                        </div>
-                    </div>
-                    <div className="carousel-item">
-                        <img src="https://www.ibudanbalita.com/uploads/posts/pTGNHGaudX.jpg" alt={true} className={`rounded-3 ${props.bannerClassWrapper}`} style={{ width: '100%', height: props.imageHeight }} />
-                        <div className="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
-                        </div>
-                    </div>
+                    {dataBerita.map((data) => {
+                        return (
+                            <div className="carousel-item active">
+                                <img src={`${data.fotoBerita}`} alt={`${data.judulBerita}`} className={`rounded-3 ${props.bannerClassWrapper}`} style={{ width: '100%', height: props.imageHeight }} />
+                                <div className="carousel-caption d-md-block" style={{}}>
+                                    <h3 className="fw-bolder">{data.kategori}</h3>
+                                    <p className="fw-bolder">{data.judulBerita}</p>
+                                </div>
+                            </div>
+                        )
+                    })}
+
                 </div>
                 <div className="buttonSlide">
                     <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
