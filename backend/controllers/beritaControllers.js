@@ -8,12 +8,23 @@ module.exports = {
             res.send(data)
         })
     },
-    deleteBerita: (req, res) => {
+    getBeritaById: (req, res)=>{
         const id = req.params.id
-        const query = `delete from dataBerita where id=${id}`
-        conn.query(query, (err, data) => {
+        const query = `select * from dataBerita where id=${id}`
+        conn.query(query, (err, data)=>{
             if (err) throw err
-            res.send(`data dengan id: ${id} berhasil di delete`)
+            res.send(data)
+        })
+    },
+    postDataBerita: (req, res) =>{
+        const judulBeritaVal = req.body.judulBerita
+        const isiBeritaVal = req.body.isiBerita
+        const fotoBeritaVal = req.body.fotoBerita
+        const kategoriVal = req.body.kategori
+        const query = `insert into dataBerita(judulBerita, isiBerita, fotoBerita, kategori) values('${judulBeritaVal}','${isiBeritaVal}', '${fotoBeritaVal}', '${kategoriVal}')`
+        conn.query(query,(err,data)=>{
+            if (err) throw err
+            res.send('data berhasil di post')
         })
     },
     updateBerita: (req, res) => {
@@ -29,23 +40,12 @@ module.exports = {
             console.log(data)
         })
     },
-    postDataBerita: (req, res) =>{
-        const judulBeritaVal = req.body.judulBerita
-        const isiBeritaVal = req.body.isiBerita
-        const fotoBeritaVal = req.body.fotoBerita
-        const kategoriVal = req.body.kategori
-        const query = `insert into dataBerita(judulBerita, isiBerita, fotoBerita, kategori) values('${judulBeritaVal}','${isiBeritaVal}', '${fotoBeritaVal}', '${kategoriVal}')`
-        conn.query(query,(err,data)=>{
+    deleteBerita: (req, res) => {
+        const id = req.params.id
+        const query = `delete from dataBerita where id=${id}`
+        conn.query(query, (err, data) => {
             if (err) throw err
-            res.send('data berhasil di post')
+            res.send(`data dengan id: ${id} berhasil di delete`)
         })
     },
-    getBeritaById: (req, res)=>{
-        const id = req.params.id
-        const query = `select * from dataBerita where id=${id}`
-        conn.query(query, (err, data)=>{
-            if (err) throw err
-            res.send(data)
-        })
-    }
 }
