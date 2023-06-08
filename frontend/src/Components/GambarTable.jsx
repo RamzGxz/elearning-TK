@@ -1,71 +1,55 @@
 import { useEffect, useState, useRef } from "react"
-
+import axios from 'axios'
+import FormUpdate from "./FormUpdate"
 const GambarTable = () => {
     const [getGambar, getDataGambar] = useState([])
-    const linkRef = useRef(null)
-    const descRef = useRef(null)
-    const katRef = useRef(null)
-    
-    useEffect(() => {
-        fetch('http://localhost:3000/getGambar')
-            .then(res => res.json())
-            .then(data => getDataGambar(data))
-            .catch(err => console.log(err))
-    }, [])
+    const [updated, setUpdated] = useState(false)
 
-    const delFuncGambar = (id) => {
-        fetch(`http://localhost:3000/deleteGambar/${id}`, {
-            method: "DELETE"
-        })
-            .then(data => {
-                alert('data berhasil di delete!')
-                window.location.reload()
-            })
-            .catch(err => alert(err))
+    const getGambarFunc = async () => {
+        try {
+            const res = await axios.get('http://localhost:3000/getGambar')
+            const data = res.data
+            getDataGambar(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(() => {
+        getGambarFunc()
+    }, [updated])
+
+    const delFuncGambar = async (id) => {
+        try {
+            await axios.delete(`http://localhost:3000/deleteGambar/${id}`)
+            alert(`data dengan id: ${id} berhasil di delete`)
+            setUpdated(!updated)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
-    const updateFuncGambar = (id) => {
+    // state untuk update
+    const [linkGet, setLinkget] = useState('')
+    const [desc, setDesc] = useState('')
+    const [cat, setCat] = useState('')
+    const [idData, setIdData] = useState('')
+
+    const updateFuncGambar = (_id, link, description, category) => {
+        setLinkget(link)
+        setDesc(description)
+        setCat(category)
+        setIdData(_id)
+
         const wrapperId = document.getElementById('updateFormGambar')
         const closeFormGambar = document.getElementById('closeFormGambar')
-        const updateForm = document.getElementById('formUpdateGambar')
-        console.log(id)
         wrapperId.style.top = '50%'
         closeFormGambar.addEventListener('click', () => {
             wrapperId.style.top = '-50%'
+            setLinkget('')
+            setDesc('')
+            setCat('')
+            setIdData('')
         })
-        
-        fetch(`http://localhost:3000/getGambarById/${id}`)
-        .then(res =>res.json())
-        .then(data =>{
-            linkRef.current.value = data[0]['linkGambar']
-            descRef.current.value = data[0]['descGambar']
-            katRef.current.value = data[0]['kategori']
-        })
-
-        updateForm.addEventListener('submit', async (e) => {
-            e.preventDefault()
-            const linkVal = linkRef.current.value
-            const descVal = descRef.current.value
-            const katVal = katRef.current.value
-            
-            fetch(`http://localhost:3000/updateGambar/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({linkGambar: linkVal, descGambar: descVal, kategori: katVal})
-            })
-            .then(res => {
-                if (res.ok){
-                    alert('data has been updated')
-                    wrapperId.style.top = '-50%'
-                    window.location.reload()
-                } else if(res.status === 404){
-                    alert('error! data not found')
-                }
-            })
-        })
-
     }
 
     return (
@@ -84,27 +68,34 @@ const GambarTable = () => {
                         maxHeight: '50vh',
                         overflowY: 'auto',
                     }}>
-                        <table className="table table-responsive">
+                        <table className="table table-responsive table-sm">
                             <thead>
-                                <tr className="sticky-top bg-dark-subtle">
+                                <tr className="sticky-top bg-dark-subtle text-center">
                                     <th scope="col">No</th>
-                                    <th scope="col">Link Gambar</th>
-                                    <th scope="col">Deskripsi Gambar</th>
+                                    <th scope="col" className="linkTable">Link Gambar</th>
+                                    <th scope="col" className="text-center">Deskripsi Gambar</th>
                                     <th scope="col">Kategori Kelas</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {getGambar.map((data, index )=> {
+                                {getGambar.map((item, data) => {
+
                                     return (
-                                        <tr className="w-100" key={data.id}>
-                                            <th scope="row" >{index+1}</th>
-                                            <td className="linkTable">{data.linkGambar}</td>
-                                            <td>{data.descGambar}</td>
-                                            <td>{data.kategori}</td>
-                                            <td className="">
-                                                <button className="btn btn-success p-1 me-1" onClick={() => updateFuncGambar(data.id)}>Update</button>
-                                                <button className="btn btn-danger p-1 ms-1" onClick={() => delFuncGambar(data.id)}>Delete</button>
+                                        <tr className="w-100" key={item._id}>
+                                            <th scope="row" className="text-center">{data + 1}</th>
+                                            <td className="linkTable">{item.link}</td>
+                                            <td className="text-center">{item.description}</td>
+                                            <td className="text-center">{item.category}</td>
+                                            <td className=" text-center">
+                                                <div className="btn-group" role="group" aria-label="Basic mixed styles example">
+                                                    <button className="btn btn-outline-success btn-sm rounded-0 rounded-start" onClick={() => updateFuncGambar(item._id, item.link, item.description, item.category)}>
+                                                        <i className="fa-solid fa-pen-to-square"></i>
+                                                    </button>
+                                                    <button className="btn btn-outline-danger btn-sm rounded-0 rounded-end" onClick={() => delFuncGambar(item._id)}>
+                                                        <i className="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                     )
@@ -114,56 +105,7 @@ const GambarTable = () => {
                     </div>
                 </div>
             </div>
-
-            {/* form Update Gambar */}
-            <div className="updateForm d-flex justify-content-center align-items-center" id="updateFormGambar" style={{
-                width: '100%',
-                height: '100vh',
-                backgroundColor: '#1d1d1d33',
-                zIndex: 9999,
-                position: 'fixed',
-                top: '-50%',
-                left: '50%',
-                transition: '.5s',
-                transform: 'translate(-50%, -50%)'
-            }}>
-                <div style={{
-                    width: '50%',
-                    height: 'auto',
-                    backgroundColor: '#d4a373',
-                    position: 'absolute'
-                }} className="rounded-4 shadow-lg pb-2">
-                    <i className="fa-solid fa-circle-xmark fs-3" id="closeFormGambar" style={{
-                        position: 'absolute',
-                        top: 10,
-                        right: 10
-                    }} />
-
-                    <h3 className="text-center mt-4">Update Form</h3>
-
-                    <div className="container mt-3">
-                        <form className="mt-3" id="formUpdateGambar">
-                            <div className="mb-3">
-                                <label htmlFor="" className="form-label">Link Gambar</label>
-                                <input type="text" className="form-control" aria-describedby="emailHelp" ref={linkRef}/>
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="" className="form-label">Deskirpsi Gambar</label>
-                                <input type="text" className="form-control" ref={descRef}/>
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="" className="form-label">Kategori</label>
-                                <input type="text" className="form-control" ref={katRef}/>
-                            </div>
-                            <div className="w-100 d-flex justify-content-end">
-                                <button type="submit" className="btn btn-dark">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            {/* end form update gambar */}
-
+            <FormUpdate _id={idData} catGet={cat} descGet={desc} linkGet={linkGet} idForm={'updateFormGambar'} updateFunc={setUpdated} routes={'updateGambar'} wrapperId={'updateFormGambar'} closeButtonId={'closeFormGambar'} updated={updated} />
         </div>
     )
 }

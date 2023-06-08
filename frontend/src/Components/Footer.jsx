@@ -1,44 +1,46 @@
+import { Link } from "react-router-dom"
+
 const Footer = () => {
 
     return (
         <div className="mt-3">
             <div className="">
-                <footer className="text-center text-black bg-primary-subtle">
+                <footer className="text-center text-black bg-dark text-white">
                     <div className="container">
                         <section className="mt-5">
-                            <div className="row text-center d-flex justify-content-center pt-5">
+                            <div className="row text-center d-flex justify-content-center pt-5 ">
 
                                 <div className="col-md-2">
-                                    <h6 className="text-uppercase font-weight-bold">
-                                        <a href="#!" className="text-black">Home</a>
+                                    <h6 className="text-uppercase font-weight-bold ">
+                                        <Link to={'/'} className="text-decoration-none text-white">Home</Link>
                                     </h6>
                                 </div>
 
 
                                 <div className="col-md-2">
                                     <h6 className="text-uppercase font-weight-bold">
-                                        <a href="#!" className="text-black">Pembelajaran</a>
+                                        <Link to={'/pembelajaran'} className="text-decoration-none text-white">Pembelajaran</Link>
                                     </h6>
                                 </div>
 
 
                                 <div className="col-md-2">
                                     <h6 className="text-uppercase font-weight-bold">
-                                        <a href="#!" className="text-black">info</a>
+                                        <Link to={'/info'} className="text-decoration-none text-white">info</Link>
                                     </h6>
                                 </div>
 
 
                                 <div className="col-md-2">
                                     <h6 className="text-uppercase font-weight-bold">
-                                        <a href="#!" className="text-black">admin</a>
+                                        <Link to={'/admin/dashboard'} className="text-decoration-none text-white">admin</Link>
                                     </h6>
                                 </div>
 
 
                                 <div className="col-md-2">
                                     <h6 className="text-uppercase font-weight-bold">
-                                        <a href="#!" className="text-black">Terms & Service</a>
+                                        <Link to={''} className="text-decoration-none text-white">Terms & Service</Link>
                                     </h6>
                                 </div>
                             </div>
@@ -59,30 +61,30 @@ const Footer = () => {
                         </section>
 
                         <section className="text-center mb-5">
-                            <a href className="text-black me-4">
+                            <a className="me-4 text-white">
                                 <i className="fab fa-facebook-f" />
                             </a>
-                            <a href className="text-black me-4">
+                            <a className="me-4 text-white">
                                 <i className="fab fa-twitter" />
                             </a>
-                            <a href className="text-black me-4">
+                            <a className="me-4 text-white">
                                 <i className="fab fa-google" />
                             </a>
-                            <a href className="text-black me-4">
+                            <a className="me-4 text-white">
                                 <i className="fab fa-instagram" />
                             </a>
-                            <a href className="text-black me-4">
+                            <a className="me-4 text-white">
                                 <i className="fab fa-linkedin" />
                             </a>
-                            <a href className="text-black me-4">
+                            <a className="me-4 text-white">
                                 <i className="fab fa-github" />
                             </a>
                         </section>
                     </div>
 
-                    <div className="text-center p-3 bg-dark-subtle text-black">
-                        © 2023 Copyright:
-                        <a className=" text-black" href="https://mdbootstrap.com/"> Yoona@123gmail.com</a>
+                    <div className="p-3 bg-dark white d-flex align-items-center justify-content-center">
+                        <p className="mb-0 me-2">© 2023 Copyright:</p>
+                        <a className="" href="https://mdbootstrap.com/">Yoona@123gmail.com</a>
                     </div>
                 </footer>
             </div>

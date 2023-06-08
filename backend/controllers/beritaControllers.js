@@ -1,51 +1,71 @@
-const conn = require('../db/db')
+const beritaModels = require('../models/beritaModels')
 
 module.exports = {
-    getDataBerita: (req, res) => {
-        const query = "select * from dataBerita"
-        conn.query(query, (err, data) => {
-            if (err) throw err
-            res.send(data)
-        })
+    getDataBerita: async (req, res) => {
+        const data = await beritaModels.find()
+        res.json(data)
     },
-    getBeritaById: (req, res)=>{
-        const id = req.params.id
-        const query = `select * from dataBerita where id=${id}`
-        conn.query(query, (err, data)=>{
-            if (err) throw err
-            res.send(data)
+
+    postDataBerita: async (req, res) => {
+        const data = new beritaModels({
+            judul: req.body.judul,
+            isi: req.body.isi,
+            foto: req.body.foto,
+            category: req.body.category
         })
+        try {
+            await data.save()
+            res.json(data)
+        } catch (error) {
+            res.status(500).json({
+                message: 'internal server error',
+                err: error
+            })
+        }
     },
-    postDataBerita: (req, res) =>{
-        const judulBeritaVal = req.body.judulBerita
-        const isiBeritaVal = req.body.isiBerita
-        const fotoBeritaVal = req.body.fotoBerita
-        const kategoriVal = req.body.kategori
-        const query = `insert into dataBerita(judulBerita, isiBerita, fotoBerita, kategori) values('${judulBeritaVal}','${isiBeritaVal}', '${fotoBeritaVal}', '${kategoriVal}')`
-        conn.query(query,(err,data)=>{
-            if (err) throw err
-            res.send('data berhasil di post')
-        })
+    updateBerita: async (req, res) => {
+        const filter = {_id: req.params._id}
+        const query = {
+            $set:{
+                judul: req.body.judul,
+                isi: req.body.isi,
+                foto: req.body.foto,
+                category: req.body.category
+            }
+        }
+
+        try {
+            const updatedData = await beritaModels.updateOne(filter, query)
+            if(updatedData.matchedCount === 1){
+                res.status(200).json({
+                    message: 'data has been updated',
+                    updatedData: updatedData
+                })
+            } else{
+                res.status(404).json({
+                    message: `data on id: ${req.params._id} not found`
+                })
+            }
+        } catch (error) {
+            res.status(500).json({
+                message: 'internal server error',
+                err: error
+            })
+            console.log(error)
+        }
     },
-    updateBerita: (req, res) => {
-        const id = req.params.id
-        const judulVal = req.body.judulBerita
-        const isiVal = req.body.isiBerita
-        const fotoVal = req.body.fotoBerita
-        const catVal = req.body.kategori
-        const query = `update dataBerita set judulBerita='${judulVal}', isiBerita='${isiVal}', fotoBerita='${fotoVal}', kategori='${catVal}' where id = ${id}`
-        conn.query(query, (err, data) => {
-            if (err) throw err
-            res.send('data berhasil di update')
-            console.log(data)
-        })
-    },
-    deleteBerita: (req, res) => {
-        const id = req.params.id
-        const query = `delete from dataBerita where id=${id}`
-        conn.query(query, (err, data) => {
-            if (err) throw err
-            res.send(`data dengan id: ${id} berhasil di delete`)
-        })
-    },
+    deleteBerita: async (req, res) => {
+        try {
+            const deletedData = await beritaModels.deleteOne({_id: req.params._id})
+            res.status(200).json({
+                message: 'data has been deleted',
+                systemMessage: deletedData
+            })
+        } catch (error) {
+            res.status(500).json({
+                message: 'internal server error',
+                systemMessage: error
+            })
+        }
+    }
 }

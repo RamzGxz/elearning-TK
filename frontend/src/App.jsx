@@ -8,9 +8,10 @@ import PageLogin from "./Components/PageLogin"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
-
   return (
-    <div>
+    <div style={{
+      backgroundColor:'#F2F6FC'
+  }}>
       <Router>
         <Routes>
           <Route path="/" element={<Home/>}/>

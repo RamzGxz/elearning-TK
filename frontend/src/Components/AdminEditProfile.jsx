@@ -1,4 +1,3 @@
-import Footer from "./Footer"
 import SideBar from "./SideBar"
 
 
@@ -147,7 +146,6 @@ const AdminEditProfile = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }

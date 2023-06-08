@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 
 const SideBar = (props) => {
@@ -17,33 +18,41 @@ const SideBar = (props) => {
                 <hr />
                 <ul className="nav nav-pills flex-column mb-auto">
                     <li className="my-1">
-                        <a href="/admin/dashboard" className={`nav-link sideLink text-white d-flex ${props.menuAct1} align-items-center w-100`}>
+                        <Link to={'/admin/dashboard'} className={`nav-link sideLink text-white d-flex ${props.menuAct1} align-items-center w-100`}>
                             <i className="fa-solid fa-gauge-high mb-0 fs-3" />
                             <p className="ps-3 mb-0 fs-5 t">Dashboard</p>
-                        </a>
+                        </Link>
                     </li>
                     <li className="my-1" >
-                        <a href="/admin/upload" className={`nav-link sideLink text-white d-flex ${props.menuAct2} align-items-center w-100 `}>
+                        <Link to={'/admin/upload'} className={`nav-link sideLink text-white d-flex ${props.menuAct2} align-items-center w-100 `}>
                             <i className="fa-solid fa-file-arrow-up fs-2" />
                             <p className="ps-3 mb-0 fs-5 t">Upload Content</p>
-                        </a>
+                        </Link>
                     </li>
                     <li className="my-1">
-                        <a href="/admin/edit" className={`nav-link sideLink text-white d-flex ${props.menuAct3} align-items-center w-100`}>
+                        <Link to={'/admin/edit'} className={`nav-link sideLink text-white d-flex ${props.menuAct3} align-items-center w-100`}>
                             <i className="fa-solid fa-pen-to-square fs-3" />
                             <p className="ps-3 mb-0 fs-5 t">Edit Profile</p>
-                        </a>
+                        </Link>
+                    </li>
+                    <li className="my-1">
+                        <Link to={'/'} className={`nav-link sideLink text-white d-flex ${props.menuAct4} align-items-center w-100`}>
+                            <i className="fa-solid fa-circle-arrow-left fs-3"></i>
+                            <p className="ps-3 mb-0 fs-5 ">Back to Home</p>
+                        </Link>
                     </li>
                 </ul>
                 <hr />
                 <div className="dropdown">
                     <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt width={32} height={32} className="rounded-circle me-2" />
-                        <strong className="t">Account</strong>
+                        <img src="https://github.com/mdo.png" alt={'true'} width={32} height={32} className="rounded-circle me-2" />
+                        <strong className="t" >Account</strong>
                     </a>
                     <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
-                        <li><a className="dropdown-item" href="#">Sign out</a></li>
-                        <li><a className="dropdown-item" href="/">Back to Home Page</a></li>
+                        <li><Link className="dropdown-item" to={'/'} onClick={()=> {
+                            localStorage.removeItem('login')
+                        }}>Sign out</Link></li>
+                        <li><Link className="dropdown-item" to={"/"}>Back to Home Page</Link></li>
                     </ul>
                 </div>
             </div>

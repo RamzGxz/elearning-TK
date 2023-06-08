@@ -9,7 +9,7 @@ const AdminDasboard = () => {
     return (
         <div>
             <SideBar menuAct1='active' />
-            <div style={{ paddingLeft: 285 }} className="contentAdmin">
+            <div style={{ paddingLeft: 280 }} className="contentAdmin">
                 <div className="bannerWrap"></div>
                 <Banner bannerWrapHeight='75vh'
                     bannerMarginTop='0%'

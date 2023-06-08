@@ -1,34 +1,44 @@
 import Header from "./Header";
 import Footer from "./Footer";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import axios from 'axios'
 
 const Pembelajaran = () => {
-    const [dataVideoHistory, setDataVideoHistory] = useState([])
-    const [dataVideoPopuler, setDataVideoPopuler] = useState([])
-    const history = 'history'
-    const populer = 'populer'
+    const [dataHistory, setDataHistory] = useState([])
+    const [dataPopuler, setDataPopuler] = useState([])
 
+    const historyGet = async () => {
+        try {
+            const res = await axios(`http://localhost:3000/getVideoByCategory?category=history`)
+            const data = res.data
+            setDataHistory(data)
+
+            console.log(dataHistory)
+        } catch (error) {
+            console.log(error)
+        }
+        
+    }
+    const populerGet = async () => {
+        try {
+            const res = await axios(`http://localhost:3000/getVideoByCategory?category=populer`)
+            const data = res.data
+            setDataPopuler(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
     useEffect(() => {
-        fetch(`http://localhost:3000/getVideoByCategory?category=${history}`)
-            .then(res => res.json())
-            .then(data => setDataVideoHistory(data))
-            .catch((err) => console.log(err))
-    }, [])
-
-
-    useEffect(() => {
-        fetch(`http://localhost:3000/getVideoByCategory?category=${populer}`)
-            .then(res => res.json())
-            .then(data => setDataVideoPopuler(data))
-            .catch((err) => console.log(err))
+        historyGet()
+        populerGet()
     }, [])
 
     return (
-        <div>
+        <div className="py-5 my-5">
             <Header act2="active" />
 
             <div className="justify-content-center align-items-center container wrapperPembelajaran" style={{
-                marginTop: '5%'
+               
             }}>
                 <div className="title d-flex justify-content-between align-items-center">
                     <div>
@@ -41,16 +51,15 @@ const Pembelajaran = () => {
                 </div>
 
                 <div className="row mt-4">
-                    {dataVideoHistory.map(data => {
+                    {dataHistory.map((item) => {
                         return (
-                            <div className="col-sm-4">
-                                <iframe width={'100%'} height={230} src={`${data.linkVideo}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen className="" style={{
+                            <div className="col-sm-4" key={item._id}>
+                                <iframe width={'100%'} height={230} src={`${item.link}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen className="" style={{
                                     borderRadius: 10
-                                }}/>
+                                }} />
                             </div>
                         )
                     })}
-
                 </div>
 
                 <div className="p-3 bg-dark-subtle my-4" style={{
@@ -64,12 +73,12 @@ const Pembelajaran = () => {
                     </div>
 
                     <div className="row mt-3">
-                        {dataVideoPopuler.map((data) => {
+                        {dataPopuler.map((item) => {
                             return (
                                 <div className="col-sm-4">
-                                    <iframe width={'100%'} height={230} src={`${data.linkVideo}`}  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen style={{
+                                    <iframe width={'100%'} height={230} src={`${item.link}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen style={{
                                         borderRadius: 10
-                                    }}/>
+                                    }} />
                                 </div>
                             )
                         })}

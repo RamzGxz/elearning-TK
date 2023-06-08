@@ -1,69 +1,58 @@
+import axios from "axios"
 import { useEffect, useState, useRef } from "react"
+import FormUpdate from "./FormUpdate"
 
 const VideoTable = () => {
     const [getVideo, getDataVideo] = useState([])
-    const linkRef = useRef(null)
-    const descRef = useRef(null)
-    const katRef = useRef(null)
-    
-    useEffect(() => {
-        fetch('http://localhost:3000/getVideo')
-            .then(res => res.json())
-            .then(data => getDataVideo(data))
-            .catch(err => console.log(err))
-    }, [])
 
-    const delFuncVideo = (id) => {
-        fetch(`http://localhost:3000/deleteVideo/${id}`, {
-            method: "DELETE"
-        })
-            .then(data => {
-                alert('data berhasil di delete!')
-                window.location.reload()
-            })
-            .catch(err => alert(err))
+    const [updated, setUpdated] = useState(false)
+    const getVideoFunc = async () => {
+        try {
+            const res = await axios('http://localhost:3000/getVideo')
+            const data = res.data
+            getDataVideo(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(() => {
+        getVideoFunc()
+    }, [updated])
+
+    const delFuncVideo = async (id) => {
+        try {
+            const deleted = await axios.delete(`http://localhost:3000/deleteVideo/${id}`)
+            if (deleted.status === 200) {
+                alert(`delete on id: ${id} success!`)
+                setUpdated(!updated)
+            } else if (deleted.status === 404) {
+                alert(`Data not found!`)
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
-    const updateFuncVideo = (id) => {
+    // state untuk update
+    const [linkGet, setLinkget] = useState('')
+    const [desc, setDesc] = useState('')
+    const [cat, setCat] = useState('')
+    const [idData, setIdData] = useState('')
+
+    const updateFunc = (_id, link, description, category) => {
+        setLinkget(link)
+        setDesc(description)
+        setCat(category)
+        setIdData(_id)
         const wrapperId = document.getElementById('updateFormVideo')
         const closeFormVideo = document.getElementById('closeFormVideo')
-        const updateForm = document.getElementById('formUpdateVideo')
-        console.log(id)
         wrapperId.style.top = '50%'
         closeFormVideo.addEventListener('click', () => {
             wrapperId.style.top = '-50%'
-        })
-
-        fetch(`http://localhost:3000/getVideoById/${id}`)
-        .then(res =>res.json())
-        .then(data =>{
-            linkRef.current.value = data[0]['linkVideo']
-            descRef.current.value = data[0]['descVideo']
-            katRef.current.value = data[0]['kategori']
-        })
-
-        updateForm.addEventListener('submit', async (e) => {
-            e.preventDefault()
-            const linkVal = linkRef.current.value
-            const descVal = descRef.current.value
-            const katVal = katRef.current.value
-            
-            fetch(`http://localhost:3000/updateVideo/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({linkVideo: linkVal, descVideo: descVal, kategori: katVal})
-            })
-            .then(res => {
-                if (res.ok){
-                    alert('data has been updated')
-                    wrapperId.style.top = '-50%'
-                    window.location.reload()
-                } else if(res.status === 404){
-                    alert('error! data not found')
-                }
-            })
+            setLinkget('')
+            setDesc('')
+            setCat('')
+            setIdData('')
         })
     }
 
@@ -84,27 +73,33 @@ const VideoTable = () => {
                         overflowY: 'auto',
                         overflowX: 'auto'
                     }}>
-                        <table className="table table-responsive text-center">
+                        <table className="table table-responsive text-center table-sm">
                             <thead>
                                 <tr className="sticky-top bg-dark-subtle">
                                     <th scope="col">No</th>
-                                    <th scope="col">Link Video</th>
+                                    <th scope="col">Link Embeded Video</th>
                                     <th scope="col">Deskripsi Video</th>
                                     <th scope="col">Kategori</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {getVideo.map((data, index) => {
+                                {getVideo.map((item, data) => {
                                     return (
-                                        <tr className="w-100" key={data.id}>
-                                            <th scope="row" >{index + 1}</th>
-                                            <td className="linkTable">{data.linkVideo}</td>
-                                            <td>{data.descVideo}</td>
-                                            <td>{data.kategori}</td>
-                                            <td className="">
-                                                <button className="btn btn-success p-1 me-1" onClick={() => updateFuncVideo(data.id)}>Update</button>
-                                                <button className="btn btn-danger p-1 ms-1" onClick={() => delFuncVideo(data.id)}>Delete</button>
+                                        <tr className="w-100" key={item._id}>
+                                            <th scope="row" className="text-center">{data + 1}</th>
+                                            <td className="linkTable">{item.link}</td>
+                                            <td className="text-center">{item.description}</td>
+                                            <td className="text-center">{item.category}</td>
+                                            <td className=" text-center">
+                                                <div className="btn-group" role="group" aria-label="Basic mixed styles example">
+                                                    <button className="btn btn-outline-success btn-sm rounded-0 rounded-start" onClick={() => updateFunc(item._id, item.link, item.description, item.category)}>
+                                                        <i className="fa-solid fa-pen-to-square"></i>
+                                                    </button>
+                                                    <button className="btn btn-outline-danger btn-sm rounded-0 rounded-end" onClick={() => delFuncVideo(item._id)}>
+                                                        <i className="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                     )
@@ -115,54 +110,9 @@ const VideoTable = () => {
                 </div>
             </div>
 
-            {/* form Update Gambar */}
-            <div className="updateForm d-flex justify-content-center align-items-center" id="updateFormVideo" style={{
-                width: '100%',
-                height: '100vh',
-                backgroundColor: '#1d1d1d33',
-                zIndex: 9999,
-                position: 'fixed',
-                top: '-50%',
-                left: '50%',
-                transition: '.5s',
-                transform: 'translate(-50%, -50%)'
-            }}>
-                <div style={{
-                    width: '50%',
-                    height: 'auto',
-                    backgroundColor: '#d4a373',
-                    position: 'absolute'
-                }} className="rounded-4 shadow-lg pb-2">
-                    <i className="fa-solid fa-circle-xmark fs-3" id="closeFormVideo" style={{
-                        position: 'absolute',
-                        top: 10,
-                        right: 10
-                    }} />
 
-                    <h3 className="text-center mt-4">Update Form</h3>
+            <FormUpdate _id={idData} catGet={cat} descGet={desc} linkGet={linkGet} idForm={'updateFormVideo'} updateFunc={setUpdated} routes={'updateVideo'} wrapperId={'updateFormVideo'} closeButtonId={'closeFormVideo'} updated={updated}/>
 
-                    <div className="container mt-3">
-                        <form className="mt-3" id="formUpdateVideo">
-                            <div className="mb-3">
-                                <label htmlFor="" className="form-label">Link Video</label>
-                                <input type="text" className="form-control" aria-describedby="emailHelp" ref={linkRef}/>
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="" className="form-label">Deskirpsi Video</label>
-                                <input type="text" className="form-control" ref={descRef}/>
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="" className="form-label">Kategori</label>
-                                <input type="text" className="form-control" ref={katRef}/>
-                            </div>
-                            <div className="w-100 d-flex justify-content-end">
-                                <button type="submit" className="btn btn-dark">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            {/* end form update gambar */}
 
         </div>
     )

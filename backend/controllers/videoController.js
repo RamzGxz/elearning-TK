@@ -1,57 +1,76 @@
-const conn = require('../db/db')
+const videoModels = require('../models/videoModels')
 
 module.exports = {
-    getDataVideo: (req, res) => {
-        const query = "select * from dataVideo"
-        conn.query(query, (err, data) => {
-            if (err) throw err
-            res.send(data)
-        })
+    getDataVideo: async (req, res) => {
+        try {
+            const data = await videoModels.find()
+            res.json(data)
+        } catch (error) {
+            console.log(error)
+        }
     },
-    getVideoById: (req, res) => {
-        const id = req.params.id
-        const query = `select * from dataVideo where id=${id}`
-        conn.query(query, (err, data) => {
-            if (err) throw err
-            res.send(data)
-        })
+    getVideoByCategory: async (req, res) => {
+        try {
+            const data = await videoModels.find({ category: req.query.category })
+            res.json(data)
+        } catch (error) {
+            console.log(error)
+        }
     },
-    getVideoByCategory: (req, res) => {
-        const cat = req.query.category
-        const query = `select * from dataVideo where kategori='${cat}'`
-        conn.query(query, (err, data)=>{
-            if (err) throw err
-            res.send(data)
+    postDataVideo: async (req, res) => {
+        const dataSaved = new videoModels({
+            link: req.body.link,
+            description: req.body.description,
+            category: req.body.category
         })
+        try {
+            const data = await dataSaved.save()
+            res.status(200).json({
+                message: 'success added data',
+                data: data
+            })
+        } catch (error) {
+            console.log(error)
+        }
     },
-    postDataVideo: (req, res) => {
-        const linkVal = req.body.linkVideo
-        const descVal = req.body.descVideo
-        const catVal = req.body.kategori
-        const query = `insert into dataVideo(linkVideo, descVideo, kategori) values ('${linkVal}', '${descVal}', '${catVal}')`
-        conn.query(query, (err, data) => {
-            if (err) throw err
-            res.send('data berhasil di post')
-        })
+    updateVideo: async (req, res) => {
+        const filter = {_id: req.params._id}
+        const query = {
+            $set:{
+                link: req.body.link,
+                description: req.body.description,
+                category: req.body.category
+            }
+        }
+
+        try {
+            const dataUpdated = await videoModels.updateOne(filter, query)
+            res.json({
+                message: 'success updated',
+                data: dataUpdated
+            })
+        } catch (error) {
+            console.log(error)
+        }
     },
-    updateVideo: (req, res) => {
-        const id = req.params.id
-        const linkVal = req.body.linkVideo
-        const descVal = req.body.descVideo
-        const catVal = req.body.kategori
-        const query = `update dataVideo set linkVideo='${linkVal}', descVideo='${descVal}', kategori='${catVal}' where id = ${id}`
-        conn.query(query, (err, data) => {
-            if (err) throw err
-            res.send('data berhasil di update')
-            console.log(data)
-        })
-    },
-    deleteVideo: (req, res) => {
-        const id = req.params.id
-        const query = `delete from dataVideo where id=${id}`
-        conn.query(query, (err, data) => {
-            if (err) throw err
-            res.send(`data dengan id: ${id} berhasil di delete`)
-        })
+    deleteVideo: async (req, res) => {
+        try {
+            const deletedData = await videoModels.deleteOne({_id: req.params._id})
+            if(deletedData && deletedData.deletedCount === 1){
+                res.status(200).json({
+                    message: 'deleteSuccess',
+                    systemMessage: deletedData
+                })
+            } else{
+                res.status(404).json({
+                    message: 'data not found',
+                })
+            }
+        } catch (error) {
+            res.status(500).json({
+                message: 'internal server error!',
+                err: error
+            })
+        }
     },
 }

@@ -1,15 +1,21 @@
+import axios from "axios"
 import { useState, useEffect } from "react"
 
 
 const Banner = (props) => {
     const [dataBerita, setDataBerita] = useState([])
+
+    const getData = async () =>{
+        try{
+            const res =  await axios('http://localhost:3000/getDataBerita')
+            const data = res.data
+            setDataBerita(data)
+        } catch(error){
+            console.log(error)
+        }
+    }
     useEffect(() => {
-        fetch('http://localhost:3000/getDataBerita')
-            .then(res => res.json())
-            .then(data => {
-                setDataBerita(data)
-            })
-            .catch((err) => console.log(err))
+        getData()
     }, [])
 
     return (
@@ -20,13 +26,13 @@ const Banner = (props) => {
                 height: props.imageHeight
             }}>
                 <div className="carousel-inner">
-                    {dataBerita.map((data) => {
+                    {dataBerita.map((item) => {
                         return (
-                            <div className="carousel-item active">
-                                <img src={`${data.fotoBerita}`} alt={`${data.judulBerita}`} className={`rounded-3 ${props.bannerClassWrapper}`} style={{ width: '100%', height: props.imageHeight }} />
-                                <div className="carousel-caption d-md-block" style={{}}>
-                                    <h3 className="fw-bolder">{data.kategori}</h3>
-                                    <p className="fw-bolder">{data.judulBerita}</p>
+                            <div className="carousel-item active" >
+                                <img src={`${item.foto}`} alt={`${item.judul}`} className={`rounded-3 ${props.bannerClassWrapper}`} style={{ width: '100%', height: props.imageHeight }} onClick={()=>{window.open(item.foto)}}/>
+                                <div className="carousel-caption d-md-block">
+                                    <h3 className="fw-bolder">{item.category}</h3>
+                                    <p className="fw-bolder">{item.judul}</p>
                                 </div>
                             </div>
                         )

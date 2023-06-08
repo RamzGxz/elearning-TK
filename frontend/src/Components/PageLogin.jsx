@@ -1,27 +1,30 @@
 import { useState } from "react"
+import { Link } from "react-router-dom";
 
 const PageLogin = () => {
     const [username, setusername] = useState('');
     const [pass, setpass] = useState('');
+    console.log(username)
+    console.log(pass)
+
     const handleSubmit = async (e) => {
         e.preventDefault()
-        fetch('http://localhost:3000/login', {
+        await fetch('http://localhost:3000/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ username, pass }),
+            body: JSON.stringify({ 
+                username: username,
+                password: pass
+             }),
         })
             .then(res => {
-                if (res.ok) {
-                    console.log(res.status)
+                if(res.status === 200){
                     alert('login berhasil')
                     location.href = '/'
-                } else if (res.status === 401) {
-                    alert('Username atau password salah')
-                } else {
-                    console.log(res.status);
-                    alert('Terjadi kesalahan pada server')
+                } else if(res.status === 404){
+                    alert('maaf username atau password salah')
                 }
             })
             .catch(error => {
@@ -66,7 +69,7 @@ const PageLogin = () => {
                             © 2020 Copyright:
                             <a className=" text-black text-decoration-underline mx-2" href="">Yoona</a>
                         </div>
-                        <a href="/" className="btn btn-outline-primary btnBackLogin mt-4">Back to Home</a>
+                        <Link to={"/"} className="btn btn-outline-primary btnBackLogin mt-4">Back to Home</Link>
                     </div>
                 </div>
             </div>

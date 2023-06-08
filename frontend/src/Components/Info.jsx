@@ -2,8 +2,9 @@ import Header from "./Header";
 import Footer from "./Footer";
 // berdasarkan tutor digugel
 import Calendar from 'react-calendar';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import 'react-calendar/dist/Calendar.css'
+import axios from "axios";
 
 const Info = () => {
     const handleClick = () => {
@@ -26,16 +27,31 @@ const Info = () => {
     }
 
     const [dataBerita, setDataBerita] = useState([])
-    fetch('http://localhost:3000/getDataBerita')
-        .then(res => res.json())
-        .then(data => setDataBerita(data))
-        .catch((err) => console.log(err))
+    const getBerita = async()=>{
+        try {
+            const res = await axios('http://localhost:3000/getDataBerita')
+            const data = res.data
+            setDataBerita(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const [dataGambar, setDataGambar] = useState([])
-    fetch('http://localhost:3000/getGambar')
-        .then(res => res.json())
-        .then(data => setDataGambar(data))
-        .catch((err) => console.log(err))
+    const getGambarFunc = async () =>{
+        try {
+            const res = await axios('http://localhost:3000/getGambar')
+            const data = res.data
+            setDataGambar(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(()=>{
+        getBerita()
+        getGambarFunc()
+    }, [])
     return (
 
         <div>
@@ -51,16 +67,15 @@ const Info = () => {
             </section>
 
             <div className="d-flex  justify-content-center align-items-center container beritaWrap flex-column" style={{ marginTop: '3%' }}>
-                <section className="w-100 mx-3">
+                <section className="w-100 d-flex flex-column justify-content-center">
                     <h3 className="text-center mb-4">Galeri</h3>
                     <div className="galeri row w-100 d-flex justify-content-center">
-
-                        {dataGambar.map((data) => {
+                        {dataGambar.map((item) => {
                             return (
-                                <div className="col-lg-4 ps-0 pe-0 col-sm-12 g-2">
-                                    <img src={`${data.linkGambar}`} className="img-thumbnail " alt={`${data.descGambar}`} style={{
+                                <div className="col-lg-3 col-sm-12">
+                                    <img src={`${item.link}`} className="img-thumbnail mx-2" alt={`${item.description}`} style={{
                                         width: '100%',
-                                        height: '100%'
+                                        height: '300px'
                                     }} />
                                 </div>
                             )
@@ -87,23 +102,23 @@ const Info = () => {
 
             <section className="card-berita container mb-5 py-2">
                 <div className="row">
-                    {dataBerita.map((data => {
+                    {dataBerita.map((item => {
                         return (
                             <div className="col-sm-12 my-2">
                                 <div className="card d-flex flex-row justify-content-between cardWrap" style={{
                                     width: '100%'
                                 }}>
                                     <div className="card-body">
-                                        <h5 className="card-title fw-bold font-monospace">{data.judulBerita}</h5>
+                                        <h5 className="card-title fw-bold font-monospace">{item.judul}</h5>
                                         <hr />
                                         <p className="card-text" style={{
                                             maxHeight: '30vh',
                                             overflow: 'hidden'
-                                        }}>{data.isiBerita}</p>
+                                        }}>{item.isi}</p>
                                         <button href="#" className="btn btn-dark buttonSembunyi" onClick={handleClick}>Lanjutkan Membaca</button>
                                     </div>
 
-                                    <img src={`${data.fotoBerita}`} className="img-thumbnail m-2" alt="Ruang Kelas" width={500} />
+                                    <img src={`${item.foto}`} className="img-thumbnail m-2" alt="Ruang Kelas" width={500} />
 
                                 </div>
                             </div>

@@ -1,121 +1,112 @@
+import axios from "axios"
 import Footer from "./Footer"
 import SideBar from "./SideBar"
 
-import { useRef } from "react"
+import { useRef, useState } from "react"
 
 const AdminUpload = () => {
-    // userefFormGambar
-    const linkRefGambar = useRef(null)
-    const descRefGambar = useRef(null)
-    const katRefGambar = useRef(null)
+    const [postLinkGambar, setPostLinkGambar] = useState('')
+    const [postDescGambar, setPostDescGambar] = useState('')
+    const [postCatGambar, setPostCatGambar] = useState('')
 
-    // useRefFormVideo
-    const linkVidRef = useRef(null)
-    const descVidRef = useRef(null)
-    const katVidRef = useRef(null)
-
-    // useRefformBerita
-    const judulBeritaRef = useRef(null)
-    const isiBeritaRef = useRef(null)
-    const fotoBeritaRef = useRef(null)
-    const katBeritaRef = useRef(null)
-
-    const handlePostGambar = (e) => {
+    const handlePostGambar = async (e) => {
         e.preventDefault()
-        
-        const linkVal = linkRefGambar.current.value
-        const descVal = descRefGambar.current.value
-        const katVal = katRefGambar.current.value
-
-        if (!linkVal || !descVal || !katVal) {
-            alert('please fill all field!!')
-        } else {
-            fetch('http://localhost:3000/postDataGambar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    linkGambar: linkVal,
-                    descGambar: descVal,
-                    kategori: katVal
-                })
-            })
-                .then((res) => {
-                    if (res.ok) {
-                        res.json()
-                        alert(`data has been posted!`)
-                        window.location.reload()
-                    }
-                })
-                .catch((err) => console.log(err))
+        const data = {
+            link: postLinkGambar,
+            description: postDescGambar,
+            category: postCatGambar
         }
-    }
-
-    const handlePostVideo = (e) => {
-        e.preventDefault()
-        const linkVidVal = linkVidRef.current.value
-        const descVidVal = descVidRef.current.value
-        const katVidVal = katVidRef.current.value
-
-        if (!linkVidVal || !descVidVal || !katVidRef) {
-            alert('please fill all field! ')
-        } else {
-            fetch('http://localhost:3000/postDataVideo', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    linkVideo: linkVidVal,
-                    descVideo: descVidVal,
-                    kategori: katVidVal
-                })
-            })
-                .then((res) => {
-                    if (res.ok) {
-                        res.json()
-                        alert(`data has been posted!`)
-                        window.location.reload()
-                    }
-                })
-                .catch((err) => console.log(err))
-        }
-
-    }
-
-    const handlePostBerita = (e) => {
-        e.preventDefault()
-        const judulBeritaVal = judulBeritaRef.current.value
-        const isiBeritaVal = isiBeritaRef.current.value
-        const fotoBeritaVal = fotoBeritaRef.current.value
-        const katBeritaVal = katBeritaRef.current.value
-
-        if (!isiBeritaVal || !fotoBeritaVal || !katBeritaVal) {
+        const form = document.getElementById('formUpGambar')
+        if(!postLinkGambar || !postDescGambar ||! postCatGambar){
             alert('please fill all field!')
-        } else {
-            fetch('http://localhost:3000/postDataBerita', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    judulBerita: judulBeritaVal,
-                    isiBerita: isiBeritaVal,
-                    fotoBerita: fotoBeritaVal,
-                    kategori: katBeritaVal
-                })
-            })
-                .then((res) => {
-                    if (res.ok) {
-                        res.json()
-                        alert(`data has been posted!`)
-                        window.location.reload()
-                    }
-                })
-                .catch((err) => console.log(err))
+        } else{
+            try {
+                const res = await axios.post('http://localhost:3000/postDataGambar', data)
+                if(res.status === 200){
+                    setPostLinkGambar("")
+                    setPostDescGambar("")
+                    setPostCatGambar("")
+                    form.reset()
+                    alert(`data has been posted!`)
+                } else{
+                    alert('failed to post Data')
+                }
+                
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        
+    }
+
+    const [postLinkVideo, setPostLinkVideo] = useState('')
+    const [postDescVideo, setPostDescVideo] = useState('')
+    const [postCatVideo, setPostCatVideo] = useState('')
+
+    const handlePostVideo = async (e) => {
+        e.preventDefault()
+        const form = document.getElementById('formUpVideo')
+        const data = {
+            link: postLinkVideo,
+            description: postDescVideo,
+            category: postCatVideo
+        }
+        if(!postLinkVideo || !postDescVideo || !postCatVideo){
+            alert('please fill all field!!')
+        } else{
+            try {
+                const res = await axios.post('http://localhost:3000/postDataVideo', data)
+                if(res.status === 200){
+                    setPostLinkVideo("")
+                    setPostDescVideo("")
+                    setPostCatVideo("")
+                    form.reset()
+                    alert(`data has been posted!`)
+                } else{
+                    alert('failed to post Data')
+                }
+                
+            } catch (error) {
+                console.log(error)
+            }
         }
 
+    }
+
+    const [postJudulBerita, setPostJudulBerita] = useState('')
+    const [postIsiBerita, setPostIsiBerita] = useState('')
+    const [postFotoBerita, setPostFotoBerita] = useState('')
+    const [postCatBerita, setPostCatBerita] = useState('')
+    const handlePostBerita = async (e) => {
+        e.preventDefault()
+        const data = {
+            judul: postJudulBerita,
+            isi: postIsiBerita,
+            foto: postFotoBerita,
+            category: postCatBerita
+        }
+        const form = document.getElementById('formUpBerita')
+
+        if(!postJudulBerita || !postIsiBerita || !postFotoBerita || ! postCatBerita){
+            alert('please fill all field!')
+        } else{
+            try {
+                const res = await axios.post('http://localhost:3000/postDataBerita', data)
+                if(res.status === 200){
+                    setPostJudulBerita("")
+                    setPostIsiBerita("")
+                    setPostFotoBerita("")
+                    setPostCatBerita("")
+                    form.reset()
+                    alert('data has been posted!')
+                } else if(res.status === 500){
+                    alert('failed to fetch')
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        
     }
 
     return (
@@ -146,18 +137,18 @@ const AdminUpload = () => {
                             <h5 className="ms-2 fw-bolder">Gambar</h5>
                         </div>
                         <div className="container">
-                            <form className="mt-3">
+                            <form className="mt-3" id="formUpGambar">
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Link Gambar</label>
-                                    <input type="text" className="form-control" aria-describedby="emailHelp" ref={linkRefGambar} />
+                                    <input type="text" className="form-control form-control-sm" onChange={(e)=> setPostLinkGambar(e.target.value)}/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Deskripsi gambar</label>
-                                    <input type="text" className="form-control" ref={descRefGambar} />
+                                    <input type="text" className="form-control form-control-sm" onChange={(e)=> setPostDescGambar(e.target.value)}/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Kategori Kelas</label>
-                                    <input type="text" className="form-control" ref={katRefGambar} />
+                                    <input type="text" className="form-control form-control-sm" onChange={(e)=> setPostCatGambar(e.target.value)}/>
                                 </div>
                                 <div className="w-100 d-flex justify-content-end">
                                     <button className="btn btn-dark" onClick={handlePostGambar}>Submit</button>
@@ -183,18 +174,18 @@ const AdminUpload = () => {
                             <h5 className="ms-2 fw-bolder" style={{marginBottom: 0}}>Video</h5>
                         </div>
                         <div className="container">
-                            <form className="mt-3" onSubmit={handlePostVideo}>
+                            <form className="mt-3" onSubmit={handlePostVideo} id="formUpVideo">
                                 <div className="mb-3">
-                                    <label htmlFor="" className="form-label">Link Video</label>
-                                    <input type="text" className="form-control" aria-describedby="emailHelp" ref={linkVidRef} />
+                                    <label htmlFor="" className="form-label">Link Embed Video</label>
+                                    <input type="text" className="form-control form-control-sm" aria-describedby="emailHelp" onChange={(e)=> setPostLinkVideo(e.target.value)}/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Deskripsi Video</label>
-                                    <input type="text" className="form-control" ref={descVidRef} />
+                                    <input type="text" className="form-control form-control-sm" onChange={(e)=> setPostDescVideo(e.target.value)}/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Kategori</label>
-                                    <input type="text" className="form-control" ref={katVidRef} />
+                                    <input type="text" className="form-control form-control-sm" onChange={(e)=> setPostCatVideo(e.target.value)}/>
                                 </div>
                                 <div className="w-100 d-flex justify-content-end">
                                     <button type="submit" className="btn btn-dark">Submit</button>
@@ -220,22 +211,22 @@ const AdminUpload = () => {
                             <h5 className="ms-2 fw-bolder" style={{marginBottom: 0}}>Berita</h5>
                         </div>
                         <div className="container">
-                            <form className="mt-3" onSubmit={handlePostBerita}>
+                            <form className="mt-3" onSubmit={handlePostBerita} id="formUpBerita">
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Judul Berita</label>
-                                    <input type="text" className="form-control" id="" aria-describedby="emailHelp" ref={judulBeritaRef}/>
+                                    <input type="text" className="form-control form-control-sm" onChange={(e)=> setPostJudulBerita(e.target.value)}/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Isi Berita</label>
-                                    <input type="text" className="form-control" id="" aria-describedby="emailHelp" ref={isiBeritaRef}/>
+                                    <textarea type="text" className="form-control form-control-sm" rows={8}  onChange={(e)=> setPostIsiBerita(e.target.value)}/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Foto</label>
-                                    <input type="text" className="form-control" id="" ref={fotoBeritaRef}/>
+                                    <input type="text" className="form-control form-control-sm" onChange={(e)=> setPostFotoBerita(e.target.value)}/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label">Kategori Berita</label>
-                                    <input type="text" className="form-control" id="" ref={katBeritaRef}/>
+                                    <input type="text" className="form-control form-control-sm" onChange={(e)=> setPostCatBerita(e.target.value)} />
                                 </div>
                                 <div className="w-100 d-flex justify-content-end">
                                     <button type="submit" className="btn btn-dark">Submit</button>

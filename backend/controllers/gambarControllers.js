@@ -1,56 +1,67 @@
-const conn = require('../db/db')
+const gambarModels = require('../models/gambarModels')
 
 module.exports = {
-    getDataGambar: (req, res) => {
-        const query = "select * from dataGambar"
-        conn.query(query, (err, data) => {
-            if (err) throw err
+    getDataGambar: async (req, res) => {
+        try {
+            const data = await gambarModels.find()
             res.send(data)
-        })
+        } catch (error) {
+            console.log(error)
+        }
     },
-    delDataGambar: (req, res) => {
-        const id = req.params.id
-        const query = `delete from dataGambar where id=${id}`
-        conn.query(query, (err, result) => {
-            if (err) {
-                res.status(500).send({ message: 'Terjadi kesalahan pada server.' })
-            } else if (result.affectedRows === 0) {
-                res.status(404).send({ message: 'Data tidak ditemukan.' })
-            } else {
-                res.send({ message: 'Data berhasil dihapus.' })
+    delDataGambar: async (req, res) => {
+        try {
+            const deletedData = await gambarModels.deleteOne({ _id: req.params._id })
+            res.json({
+                message: 'delete succes',
+                deletedData: deletedData
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    },
+    updateGambar: async (req, res) => {
+        const _id = req.params._id
+        const filter = {_id: _id}
+        const query = {
+            $set:{
+                link: req.body.link,
+                description: req.body.description,
+                category: req.body.category
             }
-        })
+        }
+        try {
+            const dataUpdated = await gambarModels.updateOne(filter, query)
+            if(dataUpdated && dataUpdated.matchedCount === 1){
+                res.status(200).json({
+                    message: 'data has been updated',
+                    systemMessage: dataUpdated
+                })
+            } else if (dataUpdated && dataUpdated.matchedCount === 0){
+                res.status(404).json({
+                    message: 'data not found!'
+                })
+            }
+        } catch (error) {
+            res.status(500).json({
+                message: 'internal server error'
+            })
+            console.log(error)
+        }
     },
-    updateGambar: (req, res)=>{
-        const id = req.params.id
-        const linkVal = req.body.linkGambar
-        const descVal = req.body.descGambar
-        const catVal = req.body.kategori
-        const query = `update dataGambar set linkGambar='${linkVal}', descGambar='${descVal}', kategori='${catVal}' where id = ${id}`
-        console.log(query)
-        conn.query(query, (err, data)=>{
-            if (err) throw err
-            res.send('data berhasil di update')
-            console.log(data)
+    postDataGambar: async (req, res) => {
+        const data = new gambarModels({
+            link: req.body.link,
+            description: req.body.description,
+            category: req.body.category
         })
-    },
-    getDataGambarId: (req, res)=>{
-        const id = req.params.id
-        const query = `select * from dataGambar where id=${id}`
-        conn.query(query, (err, data)=>{
-            if (err) throw err
-            res.send(data)
-        })
-    },
-    postDataGambar: (req, res)=>{
-        const linkVal = req.body.linkGambar
-        const descVal = req.body.descGambar
-        const catVal = req.body.kategori
-        const query = `insert into dataGambar(linkGambar, descGambar, kategori) values('${linkVal}', '${descVal}', '${catVal}')`
-        console.log(query)
-        conn.query(query, (err, data)=>{
-            if (err) throw err
-            res.send(`data has been posted, data: ${data}`)
-        })
+        try {
+            const savedData = data.save()
+            res.status(200).json({
+                message: 'succes Added Data'
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
