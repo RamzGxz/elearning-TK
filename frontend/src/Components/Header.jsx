@@ -83,7 +83,11 @@ const Header = ({ isLoggin, setIsloggin, act1, act2, act3, act4 }) => {
 
                             <div className="loginBtn">
                                 {isLoggin ? (
-                                    <button className={`text-decoration-none btn fw-bolder ${isScrolled ? 'btn-danger ' : 'btn-danger'}`} onClick={() => setIsloggin(false)}>Logout</button>
+                                    <button className={`text-decoration-none btn fw-bolder ${isScrolled ? 'btn-danger ' : 'btn-danger'}`} onClick={() => {
+                                        if (confirm('Apakah Anda Ingin Logout?')){
+                                            setIsloggin(false)
+                                        }
+                                    }}>Logout</button>
                                 ) : (
                                     <Link to={"/login"} className={`text-decoration-none btn fw-bolder ${isScrolled ? 'btn-light ' : 'btn-dark'}`}>Login</Link>
                                 )}
