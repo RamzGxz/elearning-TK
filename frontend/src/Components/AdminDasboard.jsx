@@ -5,10 +5,10 @@ import SideBar from "./SideBar"
 import Videotable from "./VideoTable"
 import BeritaTable from "./BeritaTable"
 
-const AdminDasboard = ({ userData }) => {
+const AdminDasboard = ({ userData, setIsLoggin }) => {
     return (
         <div>
-            <SideBar menuAct1='active' userData={userData}/>
+            <SideBar menuAct1='active' userData={userData} setIsLoggin={setIsLoggin}/>
             <div style={{ paddingLeft: 280 }} className="contentAdmin">
                 <div className="bannerWrap"></div>
                 <Banner bannerWrapHeight='75vh'

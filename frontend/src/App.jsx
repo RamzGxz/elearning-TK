@@ -11,6 +11,7 @@ import { useState } from "react"
 function App() {
   const [isLoggin, setIsLogin] = useState(false)
   const [userData, setUserData] = useState([])
+  console.log(isLoggin)
 
   return (
     <div style={{
@@ -21,9 +22,9 @@ function App() {
           <Route path="/" element={<Home isLoggin={isLoggin} setIsloggin={setIsLogin}/>}/>
           <Route path="/pembelajaran" element={<Pembelajaran isLoggin={isLoggin} setIsloggin={setIsLogin}/>}/>
           <Route path="/info" element={<Info isLoggin={isLoggin} setIsloggin={setIsLogin}/>}/>
-          <Route path="/admin/dashboard" element={<AdminDasboard userData={userData}/>}/>
-          <Route path="/admin/upload" element={<AdminUpload userData={userData}/>}/>
-          <Route path="/admin/edit" element={<AdminEditProfile userData={userData}/>}/>
+          <Route path="/admin/dashboard" element={<AdminDasboard userData={userData} setIsLoggin={setIsLogin}/>}/>
+          <Route path="/admin/upload" element={<AdminUpload userData={userData} setIsloggin={setIsLogin}/>}/>
+          <Route path="/admin/edit" element={<AdminEditProfile userData={userData} setIsLoggin={setIsLogin}/>}/>
           <Route path="/login" element={<PageLogin setIsLogin={setIsLogin} setUserData={setUserData}/>} />
         </Routes>
       </Router>

@@ -1,13 +1,13 @@
 import SideBar from "./SideBar"
 
 
-const AdminEditProfile = ({ userData }) => {
+const AdminEditProfile = ({ userData, setIsLoggin }) => {
     
     return (
         <div style={{
             paddingLeft: 280
         }} className="contentAdmin">
-            <SideBar menuAct3='active' userData={userData} />
+            <SideBar menuAct3='active' userData={userData} setIsLoggin={setIsLoggin}/>
             {userData.map((item) => {
                 return (
                     <div className="container py-3">

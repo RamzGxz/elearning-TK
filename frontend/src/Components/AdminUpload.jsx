@@ -4,7 +4,7 @@ import SideBar from "./SideBar"
 
 import { useRef, useState } from "react"
 
-const AdminUpload = ({userData}) => {
+const AdminUpload = ({userData, setIsloggin}) => {
     const [postLinkGambar, setPostLinkGambar] = useState('')
     const [postDescGambar, setPostDescGambar] = useState('')
     const [postCatGambar, setPostCatGambar] = useState('')
@@ -113,7 +113,7 @@ const AdminUpload = ({userData}) => {
         <div style={{
             paddingLeft: 280
         }} className="contentAdmin">
-            <SideBar menuAct2='active' userData={userData}/>
+            <SideBar menuAct2='active' userData={userData} setIsLoggin={setIsloggin}/>
 
             <div className="titleWrap w-100 d-flex justify-content-center align-items-center contentWrapper" style={{
                 height: '15vh'

@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 
-const SideBar = ({ menuAct1, menuAct2, menuAct3, menuAct4, userData }) => {
+const SideBar = ({ menuAct1, menuAct2, menuAct3, menuAct4, userData, setIsLoggin }) => {
+
+    const navigate = useNavigate() 
 
     return (
 
@@ -38,7 +40,7 @@ const SideBar = ({ menuAct1, menuAct2, menuAct3, menuAct4, userData }) => {
                     <li className="my-1">
                         <Link to={'/'} className={`nav-link sideLink text-white d-flex ${menuAct4} align-items-center w-100`}>
                             <i className="fa-solid fa-circle-arrow-left fs-3"></i>
-                            <p className="ps-3 mb-0 fs-5 ">Back to Home</p>
+                            <p className="ps-3 mb-0 fs-5 t">Back to Home</p>
                         </Link>
                     </li>
                 </ul>
@@ -48,13 +50,17 @@ const SideBar = ({ menuAct1, menuAct2, menuAct3, menuAct4, userData }) => {
                         <div className="dropdown">
                             <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src={`${item.pics}`} alt={'true'} width={32} height={32} className="rounded-circle me-2" />
-                                <strong className="text-capitalize">{item.username}</strong>
+                                <strong className="text-capitalize t">{item.username}</strong>
                             </a>
                             <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
-                                <li><Link className="dropdown-item" to={'/'} onClick={() => {
-                                    localStorage.removeItem('login')
-                                }}>Sign out</Link></li>
-                                <li><Link className="dropdown-item" to={"/"}>Back to Home Page</Link></li>
+                                <li><a className="dropdown-item" to={'/'} onClick={() => {
+                                    if(confirm('apakah anda yakin akan logout?')){
+                                        navigate('/')
+                                        setIsLoggin(false)
+                                        console.log(setIsLoggin)
+                                    }
+                                }}>Sign out</a></li>
+                                <li><Link className="dropdown-item " to={"/"}>Back to Home Page</Link></li>
                             </ul>
                         </div>
                     )
