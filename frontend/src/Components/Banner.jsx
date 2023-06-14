@@ -28,7 +28,7 @@ const Banner = (props) => {
                 <div className="carousel-inner">
                     {dataBerita.map((item) => {
                         return (
-                            <div className="carousel-item active" >
+                            <div className="carousel-item active" key={item._id}>
                                 <img src={`${item.foto}`} alt={`${item.judul}`} className={`rounded-3 ${props.bannerClassWrapper}`} style={{ width: '100%', height: props.imageHeight }} onClick={()=>{window.open(item.foto)}}/>
                                 <div className="carousel-caption d-md-block">
                                     <h3 className="fw-bolder">{item.category}</h3>

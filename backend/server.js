@@ -7,12 +7,11 @@ const routeBerita = require('./routes/routeBerita')
 
 
 const app = express()
-const port = 3000
-
 const cors = require('cors')
 app.use(cors())
 app.use(express.json())
 
+const port = 3000
 app.use(routerUser)
 app.use(routerGambar)
 app.use(routeVideo)

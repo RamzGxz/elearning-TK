@@ -9,20 +9,23 @@ module.exports = {
             console.log(error)
         }
     },
-    getUserById: (req, res) => {
-
-    },
     loginValidate: async (req, res) => {
         const username = req.body.username
         const password = req.body.password
         try {
             const data = await userModels.find({username: username, password: password})
-            if(data.length > 0){
-                res.status(200).send('data ditemukan')
-            } else{
-                res.status(404).send('data tidak ditemukan')
+            if(data.length === 1){
+                res.status(200).json({
+                    message: 'data ditemukan, login succes',
+                    data: data
+                })
+            } else {
+                res.status(404).json({
+                    message: 'data tidak ditemukan'
+                })
             }
         } catch (error) {
+            req.status(500).send(error)
             console.log(error)
         }
     },

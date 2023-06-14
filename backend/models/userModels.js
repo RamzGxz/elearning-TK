@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
     class:{
         required: false,
         type: String
+    },
+    pics:{
+        required: true,
+        type: String
     }
 })
 

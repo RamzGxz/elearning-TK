@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import 'react-calendar/dist/Calendar.css'
 import axios from "axios";
 
-const Info = () => {
+const Info = ({isLoggin, setIsloggin}) => {
     const handleClick = () => {
         const isiBerita = document.querySelectorAll('.card-text')
         isiBerita.forEach(el => {
@@ -55,7 +55,7 @@ const Info = () => {
     return (
 
         <div>
-            <Header act3="active" />
+            <Header act3="active" isLoggin={isLoggin} setIsloggin={setIsloggin}/>
 
             <section className="pt-5 text-center container mt-5">
                 <div className="row">
@@ -72,7 +72,7 @@ const Info = () => {
                     <div className="galeri row w-100 d-flex justify-content-center">
                         {dataGambar.map((item) => {
                             return (
-                                <div className="col-lg-3 col-sm-12">
+                                <div className="col-lg-3 col-sm-12" key={item._id}>
                                     <img src={`${item.link}`} className="img-thumbnail mx-2" alt={`${item.description}`} style={{
                                         width: '100%',
                                         height: '300px'
@@ -128,7 +128,7 @@ const Info = () => {
                 </div>
             </section>
 
-            <Footer />
+            <Footer isLogin={isLoggin}/>
         </div>
     )
 }

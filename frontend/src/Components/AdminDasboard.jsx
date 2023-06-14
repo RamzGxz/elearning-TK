@@ -5,10 +5,10 @@ import SideBar from "./SideBar"
 import Videotable from "./VideoTable"
 import BeritaTable from "./BeritaTable"
 
-const AdminDasboard = () => {
+const AdminDasboard = ({ userData }) => {
     return (
         <div>
-            <SideBar menuAct1='active' />
+            <SideBar menuAct1='active' userData={userData}/>
             <div style={{ paddingLeft: 280 }} className="contentAdmin">
                 <div className="bannerWrap"></div>
                 <Banner bannerWrapHeight='75vh'
@@ -21,69 +21,73 @@ const AdminDasboard = () => {
                 <div className="w-100 my-3 container">
                     <div className="d-flex w-100 bodyDasboard">
                         <div className="w-50 container cardInfo" style={{ height: '80vh' }}>
-                            <div className="rounded-3 d-flex align-items-center flex-column text-capitalize" style={{ height: '80vh', backgroundColor: '#f08080' }}>
-                                <div className="bg-light p-2 mt-4 rounded-circle" style={{
-                                    boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px'
-                                }}>
-                                    <div className="pictDasboard rounded-circle" style={{
-                                        width: 150,
-                                        height: 150,
-                                        backgroundImage: 'url(https://imgsrv2.voi.id/qrcII-WiGXBglYBS8X8f5x2v2aohHRLzI760ONcbKRM/auto/1280/853/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy81NTI2Mi8yMDIxMDUzMTA4NDYtbWFpbi5jcm9wcGVkXzE2MjI0MjU2MDIuanBn.jpg)',
-                                        backgroundPosition: 'center',
-                                        backgroundSize: 'cover'
-                                    }}></div>
-                                </div>
+                            {userData.map((item) => {
+                                return (
+                                    <div className="rounded-3 d-flex align-items-center flex-column text-capitalize" style={{ height: '80vh', backgroundColor: '#f08080' }}>
+                                        <div className="bg-light p-2 mt-4 rounded-circle" style={{
+                                            boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px'
+                                        }}>
+                                            <div className="pictDasboard rounded-circle" style={{
+                                                width: 150,
+                                                height: 150,
+                                                backgroundImage: `url(${item.pics})`,
+                                                backgroundPosition: 'center',
+                                                backgroundSize: 'cover'
+                                            }}></div>
+                                        </div>
 
-                                <div className="name mt-3 d-flex justify-content-center align-items-center rounded-5 infoWrapper" style={{
-                                    height: '4vh',
-                                    backgroundColor: '#ffdab9',
-                                    width: '70%'
-                                }}>
-                                    <h5 style={{
-                                        marginBottom: 0
-                                    }} className="fw-bolder">Yoona Savirah Kholid</h5>
-                                </div>
+                                        <div className="name mt-3 d-flex justify-content-center align-items-center rounded-5 infoWrapper" style={{
+                                            height: '4vh',
+                                            backgroundColor: '#ffdab9',
+                                            width: '70%'
+                                        }}>
+                                            <h5 style={{
+                                                marginBottom: 0
+                                            }} className="fw-bolder text-capitalize">{item.fullName}</h5>
+                                        </div>
 
-                                <div className="address mt-3 d-flex justify-content-center align-items-center rounded-5 infoWrapper" style={{
-                                    height: '4vh',
-                                    backgroundColor: '#ffdab9',
-                                    width: '70%'
-                                }}>
-                                    <h5 style={{
-                                        marginBottom: 0
-                                    }} className="fw-bolder">Seoul, South Korea</h5>
-                                </div>
+                                        <div className="address mt-3 d-flex justify-content-center align-items-center rounded-5 infoWrapper" style={{
+                                            height: '4vh',
+                                            backgroundColor: '#ffdab9',
+                                            width: '70%'
+                                        }}>
+                                            <h5 style={{
+                                                marginBottom: 0
+                                            }} className="fw-bolder text-capitalize">{item.address}</h5>
+                                        </div>
 
-                                <div className="age mt-3 d-flex justify-content-center align-items-center rounded-5 infoWrapper" style={{
-                                    height: '4vh',
-                                    backgroundColor: '#ffdab9',
-                                    width: '70%'
-                                }}>
-                                    <h5 style={{
-                                        marginBottom: 0
-                                    }} className="fw-bolder">27</h5>
-                                </div>
+                                        <div className="age mt-3 d-flex justify-content-center align-items-center rounded-5 infoWrapper" style={{
+                                            height: '4vh',
+                                            backgroundColor: '#ffdab9',
+                                            width: '70%'
+                                        }}>
+                                            <h5 style={{
+                                                marginBottom: 0
+                                            }} className="fw-bolder">{item.age}</h5>
+                                        </div>
 
-                                <div className="division mt-3 d-flex justify-content-center align-items-center rounded-5 infoWrapper" style={{
-                                    height: '4vh',
-                                    backgroundColor: '#ffdab9',
-                                    width: '70%'
-                                }}>
-                                    <h5 style={{
-                                        marginBottom: 0
-                                    }} className="fw-bolder">Teacher</h5>
-                                </div>
+                                        <div className="division mt-3 d-flex justify-content-center align-items-center rounded-5 infoWrapper" style={{
+                                            height: '4vh',
+                                            backgroundColor: '#ffdab9',
+                                            width: '70%'
+                                        }}>
+                                            <h5 style={{
+                                                marginBottom: 0
+                                            }} className="fw-bolder text-capitalize">{item.division}</h5>
+                                        </div>
 
-                                <div className="class mt-3 d-flex justify-content-center align-items-center rounded-5 infoWrapper" style={{
-                                    height: '4vh',
-                                    backgroundColor: '#ffdab9',
-                                    width: '70%'
-                                }}>
-                                    <h5 style={{
-                                        marginBottom: 0
-                                    }} className="fw-bolder">TK-A TK-B</h5>
-                                </div>
-                            </div>
+                                        <div className="class mt-3 d-flex justify-content-center align-items-center rounded-5 infoWrapper" style={{
+                                            height: '4vh',
+                                            backgroundColor: '#ffdab9',
+                                            width: '70%'
+                                        }}>
+                                            <h5 style={{
+                                                marginBottom: 0
+                                            }} className="fw-bolder text-uppercase">{item.class}</h5>
+                                        </div>
+                                    </div>
+                                )
+                            })}
                         </div>
                         <div className="w-50 container cardInfo my-2" style={{ height: '80vh' }}>
                             <div className="rounded-3 d-flex align-items-center flex-column" style={{ height: '80vh', backgroundColor: '#ffdab9' }}>

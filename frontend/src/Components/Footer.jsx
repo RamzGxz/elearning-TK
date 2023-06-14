@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-const Footer = () => {
+const Footer = ({ isLogin }) => {
 
     return (
         <div className="mt-3">
@@ -29,15 +29,19 @@ const Footer = () => {
                                         <Link to={'/info'} className="text-decoration-none text-white">info</Link>
                                     </h6>
                                 </div>
-
-
-                                <div className="col-md-2">
-                                    <h6 className="text-uppercase font-weight-bold">
-                                        <Link to={'/admin/dashboard'} className="text-decoration-none text-white">admin</Link>
-                                    </h6>
-                                </div>
-
-
+                                {isLogin ? (
+                                    <div className="col-md-2">
+                                        <h6 className="text-uppercase font-weight-bold">
+                                            <Link to={'/admin/dashboard'} className="text-decoration-none text-white">admin</Link>
+                                        </h6>
+                                    </div>
+                                ) : (
+                                    <div className="col-md-2">
+                                        <h6 className="text-uppercase font-weight-bold">
+                                            <Link className="text-decoration-none text-white" onClick={()=>{alert('Please Login to see Admin Page')}}>admin</Link>
+                                        </h6>
+                                    </div>
+                                )}
                                 <div className="col-md-2">
                                     <h6 className="text-uppercase font-weight-bold">
                                         <Link to={''} className="text-decoration-none text-white">Terms & Service</Link>

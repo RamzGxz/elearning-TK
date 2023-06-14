@@ -1,17 +1,15 @@
 import { useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
 
-const Header = (props) => {
+const Header = ({ isLoggin, setIsloggin, act1, act2, act3, act4 }) => {
 
     const [isScrolled, setIsScrolled] = useState(false)
 
     const handleScroll = () => {
         if (window.pageYOffset > 50) {
             setIsScrolled(true)
-            document.querySelector('.divider').classList.add('d-none')
         } else {
             setIsScrolled(false)
-            document.querySelector('.divider').classList.remove('d-none')
         }
     }
 
@@ -20,7 +18,7 @@ const Header = (props) => {
         return () => {
             window.removeEventListener('scroll', handleScroll)
         }
-    }, [])
+    }, [isLoggin])
 
     const handleClickNav = () => {
         const offcanvas = document.querySelector('.offcanvas')
@@ -31,17 +29,6 @@ const Header = (props) => {
         }
 
     }
-
-    const [loggedIn, setLogendIn] = useState(false)
-    useEffect(() => {
-        const stored = localStorage.getItem('isLoggedIn') === 'true'
-        if (stored === 'true') {
-            setLogendIn(true)
-        } else{
-            setLogendIn(false)
-            localStorage.removeItem('login2')
-        }
-    })
 
 
     return (
@@ -66,34 +53,37 @@ const Header = (props) => {
                         <div className="offcanvas-body" style={{ fontSize: 18 }}>
                             <ul className="navbar-nav flex-grow-1 justify-content-center text-black">
                                 <li className="nav-item">
-                                    <Link to={'/'} className={`nav-link ${props.act1}`} onClick={handleClickNav}>Home</Link>
+                                    <Link to={'/'} className={`nav-link ${act1}`} onClick={handleClickNav}>Home</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to={'/pembelajaran'} className={`nav-link ${props.act2}`} onClick={handleClickNav}>Pembelajaran</Link>
+                                    <Link to={'/pembelajaran'} className={`nav-link ${act2}`} onClick={handleClickNav}>Pembelajaran</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className={`nav-link ${props.act3}`} to={'/info'} onClick={handleClickNav}>Info</Link>
+                                    <Link className={`nav-link ${act3}`} to={'/info'} onClick={handleClickNav}>Info</Link>
                                 </li>
                                 <li className="nav-item dropdown">
-                                    <div className={`nav-link dropdown-toggle ${props.act4}`} role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div className={`nav-link dropdown-toggle ${act4}`} role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Admin
                                     </div>
-                                    <ul className="dropdown-menu mb-3">
-                                        {loggedIn ? (
-                                            <li className="dropdown-item nav-underline btn" onClick={() => alert('Please Login to see Admin Page')}>Dasboard</li>
-                                            ) : (
+                                    {isLoggin ? (
+                                        <ul className="dropdown-menu mb-3">
                                             <li><Link className="dropdown-item nav-underline" to="/admin/dashboard" onClick={handleClickNav}>Dashboard</Link></li>
-
-                                        )}
-                                        <li><Link className="dropdown-item" to="/admin/upload" onClick={handleClickNav}>Upload</Link></li>
-                                        <li><Link className="dropdown-item" to="/admin/edit" onClick={handleClickNav} >Update Data</Link></li>
-                                    </ul>
+                                            <li><Link className="dropdown-item" to="/admin/upload" onClick={handleClickNav}>Upload</Link></li>
+                                            <li><Link className="dropdown-item" to="/admin/edit" onClick={handleClickNav} >Edit Profile</Link></li>
+                                        </ul>
+                                    ) : (
+                                        <ul className="dropdown-menu mb-3">
+                                            <li className="dropdown-item nav-underline btn" onClick={() => alert('Please Login to see Admin Page')}>Dasboard</li>
+                                            <li className="dropdown-item nav-underline btn" onClick={() => alert('Please Login to see Admin Page')}>Upload</li>
+                                            <li className="dropdown-item nav-underline btn" onClick={() => alert('Please Login to see Admin Page')}>Edit Profile</li>
+                                        </ul>
+                                    )}
                                 </li>
                             </ul>
 
                             <div className="loginBtn">
-                                {loggedIn ? (
-                                    <Link to={"/login"} className={`text-decoration-none btn fw-bolder ${isScrolled ? 'btn-light ' : 'btn-dark'}`}>Login</Link>
+                                {isLoggin ? (
+                                    <button className={`text-decoration-none btn fw-bolder ${isScrolled ? 'btn-danger ' : 'btn-danger'}`} onClick={() => setIsloggin(false)}>Logout</button>
                                 ) : (
                                     <Link to={"/login"} className={`text-decoration-none btn fw-bolder ${isScrolled ? 'btn-light ' : 'btn-dark'}`}>Login</Link>
                                 )}

@@ -7,7 +7,7 @@ import Title from "./Title";
 
 
 
-const Home = () => {
+const Home = ({isLoggin, setIsloggin}) => {
 
     const [dataVideo, setDataVideo] = useState([])
 
@@ -29,7 +29,7 @@ const Home = () => {
     return (
         <div>
             <Title/>
-            <Header act1="active" />
+            <Header act1="active" isLoggin={isLoggin} setIsloggin={setIsloggin}/>
 
             <section className="text-center container pt-5 mt-5">
                 <div className="row">
@@ -60,7 +60,7 @@ const Home = () => {
                 <div className="row justify-content-center align-items-center" style={{ marginRight: 0 }}>
                     {dataVideo.map((item) => {
                         return (
-                            <div className="col-sm-12 col-lg-6 pe-0">
+                            <div className="col-sm-12 col-lg-6 pe-0" key={item._id}>
                                 <div className="embed-responsive embed-responsive-16by9">
                                     <iframe className="embed-responsive-item" src={`${item.link}`} title={`${item.description}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen width={'100%'} height={300} style={{
                                         borderRadius: 10
@@ -73,7 +73,7 @@ const Home = () => {
 
 
 
-            <Footer />
+            <Footer isLogin={isLoggin}/>
         </div>
     )
 }

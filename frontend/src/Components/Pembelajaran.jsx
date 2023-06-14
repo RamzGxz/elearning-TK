@@ -3,17 +3,16 @@ import Footer from "./Footer";
 import { useEffect, useState } from "react";
 import axios from 'axios'
 
-const Pembelajaran = () => {
+const Pembelajaran = ({isLoggin, setIsloggin}) => {
     const [dataHistory, setDataHistory] = useState([])
     const [dataPopuler, setDataPopuler] = useState([])
+    
 
     const historyGet = async () => {
         try {
             const res = await axios(`http://localhost:3000/getVideoByCategory?category=history`)
             const data = res.data
             setDataHistory(data)
-
-            console.log(dataHistory)
         } catch (error) {
             console.log(error)
         }
@@ -31,11 +30,11 @@ const Pembelajaran = () => {
     useEffect(() => {
         historyGet()
         populerGet()
-    }, [])
+    }, [dataHistory, dataPopuler])
 
     return (
         <div className="py-5 my-5">
-            <Header act2="active" />
+            <Header act2="active" isLoggin={isLoggin} setIsloggin={setIsloggin}/>
 
             <div className="justify-content-center align-items-center container wrapperPembelajaran" style={{
                
@@ -88,7 +87,7 @@ const Pembelajaran = () => {
 
             </div>
 
-            <Footer />
+            <Footer isLogin={isLoggin}/>
         </div>
     )
 }

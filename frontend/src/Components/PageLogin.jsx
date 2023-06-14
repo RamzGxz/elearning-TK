@@ -1,36 +1,34 @@
 import { useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, json, useNavigate } from "react-router-dom"
+import axios from 'axios'
 
-const PageLogin = () => {
-    const [username, setusername] = useState('');
-    const [pass, setpass] = useState('');
-    console.log(username)
-    console.log(pass)
+const PageLogin = ({ setIsLogin, setUserData }) => {
+    const [username, setusername] = useState('')
+    const [pass, setpass] = useState('')
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await fetch('http://localhost:3000/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ 
-                username: username,
-                password: pass
-             }),
-        })
-            .then(res => {
-                if(res.status === 200){
-                    alert('login berhasil')
-                    location.href = '/'
-                } else if(res.status === 404){
-                    alert('maaf username atau password salah')
-                }
-            })
-            .catch(error => {
-                console.error('Terjadi kesalahan saat melakukan fetch:', error);
-                alert('Terjadi kesalahan saat melakukan fetch');
-            });
+        const data = {
+            username: username,
+            password: pass
+        }
+
+        try {
+            const res = await axios.post('http://localhost:3000/log', data)
+            const respData = res.data['data']
+            if (res.status === 200) {
+                alert(`login succes! hello ${res.data['data'][0].username}`)
+                setIsLogin(true)
+                setUserData(respData)
+                navigate('/')
+            }
+        } catch (error) {
+            alert('data tidak ditemukan')
+            setIsLogin(false)
+            setUserData([])
+            console.error('error: ', error)
+        }
     }
 
     return (
@@ -50,7 +48,7 @@ const PageLogin = () => {
                         height: '100vh'
                     }}>
                         <i className="fas fa-cubes fa-2x mb-4" style={{ color: '#ff6219', fontSize: 100 }} />
-                        <form className=" w-50" onSubmit={handleSubmit}>
+                        <form className=" w-50">
                             <input type="text" placeholder="Username" className="form-control py-3 mb-4 px-4" style={{
                                 borderRadius: '30px'
                             }} id="usernameLogin" value={username} onChange={(e) => setusername(e.target.value)} />
@@ -59,7 +57,7 @@ const PageLogin = () => {
                             }} id="passLogin" value={pass} onChange={(e) => setpass(e.target.value)} />
                             <button className="btn btn-dark w-100 fs-3 fw-bolder" style={{
                                 borderRadius: '30px'
-                            }} type="submit">LOGIN</button>
+                            }} type="submit" onClick={(e) => handleSubmit(e)}>LOGIN</button>
                             <p className="fs-6 text-black-50 text-center mt-4">Lupa Password? <a href="">Hubungi Developer</a></p>
                         </form>
 

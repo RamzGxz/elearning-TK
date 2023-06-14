@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 
-const SideBar = (props) => {
+const SideBar = ({ menuAct1, menuAct2, menuAct3, menuAct4, userData }) => {
 
     return (
 
@@ -18,43 +18,47 @@ const SideBar = (props) => {
                 <hr />
                 <ul className="nav nav-pills flex-column mb-auto">
                     <li className="my-1">
-                        <Link to={'/admin/dashboard'} className={`nav-link sideLink text-white d-flex ${props.menuAct1} align-items-center w-100`}>
+                        <Link to={'/admin/dashboard'} className={`nav-link sideLink text-white d-flex ${menuAct1} align-items-center w-100`}>
                             <i className="fa-solid fa-gauge-high mb-0 fs-3" />
                             <p className="ps-3 mb-0 fs-5 t">Dashboard</p>
                         </Link>
                     </li>
                     <li className="my-1" >
-                        <Link to={'/admin/upload'} className={`nav-link sideLink text-white d-flex ${props.menuAct2} align-items-center w-100 `}>
+                        <Link to={'/admin/upload'} className={`nav-link sideLink text-white d-flex ${menuAct2} align-items-center w-100 `}>
                             <i className="fa-solid fa-file-arrow-up fs-2" />
                             <p className="ps-3 mb-0 fs-5 t">Upload Content</p>
                         </Link>
                     </li>
                     <li className="my-1">
-                        <Link to={'/admin/edit'} className={`nav-link sideLink text-white d-flex ${props.menuAct3} align-items-center w-100`}>
+                        <Link to={'/admin/edit'} className={`nav-link sideLink text-white d-flex ${menuAct3} align-items-center w-100`}>
                             <i className="fa-solid fa-pen-to-square fs-3" />
                             <p className="ps-3 mb-0 fs-5 t">Edit Profile</p>
                         </Link>
                     </li>
                     <li className="my-1">
-                        <Link to={'/'} className={`nav-link sideLink text-white d-flex ${props.menuAct4} align-items-center w-100`}>
+                        <Link to={'/'} className={`nav-link sideLink text-white d-flex ${menuAct4} align-items-center w-100`}>
                             <i className="fa-solid fa-circle-arrow-left fs-3"></i>
                             <p className="ps-3 mb-0 fs-5 ">Back to Home</p>
                         </Link>
                     </li>
                 </ul>
                 <hr />
-                <div className="dropdown">
-                    <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt={'true'} width={32} height={32} className="rounded-circle me-2" />
-                        <strong className="t" >Account</strong>
-                    </a>
-                    <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
-                        <li><Link className="dropdown-item" to={'/'} onClick={()=> {
-                            localStorage.removeItem('login')
-                        }}>Sign out</Link></li>
-                        <li><Link className="dropdown-item" to={"/"}>Back to Home Page</Link></li>
-                    </ul>
-                </div>
+                {userData.map((item) => {
+                    return (
+                        <div className="dropdown">
+                            <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src={`${item.pics}`} alt={'true'} width={32} height={32} className="rounded-circle me-2" />
+                                <strong className="text-capitalize">{item.username}</strong>
+                            </a>
+                            <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
+                                <li><Link className="dropdown-item" to={'/'} onClick={() => {
+                                    localStorage.removeItem('login')
+                                }}>Sign out</Link></li>
+                                <li><Link className="dropdown-item" to={"/"}>Back to Home Page</Link></li>
+                            </ul>
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )
