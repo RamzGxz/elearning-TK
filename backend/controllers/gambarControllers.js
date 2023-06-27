@@ -22,9 +22,9 @@ module.exports = {
     },
     updateGambar: async (req, res) => {
         const _id = req.params._id
-        const filter = {_id: _id}
+        const filter = { _id: _id }
         const query = {
-            $set:{
+            $set: {
                 link: req.body.link,
                 description: req.body.description,
                 category: req.body.category
@@ -32,12 +32,12 @@ module.exports = {
         }
         try {
             const dataUpdated = await gambarModels.updateOne(filter, query)
-            if(dataUpdated && dataUpdated.matchedCount === 1){
+            if (dataUpdated && dataUpdated.matchedCount === 1) {
                 res.status(200).json({
                     message: 'data has been updated',
                     systemMessage: dataUpdated
                 })
-            } else if (dataUpdated && dataUpdated.matchedCount === 0){
+            } else if (dataUpdated && dataUpdated.matchedCount === 0) {
                 res.status(404).json({
                     message: 'data not found!'
                 })
@@ -64,24 +64,32 @@ module.exports = {
             console.log(error)
         }
     },
-    insertdetail:async(req,res)=>{
+    insertdetail: async (req, res) => {
         const _id = req.params._id
-    
-        try{
-            await gambarModels.updateOne(
-                {"_id":_id},
+        const tanggal = new Date()
+        try {
+            const resp = await gambarModels.updateOne(
+                { "_id": _id },
                 {
-                    "$push" :{
-                        "detail":{
-                            "tanggal":req.body.tanggal,
-                            "source":req.body.source,
-                            "place":req.body.place
+                    "$push": {
+                        "detail": {
+                            "tanggal": tanggal,
+                            "source": req.body.source,
+                            "place": req.body.place
                         }
                     }
                 }
             )
-            res.send('detail telah di tambah')
-        }catch (error){
+            if (resp.matchedCount === 1){
+                res.json({
+                    message: 'detail telah di tambah'
+                })
+            } else{
+                res.json({
+                    message: 'maaf id tidak ditemukan'
+                })
+            }
+        } catch (error) {
             console.log(error)
         }
     }
