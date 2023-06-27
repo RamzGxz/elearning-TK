@@ -63,5 +63,32 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
+    },
+    insertDetail: async()=>{
+        const filter = {_id:req.params._id}
+        const data = {
+            $set:{
+                'detail':{
+                    'detail.tanggal' : req.body.tanggal,
+                    'detail.source': req.body.source,
+                    'detail.place': req.body.place
+                }
+            }
+
+        }
+        try{
+            const response = await gambarModels.updateOne(filter,data)
+            if (response.matchedCount == 1){
+                res.json({
+                    message:'data berhasil di tambah'
+                })
+            } else {
+                res.json({
+                    message:'ada kesalahan saat penambahan data '
+                })
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
