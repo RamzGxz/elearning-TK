@@ -13,6 +13,20 @@ const gambarSchema = new mongoose.Schema({
         required: true,
         type: String
     },
+    detail:{
+        tanggal :{
+            required:false,
+            type:String
+        },
+        source:{
+            required :false,
+            type:String
+        },
+        place :{
+            required:false,
+            type:String
+        }
+    }
 })
 
 module.exports = mongoose.model('Gambar', gambarSchema, 'gambar')
