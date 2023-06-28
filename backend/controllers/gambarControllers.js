@@ -81,11 +81,11 @@ module.exports = {
                     }
                 }
             )
-            if (resp.matchedCount === 1){
+            if (resp.matchedCount === 1) {
                 res.json({
                     message: 'detail telah di tambah'
                 })
-            } else{
+            } else {
                 res.json({
                     message: 'maaf id tidak ditemukan'
                 })
@@ -94,17 +94,17 @@ module.exports = {
             console.log(error)
         }
     },
-    updateDetail: async (req, res) =>{
+    updateDetail: async (req, res) => {
         const _id = req.params._id
         const tanggal = new Date()
         try {
             const resp = await gambarModels.updateOne(
-                {"_id": _id},
+                { "_id": _id },
                 {
-                    $set:{
+                    $set: {
                         details: {
                             "detailsId": _id,
-                            "tanggal" : tanggal,
+                            "tanggal": tanggal,
                             "source": req.body.source,
                             "place": req.body.place
                         }
@@ -112,11 +112,11 @@ module.exports = {
                 }
             )
 
-            if(resp.matchedCount === 1) {
+            if (resp.matchedCount === 1) {
                 res.json({
                     message: 'update details telah berhasil'
                 })
-            } else{
+            } else {
                 res.json({
                     message: 'maaf id tidak ditemukan'
                 })
@@ -127,21 +127,33 @@ module.exports = {
             })
         }
     },
-    deleteDetail:async (req,res)=>{
+    deleteDetail: async (req, res) => {
+        const _id = req.params._id;
         try {
-            await gambarModels.updateOne(
-                {"_id": req.params._id},
+            const resp = await gambarModels.updateOne(
+                { _id: _id },
                 {
-                    $pull:{
-                        "detail":{
-                            "_id":req.params._id
+                    $pull: {
+                        details: {
+                            detailsId: _id
                         }
                     }
                 }
-            );
-            res.send('detail telah di terhapus');
-        } catch (error){
-            res.status(409).json({ message:error.message})
+            )
+
+            if (resp.modifiedCount === 1) {
+                res.json({
+                    message: 'Detail telah dihapus'
+                })
+            } else {
+                res.json({
+                    message: 'ID tidak ditemukan'
+                })
+            }
+        } catch (error) {
+            res.status(500).json({
+                message: error.message
+            })
         }
     }
 }
