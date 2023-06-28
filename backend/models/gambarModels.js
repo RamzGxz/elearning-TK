@@ -13,18 +13,22 @@ const gambarSchema = new mongoose.Schema({
         required: true,
         type: String
     },
-    detail:{
-        tanggal :{
-            required:false,
-            type:String
+    details: {
+        detailsId: {
+            required: false,
+            type: String
         },
-        source:{
-            required :false,
-            type:String
+        tanggal: {
+            required: false,
+            type: String
         },
-        place :{
-            required:false,
-            type:String
+        source: {
+            required: false,
+            type: String
+        },
+        place: {
+            required: false,
+            type: String
         }
     }
 })

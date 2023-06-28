@@ -72,7 +72,8 @@ module.exports = {
                 { "_id": _id },
                 {
                     "$push": {
-                        "detail": {
+                        "details": {
+                            "detailsId": _id,
                             "tanggal": tanggal,
                             "source": req.body.source,
                             "place": req.body.place
@@ -91,6 +92,39 @@ module.exports = {
             }
         } catch (error) {
             console.log(error)
+        }
+    },
+    updateDetail: async (req, res) =>{
+        const _id = req.params._id
+        const tanggal = new Date()
+        try {
+            const resp = await gambarModels.updateOne(
+                {"_id": _id},
+                {
+                    $set:{
+                        details: {
+                            "detailsId": _id,
+                            "tanggal" : tanggal,
+                            "source": req.body.source,
+                            "place": req.body.place
+                        }
+                    }
+                }
+            )
+
+            if(resp.matchedCount === 1) {
+                res.json({
+                    message: 'update details telah berhasil'
+                })
+            } else{
+                res.json({
+                    message: 'maaf id tidak ditemukan'
+                })
+            }
+        } catch (error) {
+            res.status(500).json({
+                message: error
+            })
         }
     }
 }
