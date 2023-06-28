@@ -126,5 +126,22 @@ module.exports = {
                 message: error
             })
         }
+    },
+    deleteDetail:async (req,res)=>{
+        try {
+            await gambarModels.updateOne(
+                {"_id": req.params._id},
+                {
+                    $pull:{
+                        "detail":{
+                            "_id":req.params._id
+                        }
+                    }
+                }
+            );
+            res.send('detail telah di terhapus');
+        } catch (error){
+            res.status(409).json({ message:error.message})
+        }
     }
 }
