@@ -9,5 +9,6 @@ routerGambar.post('/postDataGambar', gambarController.postDataGambar)
 routerGambar.post('/postGambarDetail/:_id', gambarController.insertdetail)
 routerGambar.put('/updateGambarDetails/:_id', gambarController.updateDetail)
 routerGambar.delete('/deleteGambarDetail/:_id',gambarController.deleteDetail)
+routerGambar.get('/getdetailbyid/:_id',gambarController.getDetailById)
 
 module.exports = routerGambar
