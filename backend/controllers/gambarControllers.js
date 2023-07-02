@@ -155,5 +155,16 @@ module.exports = {
                 message: error.message
             })
         }
+    },
+    getDetailById:async(req,res)=>{
+        const _id= req.params._id;
+
+        try{
+            const result = await gambarModels.findOne({"_id":_id})
+
+            res.json(result)
+        }catch(error){
+            res.status(500).json({message:error.message})
+        }
     }
 }
