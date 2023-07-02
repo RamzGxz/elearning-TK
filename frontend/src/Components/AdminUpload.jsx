@@ -3,12 +3,14 @@ import Footer from "./Footer"
 import SideBar from "./SideBar"
 
 import { useState } from "react"
+import Cookies from "js-cookie"
+import NotLogin from "./NotLogin"
 
-const AdminUpload = ({userData, setIsloggin}) => {
+const AdminUpload = ({ userData, setIsloggin }) => {
     const [postLinkGambar, setPostLinkGambar] = useState('')
     const [postDescGambar, setPostDescGambar] = useState('')
     const [postCatGambar, setPostCatGambar] = useState('')
-    
+
     const handlePostGambar = async (e) => {
         e.preventDefault()
         const data = {
@@ -17,26 +19,26 @@ const AdminUpload = ({userData, setIsloggin}) => {
             category: postCatGambar
         }
         const form = document.getElementById('formUpGambar')
-        if(!postLinkGambar || !postDescGambar ||! postCatGambar){
+        if (!postLinkGambar || !postDescGambar || !postCatGambar) {
             alert('please fill all field!')
-        } else{
+        } else {
             try {
                 const res = await axios.post('http://localhost:3000/postDataGambar', data)
-                if(res.status === 200){
+                if (res.status === 200) {
                     setPostLinkGambar("")
                     setPostDescGambar("")
                     setPostCatGambar("")
                     form.reset()
                     alert(`data has been posted!`)
-                } else{
+                } else {
                     alert('failed to post Data')
                 }
-                
+
             } catch (error) {
                 console.log(error)
             }
         }
-        
+
     }
 
     const [postLinkVideo, setPostLinkVideo] = useState('')
@@ -51,21 +53,21 @@ const AdminUpload = ({userData, setIsloggin}) => {
             description: postDescVideo,
             category: postCatVideo
         }
-        if(!postLinkVideo || !postDescVideo || !postCatVideo){
+        if (!postLinkVideo || !postDescVideo || !postCatVideo) {
             alert('please fill all field!!')
-        } else{
+        } else {
             try {
                 const res = await axios.post('http://localhost:3000/postDataVideo', data)
-                if(res.status === 200){
+                if (res.status === 200) {
                     setPostLinkVideo("")
                     setPostDescVideo("")
                     setPostCatVideo("")
                     form.reset()
                     alert(`data has been posted!`)
-                } else{
+                } else {
                     alert('failed to post Data')
                 }
-                
+
             } catch (error) {
                 console.log(error)
             }
@@ -87,157 +89,163 @@ const AdminUpload = ({userData, setIsloggin}) => {
         }
         const form = document.getElementById('formUpBerita')
 
-        if(!postJudulBerita || !postIsiBerita || !postFotoBerita || ! postCatBerita){
+        if (!postJudulBerita || !postIsiBerita || !postFotoBerita || !postCatBerita) {
             alert('please fill all field!')
-        } else{
+        } else {
             try {
                 const res = await axios.post('http://localhost:3000/postDataBerita', data)
-                if(res.status === 200){
+                if (res.status === 200) {
                     setPostJudulBerita("")
                     setPostIsiBerita("")
                     setPostFotoBerita("")
                     setPostCatBerita("")
                     form.reset()
                     alert('data has been posted!')
-                } else if(res.status === 500){
+                } else if (res.status === 500) {
                     alert('failed to fetch')
                 }
             } catch (error) {
                 console.log(error)
             }
         }
-        
+
     }
-
+    const isCookie = Cookies.get('auth')
     return (
-        <div style={{
-            paddingLeft: 280
-        }} className="contentAdmin">
-            <SideBar menuAct2='active' userData={userData} setIsLoggin={setIsloggin}/>
+        <div>
+            {isCookie ? (
+                <div style={{
+                    paddingLeft: 280
+                }} className="contentAdmin">
+                    <SideBar menuAct2='active' userData={userData} setIsLoggin={setIsloggin} />
 
-            <div className="titleWrap w-100 d-flex justify-content-center align-items-center contentWrapper" style={{
-                height: '15vh'
-            }}>
-                <h2>Upload Content</h2>
-            </div>
-            <div className="wrapper mb-5">
-                <div className="container mt-3 d-flex justify-content-center align-items-center" style={{
-                    height: 'auto'
-                }}>
-                    <div className="my-2 w-100 pb-2" style={{
-                        height: 'auto',
-                        border: '1px solid black',
-                        borderRadius: 5
+                    <div className="titleWrap w-100 d-flex justify-content-center align-items-center contentWrapper" style={{
+                        height: '15vh'
                     }}>
-                        <div className="w-100 bg-primary-subtle d-flex align-items-center" style={{
-                            height: '7vh',
-                            borderTopLeftRadius: 5,
-                            borderTopRightRadius: 5
+                        <h2>Upload Content</h2>
+                    </div>
+                    <div className="wrapper mb-5">
+                        <div className="container mt-3 d-flex justify-content-center align-items-center" style={{
+                            height: 'auto'
                         }}>
-                            <h5 className="ms-2 fw-bolder">Gambar</h5>
+                            <div className="my-2 w-100 pb-2" style={{
+                                height: 'auto',
+                                border: '1px solid black',
+                                borderRadius: 5
+                            }}>
+                                <div className="w-100 bg-primary-subtle d-flex align-items-center" style={{
+                                    height: '7vh',
+                                    borderTopLeftRadius: 5,
+                                    borderTopRightRadius: 5
+                                }}>
+                                    <h5 className="ms-2 fw-bolder">Gambar</h5>
+                                </div>
+                                <div className="container">
+                                    <form className="mt-3" id="formUpGambar">
+                                        <div className="mb-3">
+                                            <label htmlFor="" className="form-label">Link Gambar</label>
+                                            <input type="text" className="form-control form-control-sm" onChange={(e) => setPostLinkGambar(e.target.value)} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="" className="form-label">Deskripsi gambar</label>
+                                            <input type="text" className="form-control form-control-sm" onChange={(e) => setPostDescGambar(e.target.value)} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="" className="form-label">Kategori Kelas</label>
+                                            <input type="text" className="form-control form-control-sm" onChange={(e) => setPostCatGambar(e.target.value)} />
+                                        </div>
+                                        <div className="w-100 d-flex justify-content-end">
+                                            <button className="btn btn-dark" onClick={handlePostGambar}>Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <div className="container">
-                            <form className="mt-3" id="formUpGambar">
-                                <div className="mb-3">
-                                    <label htmlFor="" className="form-label">Link Gambar</label>
-                                    <input type="text" className="form-control form-control-sm" onChange={(e)=> setPostLinkGambar(e.target.value)}/>
+
+                        <div className="container mt-3 d-flex justify-content-center align-items-center" style={{
+                            height: 'auto'
+                        }}>
+                            <div className="my-2 w-100 pb-2" style={{
+                                height: 'auto',
+                                border: '1px solid black',
+                                borderRadius: 5
+                            }}>
+                                <div className="w-100 bg-primary-subtle d-flex align-items-center" style={{
+                                    height: '7vh',
+                                    borderTopLeftRadius: 5,
+                                    borderTopRightRadius: 5
+                                }}>
+                                    <h5 className="ms-2 fw-bolder" style={{ marginBottom: 0 }}>Video</h5>
                                 </div>
-                                <div className="mb-3">
-                                    <label htmlFor="" className="form-label">Deskripsi gambar</label>
-                                    <input type="text" className="form-control form-control-sm" onChange={(e)=> setPostDescGambar(e.target.value)}/>
+                                <div className="container">
+                                    <form className="mt-3" onSubmit={handlePostVideo} id="formUpVideo">
+                                        <div className="mb-3">
+                                            <label htmlFor="" className="form-label">Link Embed Video</label>
+                                            <input type="text" className="form-control form-control-sm" aria-describedby="emailHelp" onChange={(e) => setPostLinkVideo(e.target.value)} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="" className="form-label">Deskripsi Video</label>
+                                            <input type="text" className="form-control form-control-sm" onChange={(e) => setPostDescVideo(e.target.value)} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="" className="form-label">Kategori</label>
+                                            <input type="text" className="form-control form-control-sm" onChange={(e) => setPostCatVideo(e.target.value)} />
+                                        </div>
+                                        <div className="w-100 d-flex justify-content-end">
+                                            <button type="submit" className="btn btn-dark">Submit</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div className="mb-3">
-                                    <label htmlFor="" className="form-label">Kategori Kelas</label>
-                                    <input type="text" className="form-control form-control-sm" onChange={(e)=> setPostCatGambar(e.target.value)}/>
+                            </div>
+                        </div>
+
+                        <div className="container mt-3 d-flex justify-content-center align-items-center" style={{
+                            height: 'auto'
+                        }}>
+                            <div className="w-100 pb-2" style={{
+                                height: 'auto',
+                                border: '1px solid black',
+                                borderRadius: 5
+                            }}>
+                                <div className="w-100 bg-primary-subtle d-flex align-items-center" style={{
+                                    height: '7vh',
+                                    borderTopLeftRadius: 5,
+                                    borderTopRightRadius: 5
+                                }}>
+                                    <h5 className="ms-2 fw-bolder" style={{ marginBottom: 0 }}>Berita</h5>
                                 </div>
-                                <div className="w-100 d-flex justify-content-end">
-                                    <button className="btn btn-dark" onClick={handlePostGambar}>Submit</button>
+                                <div className="container">
+                                    <form className="mt-3" onSubmit={handlePostBerita} id="formUpBerita">
+                                        <div className="mb-3">
+                                            <label htmlFor="" className="form-label">Judul Berita</label>
+                                            <input type="text" className="form-control form-control-sm" onChange={(e) => setPostJudulBerita(e.target.value)} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="" className="form-label">Isi Berita</label>
+                                            <textarea type="text" className="form-control form-control-sm" rows={8} onChange={(e) => setPostIsiBerita(e.target.value)} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="" className="form-label">Foto</label>
+                                            <input type="text" className="form-control form-control-sm" onChange={(e) => setPostFotoBerita(e.target.value)} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="" className="form-label">Kategori Berita</label>
+                                            <input type="text" className="form-control form-control-sm" onChange={(e) => setPostCatBerita(e.target.value)} />
+                                        </div>
+                                        <div className="w-100 d-flex justify-content-end">
+                                            <button type="submit" className="btn btn-dark">Submit</button>
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="container mt-3 d-flex justify-content-center align-items-center" style={{
-                    height: 'auto'
-                }}>
-                    <div className="my-2 w-100 pb-2" style={{
-                        height: 'auto',
-                        border: '1px solid black',
-                        borderRadius: 5
-                    }}>
-                        <div className="w-100 bg-primary-subtle d-flex align-items-center" style={{
-                            height: '7vh',
-                            borderTopLeftRadius: 5,
-                            borderTopRightRadius: 5
-                        }}>
-                            <h5 className="ms-2 fw-bolder" style={{marginBottom: 0}}>Video</h5>
-                        </div>
-                        <div className="container">
-                            <form className="mt-3" onSubmit={handlePostVideo} id="formUpVideo">
-                                <div className="mb-3">
-                                    <label htmlFor="" className="form-label">Link Embed Video</label>
-                                    <input type="text" className="form-control form-control-sm" aria-describedby="emailHelp" onChange={(e)=> setPostLinkVideo(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="" className="form-label">Deskripsi Video</label>
-                                    <input type="text" className="form-control form-control-sm" onChange={(e)=> setPostDescVideo(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="" className="form-label">Kategori</label>
-                                    <input type="text" className="form-control form-control-sm" onChange={(e)=> setPostCatVideo(e.target.value)}/>
-                                </div>
-                                <div className="w-100 d-flex justify-content-end">
-                                    <button type="submit" className="btn btn-dark">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    <Footer />
                 </div>
-
-                <div className="container mt-3 d-flex justify-content-center align-items-center" style={{
-                    height: 'auto'
-                }}>
-                    <div className="w-100 pb-2" style={{
-                        height: 'auto',
-                        border: '1px solid black',
-                        borderRadius: 5
-                    }}>
-                        <div className="w-100 bg-primary-subtle d-flex align-items-center" style={{
-                            height: '7vh',
-                            borderTopLeftRadius: 5,
-                            borderTopRightRadius: 5
-                        }}>
-                            <h5 className="ms-2 fw-bolder" style={{marginBottom: 0}}>Berita</h5>
-                        </div>
-                        <div className="container">
-                            <form className="mt-3" onSubmit={handlePostBerita} id="formUpBerita">
-                                <div className="mb-3">
-                                    <label htmlFor="" className="form-label">Judul Berita</label>
-                                    <input type="text" className="form-control form-control-sm" onChange={(e)=> setPostJudulBerita(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="" className="form-label">Isi Berita</label>
-                                    <textarea type="text" className="form-control form-control-sm" rows={8}  onChange={(e)=> setPostIsiBerita(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="" className="form-label">Foto</label>
-                                    <input type="text" className="form-control form-control-sm" onChange={(e)=> setPostFotoBerita(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="" className="form-label">Kategori Berita</label>
-                                    <input type="text" className="form-control form-control-sm" onChange={(e)=> setPostCatBerita(e.target.value)} />
-                                </div>
-                                <div className="w-100 d-flex justify-content-end">
-                                    <button type="submit" className="btn btn-dark">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <Footer />
+            ) : (
+                <NotLogin />
+            )}
         </div>
     )
 }
