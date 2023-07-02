@@ -2,13 +2,13 @@ import axios from "axios"
 import Footer from "./Footer"
 import SideBar from "./SideBar"
 
-import { useRef, useState } from "react"
+import { useState } from "react"
 
 const AdminUpload = ({userData, setIsloggin}) => {
     const [postLinkGambar, setPostLinkGambar] = useState('')
     const [postDescGambar, setPostDescGambar] = useState('')
     const [postCatGambar, setPostCatGambar] = useState('')
-
+    
     const handlePostGambar = async (e) => {
         e.preventDefault()
         const data = {

@@ -18,7 +18,7 @@ const BeritaTable = () => {
 
     const delFuncBerita = async (_id) => {
         try {
-            await axios.delete(`http://localhost:3000/deleteBerita/${_id}`)
+            await axios.delete(`http://localhost:3000/deleteBerita/${_id}`,)
             alert(`data on id: ${_id} has been deleted`)
             setUpdated(!updated)
         } catch (error) {

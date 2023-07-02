@@ -1,10 +1,21 @@
 import { Link, useNavigate } from "react-router-dom"
-
+import axios from "axios"
+import Cookies from "js-cookie"
 
 const SideBar = ({ menuAct1, menuAct2, menuAct3, menuAct4, userData, setIsLoggin }) => {
 
     const navigate = useNavigate() 
 
+    const logout = async () => {
+        const res =  await axios.post('http://localhost:3000/logout')
+        if(res.status === 200) {
+            Cookies.remove('auth')
+            setIsLoggin(false)
+            navigate('/')
+        } else(
+            console.log('err')
+        )
+    }
     return (
 
         <div style={{
@@ -55,9 +66,7 @@ const SideBar = ({ menuAct1, menuAct2, menuAct3, menuAct4, userData, setIsLoggin
                             <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
                                 <li><a className="dropdown-item" to={'/'} onClick={() => {
                                     if(confirm('apakah anda yakin akan logout?')){
-                                        navigate('/')
-                                        setIsLoggin(false)
-                                        console.log(setIsLoggin)
+                                        logout()
                                     }
                                 }}>Sign out</a></li>
                                 <li><Link className="dropdown-item " to={"/"}>Back to Home Page</Link></li>
