@@ -1,3 +1,5 @@
+import axios from "axios"
+import Cookies from "js-cookie"
 import { useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
 
@@ -30,6 +32,15 @@ const Header = ({ isLoggin, setIsloggin, act1, act2, act3, act4 }) => {
 
     }
 
+    const logout = async () => {
+        const res =  await axios.post('http://localhost:3000/logout')
+        if(res.status === 200) {
+            Cookies.remove('auth')
+            setIsloggin(false)
+        } else(
+            console.log('err')
+        )
+    }
 
     return (
         <div className="fixed-top shadow" style={{
@@ -84,8 +95,8 @@ const Header = ({ isLoggin, setIsloggin, act1, act2, act3, act4 }) => {
                             <div className="loginBtn">
                                 {isLoggin ? (
                                     <button className={`text-decoration-none btn fw-bolder ${isScrolled ? 'btn-danger ' : 'btn-danger'}`} onClick={() => {
-                                        if (confirm('Apakah Anda Ingin Logout?')){
-                                            setIsloggin(false)
+                                        if (confirm('Apakah Anda Ingin Logout?')) {
+                                            logout()
                                         }
                                     }}>Logout</button>
                                 ) : (

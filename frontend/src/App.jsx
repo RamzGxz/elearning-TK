@@ -7,11 +7,11 @@ import AdminEditProfile from "./Components/AdminEditProfile"
 import PageLogin from "./Components/PageLogin"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useState } from "react"
+import NotLogin from "./Components/NotLogin"
 
 function App() {
   const [isLoggin, setIsLogin] = useState(false)
   const [userData, setUserData] = useState([])
-  console.log(isLoggin)
 
   return (
     <div style={{
