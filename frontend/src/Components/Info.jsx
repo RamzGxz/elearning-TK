@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
 import 'react-calendar/dist/Calendar.css'
 import axios from "axios";
 
-const Info = ({isLoggin, setIsloggin}) => {
+const Info = ({ isLoggin, setIsloggin }) => {
+    const [updated, setUpdated] = useState(false)
+
     const handleClick = () => {
         const isiBerita = document.querySelectorAll('.card-text')
         isiBerita.forEach(el => {
@@ -27,35 +29,38 @@ const Info = ({isLoggin, setIsloggin}) => {
     }
 
     const [dataBerita, setDataBerita] = useState([])
-    const getBerita = async()=>{
+    const getBerita = async () => {
         try {
             const res = await axios('http://localhost:3000/getDataBerita')
             const data = res.data
             setDataBerita(data)
+            setUpdated(!updated)
         } catch (error) {
             console.log(error)
         }
     }
 
     const [dataGambar, setDataGambar] = useState([])
-    const getGambarFunc = async () =>{
+    const getGambarFunc = async () => {
         try {
             const res = await axios('http://localhost:3000/getGambar')
             const data = res.data
             setDataGambar(data)
+            setUpdated(!updated)
         } catch (error) {
             console.log(error)
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getBerita()
         getGambarFunc()
-    }, [])
+    }, [updated])
+
     return (
 
         <div>
-            <Header act3="active" isLoggin={isLoggin} setIsloggin={setIsloggin}/>
+            <Header act3="active" isLoggin={isLoggin} setIsloggin={setIsloggin} />
 
             <section className="pt-5 text-center container mt-5">
                 <div className="row">
@@ -71,12 +76,45 @@ const Info = ({isLoggin, setIsloggin}) => {
                     <h3 className="text-center mb-4">Galeri</h3>
                     <div className="galeri row w-100 d-flex justify-content-center">
                         {dataGambar.map((item) => {
+                            const details = item.details
                             return (
-                                <div className="col-lg-3 col-sm-12" key={item._id}>
-                                    <img src={`${item.link}`} className="img-thumbnail mx-2" alt={`${item.description}`} style={{
-                                        width: '100%',
-                                        height: '300px'
-                                    }} />
+                                <div className="col-lg-3 col-sm-12 h-100 card px-0 gambar" key={item._id}>
+                                    <div className="">
+                                        <img src={`${item.link}`} className="img-thumbnail" alt={`${item.description}`} style={{
+                                            width: '100%',
+                                            height: '300px'
+                                        }} />
+                                        <div className="position-absolute py-1 w-100 text-white rounded-bottom-3 px-3 gambarDetails" style={{
+                                            backgroundColor: 'rgba(0,0,0,0.5)',
+                                            transition: 'all ease-in-out .3s',
+                                            bottom: 0,
+                                            opacity: '0'
+                                        }}>
+                                            {details.map((item) => {
+                                                const date = new Date(item.tanggal).toDateString()
+                                            
+                                                return (
+                                                    <table>
+                                                        <tr>
+                                                            <td>Date</td>
+                                                            <td width={30}>:</td>
+                                                            <td>{date}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Source</td>
+                                                            <td width={30}>:</td>
+                                                            <td>{item.source}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Place</td>
+                                                            <td width={30}>:</td>
+                                                            <td>{item.place}</td>
+                                                        </tr>
+                                                    </table>
+                                                )
+                                            })}
+                                        </div>
+                                    </div>
                                 </div>
                             )
                         })}
@@ -128,7 +166,7 @@ const Info = ({isLoggin, setIsloggin}) => {
                 </div>
             </section>
 
-            <Footer isLogin={isLoggin}/>
+            <Footer isLogin={isLoggin} />
         </div>
     )
 }

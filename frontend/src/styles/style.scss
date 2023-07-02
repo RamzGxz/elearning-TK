@@ -163,3 +163,9 @@
 .formUpdateBerita{
     height: 60vh;
 }
+
+.gambar:hover{
+    .gambarDetails{
+        opacity: 1 !important;
+    }
+}
