@@ -11,6 +11,7 @@ const VideoTable = () => {
             const res = await axios('http://localhost:3000/getVideo')
             const data = res.data
             getDataVideo(data)
+            setUpdated(!updated)
         } catch (error) {
             console.log(error)
         }

@@ -10,6 +10,7 @@ const GambarTable = () => {
             const res = await axios.get('http://localhost:3000/getGambar')
             const data = res.data
             getDataGambar(data)
+            setUpdated(!updated)
         } catch (error) {
             console.log(error)
         }

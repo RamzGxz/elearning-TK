@@ -10,6 +10,7 @@ const BeritaTable = () => {
         const res = await axios('http://localhost:3000/getDataBerita')
         const data = res.data
         getDataBerita(data)
+        setUpdated(!updated)
     }
 
     useEffect(() => {
