@@ -6,9 +6,15 @@ import Videotable from "./VideoTable"
 import BeritaTable from "./BeritaTable"
 import Cookies from "js-cookie"
 import NotLogin from "./NotLogin"
+import GambarDetailsTable from "./GambarDetailsTable"
+import { useState } from "react"
 
 const AdminDasboard = ({ userData, setIsLoggin }) => {
     const isCookie = Cookies.get('auth')
+
+    // state untuk menyimpan detailsId
+    const [detailsId, setDetailsId] = useState('')
+
     return (
         <div>
             {isCookie ? (
@@ -124,7 +130,8 @@ const AdminDasboard = ({ userData, setIsLoggin }) => {
                                 height: '70vh'
                             }} />
                         </div>
-                        <GambarTable />
+                        <GambarTable detailsId={detailsId} setDetailsId={setDetailsId}/>
+                        <GambarDetailsTable />
                         <Videotable />
                         <BeritaTable />
                         <Footer />

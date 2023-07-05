@@ -7,10 +7,14 @@ import Cookies from "js-cookie"
 import NotLogin from "./NotLogin"
 
 const AdminUpload = ({ userData, setIsloggin }) => {
+
+    // state untuk penyimpanan data gambar
     const [postLinkGambar, setPostLinkGambar] = useState('')
     const [postDescGambar, setPostDescGambar] = useState('')
     const [postCatGambar, setPostCatGambar] = useState('')
 
+    // handle untuk post data gambar melalui axios
+    
     const handlePostGambar = async (e) => {
         e.preventDefault()
         const data = {
@@ -41,10 +45,12 @@ const AdminUpload = ({ userData, setIsloggin }) => {
 
     }
 
+    // state untuk penyimpanan data video
     const [postLinkVideo, setPostLinkVideo] = useState('')
     const [postDescVideo, setPostDescVideo] = useState('')
     const [postCatVideo, setPostCatVideo] = useState('')
 
+    // handle untuk post data video melalui axios
     const handlePostVideo = async (e) => {
         e.preventDefault()
         const form = document.getElementById('formUpVideo')
@@ -75,10 +81,13 @@ const AdminUpload = ({ userData, setIsloggin }) => {
 
     }
 
+    // state untuk penyimpanan data berita
     const [postJudulBerita, setPostJudulBerita] = useState('')
     const [postIsiBerita, setPostIsiBerita] = useState('')
     const [postFotoBerita, setPostFotoBerita] = useState('')
     const [postCatBerita, setPostCatBerita] = useState('')
+
+    // handle untuk post data berita melalui axios
     const handlePostBerita = async (e) => {
         e.preventDefault()
         const data = {
@@ -110,7 +119,10 @@ const AdminUpload = ({ userData, setIsloggin }) => {
         }
 
     }
+
+    // variable untuk menyimpan cookie yang digunakan untuk validasi
     const isCookie = Cookies.get('auth')
+
     return (
         <div>
             {isCookie ? (
@@ -133,7 +145,7 @@ const AdminUpload = ({ userData, setIsloggin }) => {
                                 border: '1px solid black',
                                 borderRadius: 5
                             }}>
-                                <div className="w-100 bg-primary-subtle d-flex align-items-center" style={{
+                                <div className="w-100 bg-primary-subtle d-flex align-items-center justify-content-between container" style={{
                                     height: '7vh',
                                     borderTopLeftRadius: 5,
                                     borderTopRightRadius: 5
@@ -170,7 +182,7 @@ const AdminUpload = ({ userData, setIsloggin }) => {
                                 border: '1px solid black',
                                 borderRadius: 5
                             }}>
-                                <div className="w-100 bg-primary-subtle d-flex align-items-center" style={{
+                                <div className="w-100 bg-primary-subtle d-flex align-items-center container" style={{
                                     height: '7vh',
                                     borderTopLeftRadius: 5,
                                     borderTopRightRadius: 5
@@ -207,7 +219,7 @@ const AdminUpload = ({ userData, setIsloggin }) => {
                                 border: '1px solid black',
                                 borderRadius: 5
                             }}>
-                                <div className="w-100 bg-primary-subtle d-flex align-items-center" style={{
+                                <div className="w-100 bg-primary-subtle d-flex align-items-center container" style={{
                                     height: '7vh',
                                     borderTopLeftRadius: 5,
                                     borderTopRightRadius: 5

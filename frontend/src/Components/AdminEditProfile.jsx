@@ -1,10 +1,65 @@
 import Cookies from "js-cookie"
 import SideBar from "./SideBar"
 import NotLogin from "./NotLogin"
+import { useState } from "react"
+import axios from "axios"
 
 
-const AdminEditProfile = ({ userData, setIsLoggin }) => {
+const AdminEditProfile = ({ userData, setIsLoggin, setUserData }) => {
     const isCookie = Cookies.get('auth')
+    const [fullName, setFullname] = useState(userData[0].fullName)
+    const [age, setAge] = useState(userData[0].age)
+    const [address, setAddress] = useState(userData[0].address)
+    const [division, setDivision] = useState(userData[0].division)
+    const [className, setClassName] = useState(userData[0].class)
+    const [password, setPassword] = useState('')
+    const [oldPass, setOldPass] = useState('')
+    const getUser = async () => {
+        const res = await axios.get(`http://localhost:3000/userByID/${userData[0]._id}`)
+        setUserData(res.data)
+    }
+
+    const handleChangePass = async (e) => {
+        e.preventDefault()
+        if (oldPass === userData[0].password) {
+            if (!oldPass || !password) {
+                alert('maaf field harus diisi!')
+            } else {
+                try {
+                    const res = await axios.put(`http://localhost:3000/userUpdatePassword/${userData[0]._id}`)
+                    if (res.status === 200) {
+                        alert('success change password!')
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        } else {
+            alert('maaf password lama harus sama yang dengan di ketikkan!')
+        }
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const data = {
+            "fullname": fullName,
+            "age": age,
+            "address": address,
+            "class": className,
+            "division": division,
+        }
+
+        try {
+            const update = await axios.put(`http://localhost:3000/userUpdate/${userData[0]._id}`, data)
+            if (update.status === 200) {
+                alert('success update data!!')
+                getUser()
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <div>
             {isCookie ? (
@@ -107,26 +162,26 @@ const AdminEditProfile = ({ userData, setIsLoggin }) => {
                                     <div className="container">
                                         <div className="w-100 d-flex py-3 formUpdate">
                                             <div className="d-flex align-items-Center pe-2 updateCol" style={{ width: '50%' }}>
-                                                <form className="w-100" action="">
+                                                <form className="w-100" action="" onSubmit={(e) => handleSubmit(e)}>
                                                     <div className="mb-3">
                                                         <label className="form-label">Fullname</label>
-                                                        <input type="text" className="form-control" id="" placeholder="example: razi" />
+                                                        <input type="text" className="form-control text-capitalize" id="" value={fullName} onChange={(e) => setFullname(e.target.value)} />
                                                     </div>
                                                     <div className="mb-3">
                                                         <label className="form-label">Age</label>
-                                                        <input type="number" className="form-control" id="" placeholder="example: 21" />
+                                                        <input type="number" className="form-control text-capitalize" id="" value={age} onChange={(e) => setAge(e.target.value)} />
                                                     </div>
                                                     <div className="mb-3">
                                                         <label className="form-label">Address</label>
-                                                        <input type="text" className="form-control" id="" placeholder="example: Jln. Kedungwungu No.xx " />
+                                                        <input type="text" className="form-control text-capitalize" id="" value={address} onChange={(e) => setAddress(e.target.value)} />
                                                     </div>
                                                     <div className="mb-3">
                                                         <label className="form-label">Division</label>
-                                                        <input type="text" className="form-control" id="" placeholder="example: Teacher" />
+                                                        <input type="text" className="form-control text-capitalize" id="" value={division} onChange={(e) => setDivision(e.target.value)} />
                                                     </div>
                                                     <div className="mb-3">
                                                         <label className="form-label">Class</label>
-                                                        <input type="number" className="form-control" id="" placeholder="example: TK-A" />
+                                                        <input type="text" className="form-control text-capitalize" id="" value={className} onChange={(e) => setClassName(e.target.value)} />
                                                     </div>
                                                     <div className="d-flex w-100 justify-content-end align-items-center">
                                                         <button type="submit" className="btn btn-primary">Submit</button>
@@ -134,15 +189,15 @@ const AdminEditProfile = ({ userData, setIsLoggin }) => {
                                                 </form>
                                             </div>
                                             <div className="align-items-Center ps-2 d-flex updateCol" style={{ width: '50%' }}>
-                                                <form className="w-100" action="">
+                                                <form className="w-100" onSubmit={(e) => handleChangePass(e)}>
                                                     <h3>Change Password</h3>
                                                     <div className="mb-3">
                                                         <label className="form-label">Old Password</label>
-                                                        <input type="password" className="form-control" id="" />
+                                                        <input type="password" className="form-control" onChange={(e) => setOldPass(e.target.value)} />
                                                     </div>
                                                     <div className="mb-3">
                                                         <label className="form-label">New Password</label>
-                                                        <input type="password" className="form-control" id="" />
+                                                        <input type="password" className="form-control" onChange={(e) => setPassword(e.target.value)} />
                                                     </div>
                                                     <div className="d-flex w-100 justify-content-end align-items-center">
                                                         <button type="submit" className="btn btn-primary">Submit</button>

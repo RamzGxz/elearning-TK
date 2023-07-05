@@ -169,3 +169,9 @@
         opacity: 1 !important;
     }
 }
+
+.closePopDetails:hover{
+    cursor: pointer;
+    transition: all .3s;
+    color: red;
+}

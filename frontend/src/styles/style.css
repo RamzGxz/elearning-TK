@@ -130,4 +130,10 @@
 
 .gambar:hover .gambarDetails {
   opacity: 1 !important;
+}
+
+.closePopDetails:hover {
+  cursor: pointer;
+  transition: all 0.3s;
+  color: red;
 }/*# sourceMappingURL=style.css.map */

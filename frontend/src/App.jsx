@@ -24,7 +24,7 @@ function App() {
           <Route path="/info" element={<Info isLoggin={isLoggin} setIsloggin={setIsLogin}/>}/>
           <Route path="/admin/dashboard" element={<AdminDasboard userData={userData} setIsLoggin={setIsLogin}/>}/>
           <Route path="/admin/upload" element={<AdminUpload userData={userData} setIsloggin={setIsLogin}/>}/>
-          <Route path="/admin/edit" element={<AdminEditProfile userData={userData} setIsLoggin={setIsLogin}/>}/>
+          <Route path="/admin/edit" element={<AdminEditProfile userData={userData} setIsLoggin={setIsLogin} setUserData={setUserData}/>}/>
           <Route path="/login" element={<PageLogin setIsLogin={setIsLogin} setUserData={setUserData}/>} />
         </Routes>
       </Router>

@@ -90,29 +90,32 @@ const Info = ({ isLoggin, setIsloggin }) => {
                                             bottom: 0,
                                             opacity: '0'
                                         }}>
-                                            {details.map((item) => {
-                                                const date = new Date(item.tanggal).toDateString()
-                                            
-                                                return (
-                                                    <table>
-                                                        <tr>
-                                                            <td>Date</td>
-                                                            <td width={30}>:</td>
-                                                            <td>{date}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Source</td>
-                                                            <td width={30}>:</td>
-                                                            <td>{item.source}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Place</td>
-                                                            <td width={30}>:</td>
-                                                            <td>{item.place}</td>
-                                                        </tr>
-                                                    </table>
-                                                )
-                                            })}
+                                            {details ? (
+                                                details.map((item) => {
+                                                    
+                                                    return (
+                                                        <table key={item.detailsId}>
+                                                            <tr>
+                                                                <td>Date</td>
+                                                                <td width={30}>:</td>
+                                                                <td>{new Date(item.tanggal).toDateString()}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Source</td>
+                                                                <td width={30}>:</td>
+                                                                <td>{item.source}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Place</td>
+                                                                <td width={30}>:</td>
+                                                                <td>{item.place}</td>
+                                                            </tr>
+                                                        </table>
+                                                    );
+                                                })
+                                            ) : (
+                                                <p className="mb-0">No details available</p>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
