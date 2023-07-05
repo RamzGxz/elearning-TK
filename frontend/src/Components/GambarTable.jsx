@@ -159,7 +159,7 @@ const GambarTable = ({detailsId, setDetailsId}) => {
                         top: 10,
                         right: 10
                     }} onClick={()=> setAddDetails(false)}></i>
-                    <form >
+                    <form onSubmit={(e)=>hanldePostDetails(e)}>
                         <input type="text" className='form-control mb-3' placeholder='please type source here' onChange={(e) => { setSource(e.target.value) }} />
                         <input type="text" className='form-control mb-3' placeholder='please type place here' onChange={(e) => { setPlace(e.target.value) }} />
                         <div className='d-flex justify-content-between align-items-center'>

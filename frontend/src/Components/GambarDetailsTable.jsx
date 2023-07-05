@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import FormUpdate from './FormUpdate';
 import axios from 'axios';
 
-const GambarDetailsTable = ({detailsId}) => {
+const GambarDetailsTable = ({ detailsId, setDetailsId }) => {
     // state untuk mngambil data gambar
     const [getGambar, getDataGambar] = useState([])
     const [updated, setUpdated] = useState(false)
@@ -40,12 +40,33 @@ const GambarDetailsTable = ({detailsId}) => {
     const [source, setSource] = useState('')
     const [place, setPlace] = useState('')
     const [upDetails, setUpDetails] = useState(false)
-    const updateDetails = async (id) =>{
+    const updateDetails = async (id, e) => {
+        e.preventDefault()
         const data = {
             source: source,
             place: place
         }
-        
+
+        try {
+            const res = await axios.put(`http://localhost:3000/updateGambarDetails/${id}`, data)
+            if (res.status === 200) {
+                alert('update details berhasil!')
+                setUpDetails(false)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const deleteDetails = async(id) =>{
+        try {
+            const res = await axios.delete(`http://localhost:3000/deleteGambarDetail/${id}`)
+            if(res.status === 200) {
+                alert('data detail telah terhapus!')
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
@@ -86,10 +107,20 @@ const GambarDetailsTable = ({detailsId}) => {
                                             <td className="text-center">{item.place}</td>
                                             <td className=" text-center">
                                                 <div className="btn-group" role="group" aria-label="Basic mixed styles example">
-                                                    <button className="btn btn-outline-success btn-sm rounded-0 rounded-start" onClick={() => updateFuncGambarDetails(item._id, item.link, item.source, item.place)}>
+                                                    <button className="btn btn-outline-success btn-sm rounded-0 rounded-start" onClick={() => {
+                                                        setUpDetails(true)
+                                                        setSource(item.source)
+                                                        setPlace(item.place)
+                                                        setDetailsId(item.detailsId)
+                                                        console.log(detailsId)
+                                                    }}>
                                                         <i className="fa-solid fa-pen-to-square"></i>
                                                     </button>
-                                                    <button className="btn btn-outline-danger btn-sm rounded-0 rounded-end" onClick={() => delFuncGambarDetails(item.detailsId)}>
+                                                    <button className="btn btn-outline-danger btn-sm rounded-0 rounded-end" onClick={() => {
+                                                        if(confirm('apakah anda yakin akan menghapus detail ini?')){
+                                                            deleteDetails(item.detailsId)
+                                                        }
+                                                    }}>
                                                         <i className="fa-solid fa-trash"></i>
                                                     </button>
                                                 </div>
@@ -102,9 +133,9 @@ const GambarDetailsTable = ({detailsId}) => {
                     </div>
                 </div>
 
-                {/* <div className='w-100 vh-100 position-fixed' style={{
+                <div className='w-100 vh-100 position-fixed' style={{
                     backgroundColor: 'rgba(0,0,0,0.3)',
-                    top: addDetails ? '50%' : '-500%',
+                    top: upDetails ? '50%' : '-500%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
                     transition: 'all eas-in-out 1s',
@@ -116,14 +147,14 @@ const GambarDetailsTable = ({detailsId}) => {
                         left: '50%',
                         transform: 'translate(-50%, -50%)'
                     }}>
-                        <h1 className='mb-3 text-center'>Form add Details</h1>
-                        <i class="fa-solid fa-circle-xmark fs-4 position-fixed" style={{
+                        <h1 className='mb-3 text-center'>Form Update Details</h1>
+                        <i class="fa-solid fa-circle-xmark fs-4 position-fixed closePopDetails" style={{
                             top: 10,
                             right: 10
-                        }} ></i>
-                        <form >
-                            <input type="text" className='form-control mb-3' placeholder='please type source here' onChange={(e) => { setSource(e.target.value) }} />
-                            <input type="text" className='form-control mb-3' placeholder='please type place here' onChange={(e) => { setPlace(e.target.value) }} />
+                        }} onClick={()=> setUpDetails(false)}></i>
+                        <form onSubmit={(e)=> updateDetails(detailsId, e)}>
+                            <input type="text" value={source} className='form-control mb-3' placeholder='please type source here' onChange={(e) => { setSource(e.target.value) }} />
+                            <input type="text" value={place} className='form-control mb-3' placeholder='please type place here' onChange={(e) => { setPlace(e.target.value) }} />
                             <div className='d-flex justify-content-between align-items-center'>
                                 <button type='submit' className='btn btn-success w-25 m-auto'>Submit</button>
                             </div>
@@ -132,7 +163,7 @@ const GambarDetailsTable = ({detailsId}) => {
 
 
 
-                </div> */}
+                </div>
             </div>
         </div>
     )

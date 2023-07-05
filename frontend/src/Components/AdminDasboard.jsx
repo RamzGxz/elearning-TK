@@ -131,7 +131,7 @@ const AdminDasboard = ({ userData, setIsLoggin }) => {
                             }} />
                         </div>
                         <GambarTable detailsId={detailsId} setDetailsId={setDetailsId}/>
-                        <GambarDetailsTable />
+                        <GambarDetailsTable detailsId={detailsId} setDetailsId={setDetailsId}/>
                         <Videotable />
                         <BeritaTable />
                         <Footer />
