@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react"
 import axios from 'axios'
 import FormUpdate from "./FormUpdate"
-const GambarTable = ({detailsId, setDetailsId}) => {
+const GambarTable = ({gambarId, setGambarID}) => {
     const [getGambar, getDataGambar] = useState([])
     const [updated, setUpdated] = useState(false)
 
@@ -61,7 +61,9 @@ const GambarTable = ({detailsId, setDetailsId}) => {
     // state untuk menyimpan data post details
     const [source, setSource] = useState('')
     const [place, setPlace] = useState('')
+
     // handle untuk post details gambar dengan axios
+    
     const hanldePostDetails = async (e) => {
         e.preventDefault()
         const data = {
@@ -69,7 +71,7 @@ const GambarTable = ({detailsId, setDetailsId}) => {
             place: place
         }
         try {
-            const res = await axios.post(`http://localhost:3000/postGambarDetail/${detailsId}`, data)
+            const res = await axios.post(`http://localhost:3000/postGambarDetail/${gambarId}`, data)
             if (res.status === 200) {
                 alert('data details berhasil di up!')
                 setAddDetails(false)
@@ -118,8 +120,7 @@ const GambarTable = ({detailsId, setDetailsId}) => {
                                             <td className="text-center"><a href="" onClick={(e) => {
                                                 e.preventDefault()
                                                 setAddDetails(true)
-                                                setDetailsId(item._id)
-                                                console.log(detailsId)
+                                                setGambarID(item._id)
                                             }}>add details?</a></td>
                                             <td className=" text-center">
                                                 <div className="btn-group" role="group" aria-label="Basic mixed styles example">

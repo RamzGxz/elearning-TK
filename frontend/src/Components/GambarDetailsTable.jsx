@@ -3,11 +3,11 @@ import { useState, useEffect, useRef } from "react";
 import FormUpdate from './FormUpdate';
 import axios from 'axios';
 
-const GambarDetailsTable = ({ detailsId, setDetailsId }) => {
+const GambarDetailsTable = ({gambarId, setGambarId}) => {
     // state untuk mngambil data gambar
     const [getGambar, getDataGambar] = useState([])
     const [updated, setUpdated] = useState(false)
-    const [detailsArray, setDetailsArray] = useState([]);
+    const [detailsArray, setDetailsArray] = useState([])
 
     // function untuk mengambil embedednya saja
     const getGambarFunc = async () => {
@@ -27,6 +27,7 @@ const GambarDetailsTable = ({ detailsId, setDetailsId }) => {
             const flattenedDetails = details.flat();
             setDetailsArray(flattenedDetails);
             setUpdated(!updated);
+            // setGambarId(res.data._id)
         } catch (error) {
             console.log(error);
         }
@@ -40,6 +41,7 @@ const GambarDetailsTable = ({ detailsId, setDetailsId }) => {
     const [source, setSource] = useState('')
     const [place, setPlace] = useState('')
     const [upDetails, setUpDetails] = useState(false)
+
     const updateDetails = async (id, e) => {
         e.preventDefault()
         const data = {
@@ -58,9 +60,9 @@ const GambarDetailsTable = ({ detailsId, setDetailsId }) => {
         }
     }
 
-    const deleteDetails = async(id) =>{
+    const deleteDetails = async(id, detailsId) =>{
         try {
-            const res = await axios.delete(`http://localhost:3000/deleteGambarDetail/${id}`)
+            const res = await axios.delete(`http://localhost:3000/deleteGambarDetail/${id}/${detailsId}`)
             if(res.status === 200) {
                 alert('data detail telah terhapus!')
             }
@@ -99,9 +101,9 @@ const GambarDetailsTable = ({ detailsId, setDetailsId }) => {
                             <tbody>
                                 {detailsArray.map((item, data) => {
                                     return (
-                                        <tr className="w-100" key={item.detailsId}>
+                                        <tr className="w-100" key={item._id}>
                                             <th scope="row" className="text-center">{data + 1}</th>
-                                            <td className="linkTable">{item.detailsId}</td>
+                                            <td className="linkTable">{item._id}</td>
                                             <td className="text-center">{new Date(item.tanggal).toISOString()}</td>
                                             <td className="text-center">{item.source}</td>
                                             <td className="text-center">{item.place}</td>
@@ -111,14 +113,14 @@ const GambarDetailsTable = ({ detailsId, setDetailsId }) => {
                                                         setUpDetails(true)
                                                         setSource(item.source)
                                                         setPlace(item.place)
-                                                        setDetailsId(item.detailsId)
-                                                        console.log(detailsId)
+                                                        setGambarId(item.gambarId)
+                                                        console.log(gambarId)
                                                     }}>
                                                         <i className="fa-solid fa-pen-to-square"></i>
                                                     </button>
                                                     <button className="btn btn-outline-danger btn-sm rounded-0 rounded-end" onClick={() => {
                                                         if(confirm('apakah anda yakin akan menghapus detail ini?')){
-                                                            deleteDetails(item.detailsId)
+                                                            deleteDetails(item.gambarId, item._id)
                                                         }
                                                     }}>
                                                         <i className="fa-solid fa-trash"></i>
@@ -152,7 +154,7 @@ const GambarDetailsTable = ({ detailsId, setDetailsId }) => {
                             top: 10,
                             right: 10
                         }} onClick={()=> setUpDetails(false)}></i>
-                        <form onSubmit={(e)=> updateDetails(detailsId, e)}>
+                        <form onSubmit={(e)=> updateDetails(gambarId, e)}>
                             <input type="text" value={source} className='form-control mb-3' placeholder='please type source here' onChange={(e) => { setSource(e.target.value) }} />
                             <input type="text" value={place} className='form-control mb-3' placeholder='please type place here' onChange={(e) => { setPlace(e.target.value) }} />
                             <div className='d-flex justify-content-between align-items-center'>

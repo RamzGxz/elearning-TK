@@ -13,8 +13,8 @@ const gambarSchema = new mongoose.Schema({
         required: true,
         type: String
     },
-    details: {
-        detailsId: {
+    details: [{
+        gambarId: {
             required: false,
             type: String
         },
@@ -30,7 +30,7 @@ const gambarSchema = new mongoose.Schema({
             required: false,
             type: String
         }
-    }
+    }]
 })
 
 module.exports = mongoose.model('Gambar', gambarSchema, 'gambar')

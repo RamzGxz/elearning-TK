@@ -73,7 +73,7 @@ module.exports = {
                 {
                     "$push": {
                         "details": {
-                            "detailsId": _id,
+                            "gambarId": _id,
                             "tanggal": tanggal,
                             "source": req.body.source,
                             "place": req.body.place
@@ -103,7 +103,7 @@ module.exports = {
                 {
                     $set: {
                         details: {
-                            "detailsId": _id,
+                            "gambarId": _id,
                             "tanggal": tanggal,
                             "source": req.body.source,
                             "place": req.body.place
@@ -135,7 +135,7 @@ module.exports = {
                 {
                     $pull: {
                         details: {
-                            detailsId: _id
+                            _id: req.params.detailsId
                         }
                     }
                 }

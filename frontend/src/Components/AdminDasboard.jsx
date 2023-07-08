@@ -12,9 +12,8 @@ import { useState } from "react"
 const AdminDasboard = ({ userData, setIsLoggin }) => {
     const isCookie = Cookies.get('auth')
 
-    // state untuk menyimpan detailsId
-    const [detailsId, setDetailsId] = useState('')
-
+    // state untuk menyimpan gambarId
+    const [gambarId, setGambarID] = useState('')
     return (
         <div>
             {isCookie ? (
@@ -130,8 +129,8 @@ const AdminDasboard = ({ userData, setIsLoggin }) => {
                                 height: '70vh'
                             }} />
                         </div>
-                        <GambarTable detailsId={detailsId} setDetailsId={setDetailsId}/>
-                        <GambarDetailsTable detailsId={detailsId} setDetailsId={setDetailsId}/>
+                        <GambarTable gambarId={gambarId} setGambarID={setGambarID}/>
+                        <GambarDetailsTable gambarId={gambarId} setGambarId={setGambarID}/>
                         <Videotable />
                         <BeritaTable />
                         <Footer />
