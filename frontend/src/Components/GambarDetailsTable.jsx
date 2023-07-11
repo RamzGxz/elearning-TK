@@ -7,6 +7,7 @@ const GambarDetailsTable = ({gambarId, setGambarId}) => {
     // state untuk mngambil data gambar
     const [getGambar, getDataGambar] = useState([])
     const [updated, setUpdated] = useState(false)
+
     const [detailsArray, setDetailsArray] = useState([])
 
     // function untuk mengambil embedednya saja
