@@ -9,7 +9,7 @@ import Title from "./Title";
 
 const Home = ({isLoggin, setIsloggin}) => {
 
-    const [dataVideo, setDataVideo] = useState([])
+    const [dataVideo, setDataVideo] = useState([]) //state untuk menyimpan hasil pengambilan datanya
 
 
     const getData = async() =>{

@@ -6,7 +6,7 @@ import Cookies from 'js-cookie'
 const PageLogin = ({ setIsLogin, setUserData }) => {
     const [username, setusername] = useState('')
     const [pass, setpass] = useState('')
-    const navigate = useNavigate()
+    const navigate = useNavigate() //untuk menavigasikan ke halaman yang akan dituju
     const cookie = document.cookie
 
     const handleSubmit = async (e) => {
@@ -20,9 +20,9 @@ const PageLogin = ({ setIsLogin, setUserData }) => {
             const res = await axios.post('http://localhost:3000/log', data)
             const respData = res.data['data']
             if (res.status === 200) {
-                Cookies.set('auth', cookie)
+                Cookies.set('auth', cookie)//untuk men set nama cookienya 
                 alert(`login succes! hello ${res.data['data'][0].username}`)
-                setIsLogin(true)
+                setIsLogin(true) 
                 setUserData(respData)
                 navigate('/')
             }

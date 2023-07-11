@@ -13,7 +13,7 @@ module.exports = {
         const username = req.body.username
         const password = req.body.password
         try {
-            const data = await userModels.find({ username: username, password: password })
+            const data = await userModels.find({ username: username, password: password }) 
             if (data.length === 1) {
                 req.session.isAuthenticated = true
                 res.status(200).json({
